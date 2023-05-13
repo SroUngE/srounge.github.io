@@ -1,7 +1,31 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>Tags - Tag - My New Hugo Site</title>
-        <link>http://localhost/tags/</link>
-        <description>Tags - Tag - My New Hugo Site</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><atom:link href="http://localhost/tags/" rel="self" type="application/rss+xml" /></channel>
+        <title>Tags - Tag - 我的全新 Hugo 网站</title>
+        <link>http://example.org/tags/</link>
+        <description>Tags - Tag - 我的全新 Hugo 网站</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Sat, 13 May 2023 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://example.org/tags/" rel="self" type="application/rss+xml" /><item>
+    <title>picgo</title>
+    <link>http://example.org/tags/picgo/</link>
+    <pubDate>Sat, 13 May 2023 00:00:00 &#43;0000</pubDate>
+    <author>xxxx</author>
+    <guid>http://example.org/tags/picgo/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>smms</title>
+    <link>http://example.org/tags/smms/</link>
+    <pubDate>Sat, 13 May 2023 00:00:00 &#43;0000</pubDate>
+    <author>xxxx</author>
+    <guid>http://example.org/tags/smms/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>vscode</title>
+    <link>http://example.org/tags/vscode/</link>
+    <pubDate>Sat, 13 May 2023 00:00:00 &#43;0000</pubDate>
+    <author>xxxx</author>
+    <guid>http://example.org/tags/vscode/</guid>
+    <description><![CDATA[]]></description>
+</item>
+</channel>
 </rss>
