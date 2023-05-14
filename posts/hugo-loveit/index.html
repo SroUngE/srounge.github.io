@@ -27,7 +27,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/example.org\/posts\/hugo-loveit\/"
-        },"genre": "posts","keywords": "hugo, loveit","wordcount":  680 ,
+        },"genre": "posts","keywords": "hugo, loveit","wordcount":  698 ,
         "url": "http:\/\/example.org\/posts\/hugo-loveit\/","datePublished": "2023-05-14T00:00:00+00:00","dateModified": "2023-05-14T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -101,7 +101,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">个人博客（二）：Hugo框架Loveit主题自定义美化</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://srounge.github.io/" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>SroUngE</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-05-14">2023-05-14</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;680 words&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-05-14">2023-05-14</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;698 words&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;2 minutes&nbsp;</div>
         </div><div class="featured-image"><img
         class="lazyload"
@@ -162,12 +162,13 @@ Hugo有提供<code>figure</code> &amp; <code>image</code>来支持画廊的模�
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-scss" data-lang="scss"><span class="line"><span class="cl"><span class="nc">.page</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="na">max-width</span><span class="o">:</span> <span class="mi">880</span><span class="kt">px</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">  <span class="na">padding-bottom</span><span class="o">:</span> <span class="mi">100</span><span class="kt">px</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">  <span class="na">border-radius</span><span class="o">:</span> <span class="mi">1</span><span class="mf">.5</span><span class="kt">rem</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">  <span class="na">box-shadow</span><span class="o">:</span> <span class="mi">0</span> <span class="mi">12</span><span class="kt">px</span> <span class="mi">50</span><span class="kt">px</span> <span class="mi">0</span> <span class="nf">rgba</span><span class="p">(</span><span class="mi">0</span><span class="o">,</span><span class="mi">0</span><span class="o">,</span><span class="mi">0</span><span class="o">,</span><span class="mi">0</span><span class="mf">.18</span><span class="p">)</span><span class="o">,</span> <span class="mi">0</span> <span class="mi">4</span><span class="kt">px</span> <span class="mi">15</span><span class="kt">px</span> <span class="mi">0</span> <span class="nf">rgba</span><span class="p">(</span><span class="mi">0</span><span class="o">,</span><span class="mi">0</span><span class="o">,</span><span class="mi">0</span><span class="o">,</span><span class="mi">0</span><span class="mf">.15</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">  
-</span></span><span class="line"><span class="cl">  <span class="o">[</span><span class="nt">data-header-desktop</span><span class="o">]</span> <span class="k">&amp;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="c1">// 小于680px的时候不改
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="k">@media</span> <span class="n">only</span> <span class="ni">screen</span> <span class="ow">and</span> <span class="p">(</span><span class="na">min-width</span><span class="o">:</span> <span class="mi">680</span><span class="kt">px</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="na">padding-left</span><span class="o">:</span> <span class="mi">5</span><span class="kt">%</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="na">padding-right</span><span class="o">:</span> <span class="mi">5</span><span class="kt">%</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="na">border-radius</span><span class="o">:</span> <span class="mi">1</span><span class="mf">.5</span><span class="kt">rem</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="na">box-shadow</span><span class="o">:</span> <span class="mi">0</span> <span class="mi">12</span><span class="kt">px</span> <span class="mi">50</span><span class="kt">px</span> <span class="mi">0</span> <span class="nf">rgba</span><span class="p">(</span><span class="mi">0</span><span class="o">,</span><span class="mi">0</span><span class="o">,</span><span class="mi">0</span><span class="o">,</span><span class="mi">0</span><span class="mf">.18</span><span class="p">)</span><span class="o">,</span> <span class="mi">0</span> <span class="mi">4</span><span class="kt">px</span> <span class="mi">15</span><span class="kt">px</span> <span class="mi">0</span> <span class="nf">rgba</span><span class="p">(</span><span class="mi">0</span><span class="o">,</span><span class="mi">0</span><span class="o">,</span><span class="mi">0</span><span class="o">,</span><span class="mi">0</span><span class="mf">.15</span><span class="p">)</span> <span class="k">!important</span><span class="p">;</span>  
 </span></span><span class="line"><span class="cl">  <span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></div><p>to be continue</p></div><div class="post-footer" id="post-footer">
