@@ -3,12 +3,28 @@
         <title>Tags - Tag - Rong&#39;s Blog</title>
         <link>http://example.org/tags/</link>
         <description>Tags - Tag - Rong&#39;s Blog</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>977683159@qq.com (Su, Rong)</managingEditor>
-            <webMaster>977683159@qq.com (Su, Rong)</webMaster><lastBuildDate>Sat, 13 May 2023 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://example.org/tags/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>977683159@qq.com (SroUngE)</managingEditor>
+            <webMaster>977683159@qq.com (SroUngE)</webMaster><lastBuildDate>Sun, 14 May 2023 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://example.org/tags/" rel="self" type="application/rss+xml" /><item>
+    <title>hugo</title>
+    <link>http://example.org/tags/hugo/</link>
+    <pubDate>Sun, 14 May 2023 00:00:00 &#43;0000</pubDate>
+    <author>SroUngE</author>
+    <guid>http://example.org/tags/hugo/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>loveit</title>
+    <link>http://example.org/tags/loveit/</link>
+    <pubDate>Sun, 14 May 2023 00:00:00 &#43;0000</pubDate>
+    <author>SroUngE</author>
+    <guid>http://example.org/tags/loveit/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
     <title>picgo</title>
     <link>http://example.org/tags/picgo/</link>
     <pubDate>Sat, 13 May 2023 00:00:00 &#43;0000</pubDate>
-    <author>Su, Rong</author>
+    <author>SroUngE</author>
     <guid>http://example.org/tags/picgo/</guid>
     <description><![CDATA[]]></description>
 </item>
@@ -16,7 +32,7 @@
     <title>smms</title>
     <link>http://example.org/tags/smms/</link>
     <pubDate>Sat, 13 May 2023 00:00:00 &#43;0000</pubDate>
-    <author>Su, Rong</author>
+    <author>SroUngE</author>
     <guid>http://example.org/tags/smms/</guid>
     <description><![CDATA[]]></description>
 </item>
@@ -24,7 +40,7 @@
     <title>vscode</title>
     <link>http://example.org/tags/vscode/</link>
     <pubDate>Sat, 13 May 2023 00:00:00 &#43;0000</pubDate>
-    <author>Su, Rong</author>
+    <author>SroUngE</author>
     <guid>http://example.org/tags/vscode/</guid>
     <description><![CDATA[]]></description>
 </item>
