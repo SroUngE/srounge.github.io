@@ -27,7 +27,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/example.org\/posts\/hugo-loveit\/"
-        },"genre": "posts","keywords": "hugo, loveit","wordcount":  1260 ,
+        },"genre": "posts","keywords": "hugo, loveit","wordcount":  1807 ,
         "url": "http:\/\/example.org\/posts\/hugo-loveit\/","datePublished": "2023-05-14T00:00:00+00:00","dateModified": "2023-05-14T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -95,14 +95,61 @@
     </div>
     <div class="search-dropdown mobile">
         <div id="search-dropdown-mobile"></div>
-    </div><main class="main">
-                <div class="container"><div class="toc" id="toc-auto">
+    </div><main class="main"><head>
+    <style>
+        .banner {
+            position: relative;
+            overflow: hidden;
+            height: 60vh;
+            width: 100%;
+            background-image: linear-gradient(rgb(75, 0, 155), rgb(255, 255, 255));
+        
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            line-height: 0.9;
+        }
+
+        .title {
+            margin: 0 auto;
+            padding: 0 2rem;
+            text-align: center;
+            letter-spacing: -0.01em;
+            color: rgb(255, 255, 255);
+            font-weight: 800;
+            font-size: 2.75rem;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI";
+            opacity: .9;
+
+            @media screen and (min-width:480px) {
+                font-size: 3.25rem;
+            }
+
+            @media screen and (min-width:760px) {
+                font-size: 4.25rem;
+            }
+
+            @media screen and (min-width: 1440px) {
+                font-size: 5.375rem;
+            } 
+   
+        }
+    </style>
+</head>
+<div class="banner"> 
+    <div class="title">
+        One is not born, but rather becomes, a woman.
+    </div>
+</div>
+<div class="container"><div class="toc" id="toc-auto">
             <h2 class="toc-title">Contents</h2>
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">个人博客（二）：Hugo框架Loveit主题自定义美化</h1><div class="post-meta">
-            <div class="post-meta-line"><span class="post-author"><a href="https://srounge.github.io/" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>SroUngE</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-05-14">2023-05-14</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;1260 words&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;3 minutes&nbsp;</div>
+            <div class="post-meta-line">
+                </div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-05-14">2023-05-14</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;1807 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;4 minutes&nbsp;</div>
         </div><div class="featured-image"><img
         class="lazyload"
         src="/svg/loading.min.svg"
@@ -123,6 +170,8 @@
     <li><a href="#自定义目录样式">自定义目录样式</a></li>
     <li><a href="#自定义page样式">自定义Page样式</a></li>
     <li><a href="#自定义文章列表样式">自定义文章列表样式</a></li>
+    <li><a href="#自定义post页面样式">自定义Post页面样式</a></li>
+    <li><a href="#自定义banner">自定义Banner</a></li>
   </ul>
 </nav></div>
             </div><div class="content" id="content"><h2 id="启动hugo">启动Hugo</h2>
@@ -198,42 +247,126 @@ Hugo有提供<code>figure</code> &amp; <code>image</code>来支持画廊的模�
         alt="https://s2.loli.net/2023/05/22/tCxevQ5LZWHN63I.png"
         title="https://s2.loli.net/2023/05/22/tCxevQ5LZWHN63I.png" /><br>
 需要修改layout部分的<code>blog\themes\Loveit\layouts\_default\_summary.html</code>以及<code>_home.css</code>，这里主要展示<code>_summary.html</code>的修改：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">    {{- /* Meta */ -}}
-</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;post-meta&#34;</span><span class="p">&gt;</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">{{- /* Meta */ -}}
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;post-meta&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="c">&lt;!-- 去掉作者信息展示 --&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="c">&lt;!-- {{- $author := $params.author | default .Site.Author.name | default (T &#34;author&#34;) -}}
+</span></span></span><span class="line"><span class="cl"><span class="c">    {{- $authorLink := $params.authorlink | default .Site.Author.link | default .Site.Home.RelPermalink -}}
+</span></span></span><span class="line"><span class="cl"><span class="c">    &lt;span class=&#34;post-author&#34;&gt;
+</span></span></span><span class="line"><span class="cl"><span class="c">        {{- $options := dict &#34;Class&#34; &#34;author&#34; &#34;Destination&#34; $authorLink &#34;Title&#34; &#34;Author&#34; &#34;Rel&#34; &#34;author&#34; &#34;Icon&#34; (dict &#34;Class&#34; &#34;fas fa-user-circle fa-fw&#34;) &#34;Content&#34; $author -}}
+</span></span></span><span class="line"><span class="cl"><span class="c">        {{- partial &#34;plugin/a.html&#34; $options -}}
+</span></span></span><span class="line"><span class="cl"><span class="c">    &lt;/span&gt; --&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="c">&lt;!-- 去掉作者信息展示 --&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    {{- /* Footer */ -}}
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;post-footer&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="c">&lt;!-- 去掉阅读更多的超链接 --&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="c">&lt;!-- &lt;a href=&#34;{{ .RelPermalink }}&#34;&gt;{{ T &#34;readMore&#34; }}&lt;/a&gt; --&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="c">&lt;!-- 去掉阅读更多的超链接 --&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span></code></pre></div><h2 id="自定义post页面样式">自定义Post页面样式</h2>
+<p>同样的，我想把文章开头的作者去掉，以及文章结尾的一些配置都去掉：<br>
+修改<code>\blog\layouts\posts\single.html</code></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;post-meta&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;post-meta-line&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="c">&lt;!-- 去掉作者信息展示 --&gt;</span>
 </span></span><span class="line"><span class="cl">        <span class="c">&lt;!-- {{- $author := $params.author | default .Site.Author.name | default (T &#34;author&#34;) -}}
 </span></span></span><span class="line"><span class="cl"><span class="c">        {{- $authorLink := $params.authorlink | default .Site.Author.link | default .Site.Home.RelPermalink -}}
 </span></span></span><span class="line"><span class="cl"><span class="c">        &lt;span class=&#34;post-author&#34;&gt;
 </span></span></span><span class="line"><span class="cl"><span class="c">            {{- $options := dict &#34;Class&#34; &#34;author&#34; &#34;Destination&#34; $authorLink &#34;Title&#34; &#34;Author&#34; &#34;Rel&#34; &#34;author&#34; &#34;Icon&#34; (dict &#34;Class&#34; &#34;fas fa-user-circle fa-fw&#34;) &#34;Content&#34; $author -}}
 </span></span></span><span class="line"><span class="cl"><span class="c">            {{- partial &#34;plugin/a.html&#34; $options -}}
 </span></span></span><span class="line"><span class="cl"><span class="c">        &lt;/span&gt; --&gt;</span>
-</span></span><span class="line"><span class="cl">        <span class="c">&lt;!-- 去掉了作者的这一部分展示 --&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="c">&lt;!-- 去掉作者信息展示 --&gt;</span>
 </span></span><span class="line"><span class="cl">    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">        {{- /* Footer */ -}}
-</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;post-footer&#34;</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">        <span class="c">&lt;!-- &lt;a href=&#34;{{ .RelPermalink }}&#34;&gt;{{ T &#34;readMore&#34; }}&lt;/a&gt; --&gt;</span>
-</span></span><span class="line"><span class="cl">        {{- with .Site.Params.dateFormat | default &#34;2006-01-02&#34; | .PublishDate.Format -}}
-</span></span><span class="line"><span class="cl">            <span class="p">&lt;</span><span class="nt">span</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;post-publish&#34;</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">                <span class="p">&lt;</span><span class="nt">i</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;fa-solid fa-calendar-days&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">i</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">                <span class="ni">&amp;nbsp;</span>{{- printf `<span class="p">&lt;</span><span class="nt">time</span> <span class="na">datetime</span><span class="o">=</span><span class="s">&#34;%v&#34;</span><span class="p">&gt;</span>%v<span class="p">&lt;/</span><span class="nt">time</span><span class="p">&gt;</span>` . . | dict &#34;Date&#34; | T &#34;publishedOnDate&#34; | safeHTML -}}
-</span></span><span class="line"><span class="cl">            <span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">        {{- end -}}
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span></code></pre></div><p>修改<code>blog\layouts\partials\single\footer.html</code>为：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;post-info-mod&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">span</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="c">&lt;!-- 去掉上次修改时间以及提交时间 --&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="c">&lt;!-- {{- with .Site.Params.dateformat | default &#34;2006-01-02&#34; | .Lastmod.Format -}}
+</span></span></span><span class="line"><span class="cl"><span class="c">            {{- dict &#34;Date&#34; . | T &#34;updatedOnDate&#34; -}}
+</span></span></span><span class="line"><span class="cl"><span class="c">            {{- if $.Site.Params.gitRepo -}}
+</span></span></span><span class="line"><span class="cl"><span class="c">                {{- with $.GitInfo -}}
+</span></span></span><span class="line"><span class="cl"><span class="c">                    &amp;nbsp;&lt;a class=&#34;git-hash&#34; href=&#34;{{ printf `%v/commit/%v` $.Site.Params.gitRepo .Hash }}&#34; target=&#34;_blank&#34; title=&#34;commit by {{ .AuthorName }}({{ .AuthorEmail }}) {{ .Hash }}: {{ .Subject }}&#34;&gt;
+</span></span></span><span class="line"><span class="cl"><span class="c">                        &lt;i class=&#34;fas fa-hashtag fa-fw&#34; aria-hidden=&#34;true&#34;&gt;&lt;/i&gt;{{- .AbbreviatedHash -}}
+</span></span></span><span class="line"><span class="cl"><span class="c">                    &lt;/a&gt;
+</span></span></span><span class="line"><span class="cl"><span class="c">                {{- end -}}
+</span></span></span><span class="line"><span class="cl"><span class="c">            {{- end -}}
+</span></span></span><span class="line"><span class="cl"><span class="c">        {{- end -}} --&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="c">&lt;!-- 去掉上次修改时间以及提交时间 --&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">        {{- with .Params.tags -}}
-</span></span><span class="line"><span class="cl">            <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;post-tags&#34;</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">                <span class="p">&lt;</span><span class="nt">i</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;fas fa-tags fa-fw&#34;</span> <span class="na">aria-hidden</span><span class="o">=</span><span class="s">&#34;true&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">i</span><span class="p">&gt;</span><span class="ni">&amp;nbsp;</span>
-</span></span><span class="line"><span class="cl">                {{- range $index, $value := . -}}
-</span></span><span class="line"><span class="cl">                    {{- if gt $index 0 }},<span class="ni">&amp;nbsp;</span>{{ end -}}
-</span></span><span class="line"><span class="cl">                    {{- $tag := partialCached &#34;function/path.html&#34; $value $value | printf &#34;/tags/%v&#34; | $.Site.GetPage -}}
-</span></span><span class="line"><span class="cl">                    <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;{{ $tag.RelPermalink }}&#34;</span><span class="p">&gt;</span>{{ $tag.Title }}<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">                {{- end -}}
-</span></span><span class="line"><span class="cl">            <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">        {{- end -}}
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;post-info-more&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="c">&lt;!-- 去掉tags 和back|home --&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="c">&lt;!-- &lt;section class=&#34;post-tags&#34;&gt;
+</span></span></span><span class="line"><span class="cl"><span class="c">        {{- with .Params.tags -}}
+</span></span></span><span class="line"><span class="cl"><span class="c">            &lt;i class=&#34;fas fa-tags fa-fw&#34; aria-hidden=&#34;true&#34;&gt;&lt;/i&gt;&amp;nbsp;
+</span></span></span><span class="line"><span class="cl"><span class="c">            {{- range $index, $value := . -}}
+</span></span></span><span class="line"><span class="cl"><span class="c">                {{- if gt $index 0 }},&amp;nbsp;{{ end -}}
+</span></span></span><span class="line"><span class="cl"><span class="c">                {{- $tag := partialCached &#34;function/path.html&#34; $value $value | printf &#34;/tags/%v&#34; | $.Site.GetPage -}}
+</span></span></span><span class="line"><span class="cl"><span class="c">                &lt;a href=&#34;{{ $tag.RelPermalink }}&#34;&gt;{{ $tag.Title }}&lt;/a&gt;
+</span></span></span><span class="line"><span class="cl"><span class="c">            {{- end -}}
+</span></span></span><span class="line"><span class="cl"><span class="c">        {{- end -}}
+</span></span></span><span class="line"><span class="cl"><span class="c">    &lt;/section&gt;
+</span></span></span><span class="line"><span class="cl"><span class="c">    &lt;section&gt;
+</span></span></span><span class="line"><span class="cl"><span class="c">        &lt;span&gt;&lt;a href=&#34;javascript:void(0);&#34; onclick=&#34;window.history.back();&#34;&gt;{{ T &#34;back&#34; }}&lt;/a&gt;&lt;/span&gt;&amp;nbsp;|&amp;nbsp;&lt;span&gt;&lt;a href=&#34;{{ .Site.Home.RelPermalink }}&#34;&gt;{{ T &#34;home&#34; }}&lt;/a&gt;&lt;/span&gt;
+</span></span></span><span class="line"><span class="cl"><span class="c">    &lt;/section&gt; --&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="c">&lt;!-- 去掉tags 和back|home --&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span></code></pre></div><p>最后的效果如图：<br>
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://s2.loli.net/2023/05/25/H3nxjyPpzgIJ7O8.png"
+        data-srcset="https://s2.loli.net/2023/05/25/H3nxjyPpzgIJ7O8.png, https://s2.loli.net/2023/05/25/H3nxjyPpzgIJ7O8.png 1.5x, https://s2.loli.net/2023/05/25/H3nxjyPpzgIJ7O8.png 2x"
+        data-sizes="auto"
+        alt="https://s2.loli.net/2023/05/25/H3nxjyPpzgIJ7O8.png"
+        title="https://s2.loli.net/2023/05/25/H3nxjyPpzgIJ7O8.png" /></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://s2.loli.net/2023/05/25/iXA6ZS5l4fQyu2w.png"
+        data-srcset="https://s2.loli.net/2023/05/25/iXA6ZS5l4fQyu2w.png, https://s2.loli.net/2023/05/25/iXA6ZS5l4fQyu2w.png 1.5x, https://s2.loli.net/2023/05/25/iXA6ZS5l4fQyu2w.png 2x"
+        data-sizes="auto"
+        alt="https://s2.loli.net/2023/05/25/iXA6ZS5l4fQyu2w.png"
+        title="https://s2.loli.net/2023/05/25/iXA6ZS5l4fQyu2w.png" /></p>
+<h2 id="自定义banner">自定义Banner</h2>
+<p>需要在<code>main</code> 和 <code>container</code>中间插入banner，因此要修改<code>blog\layouts\_default</code>为：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">main</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;main&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="c">&lt;!-- 插入banner --&gt;</span>
+</span></span><span class="line"><span class="cl">    {{- partial &#34;banner.html&#34; . -}}
+</span></span><span class="line"><span class="cl">    <span class="c">&lt;!-- 插入banner --&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;container&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">        {{- block &#34;content&#34; . }}{{ end -}}
 </span></span><span class="line"><span class="cl">    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-</span></span></code></pre></div><p>to be continue</p></div><div class="post-footer" id="post-footer">
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">main</span><span class="p">&gt;</span>
+</span></span></code></pre></div><p>然后在添加自己的<code>partial</code>文件：<code>blog\layouts\partials\banner.html</code></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="c">&lt;!-- 自定义css --&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;banner&#34;</span><span class="p">&gt;</span> 
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;title&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">        One is not born, but rather becomes, a woman.
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span></code></pre></div><p>效果如下：
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://s2.loli.net/2023/05/25/SChgUm5ey8Pqj1T.png"
+        data-srcset="https://s2.loli.net/2023/05/25/SChgUm5ey8Pqj1T.png, https://s2.loli.net/2023/05/25/SChgUm5ey8Pqj1T.png 1.5x, https://s2.loli.net/2023/05/25/SChgUm5ey8Pqj1T.png 2x"
+        data-sizes="auto"
+        alt="https://s2.loli.net/2023/05/25/SChgUm5ey8Pqj1T.png"
+        title="https://s2.loli.net/2023/05/25/SChgUm5ey8Pqj1T.png" />
+to be continue</p></div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>Updated on 2023-05-14</span>
+                <span>
+                    
+                </span>
             </div></div>
         <div class="post-info-line">
             <div class="post-info-md"></div>
@@ -244,10 +377,7 @@ Hugo有提供<code>figure</code> &amp; <code>image</code>来支持画廊的模�
     </div>
 
     <div class="post-info-more">
-        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/hugo/">hugo</a>,&nbsp;<a href="/tags/loveit/">loveit</a></section>
-        <section>
-            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
-        </section>
+        
     </div>
 
     <div class="post-nav"><a href="/posts/smms-picgo-vscode/" class="prev" rel="prev" title="个人博客（一）：SMMS &#43; PICGO &#43; VSCODE"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>个人博客（一）：SMMS + PICGO + VSCODE</a></div>

@@ -87,8 +87,54 @@
     </div>
     <div class="search-dropdown mobile">
         <div id="search-dropdown-mobile"></div>
-    </div><main class="main">
-                <div class="container"><div class="page home" data-home="posts"><div class="home-profile"><div class="home-avatar"><a href="/posts/" title="Posts"><img
+    </div><main class="main"><head>
+    <style>
+        .banner {
+            position: relative;
+            overflow: hidden;
+            height: 60vh;
+            width: 100%;
+            background-image: linear-gradient(rgb(75, 0, 155), rgb(255, 255, 255));
+        
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            line-height: 0.9;
+        }
+
+        .title {
+            margin: 0 auto;
+            padding: 0 2rem;
+            text-align: center;
+            letter-spacing: -0.01em;
+            color: rgb(255, 255, 255);
+            font-weight: 800;
+            font-size: 2.75rem;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI";
+            opacity: .9;
+
+            @media screen and (min-width:480px) {
+                font-size: 3.25rem;
+            }
+
+            @media screen and (min-width:760px) {
+                font-size: 4.25rem;
+            }
+
+            @media screen and (min-width: 1440px) {
+                font-size: 5.375rem;
+            } 
+   
+        }
+    </style>
+</head>
+<div class="banner"> 
+    <div class="title">
+        One is not born, but rather becomes, a woman.
+    </div>
+</div>
+<div class="container"><div class="page home" data-home="posts"><div class="home-profile"><div class="home-avatar"><a href="/posts/" title="Posts"><img
         class="lazyload"
         src="/svg/loading.min.svg"
         data-src="/avatar.jpg"
@@ -111,7 +157,8 @@
         </div><div class="content">简单地自定义Loveit主题的样式。</div><div class="post-footer">
         <span class="post-publish">
                 <i class="fa-solid fa-calendar-days"></i>
-                &nbsp;published on <time datetime="2023-05-14">2023-05-14</time></span><div class="post-tags">
+                &nbsp;<time datetime="2023-05-14">2023-05-14</time>
+            </span><div class="post-tags">
                 <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/hugo/">hugo</a>,&nbsp;<a href="/tags/loveit/">loveit</a></div></div>
 </article><article class="single summary" itemscope itemtype="http://schema.org/Article"><div class="featured-image-preview">
             <a href="/posts/smms-picgo-vscode/"><img
@@ -128,7 +175,8 @@
         </div><div class="content">搭建基于SMMS图床，配合使用图片上传工具PICGO，以及VSCODE作为markdown编辑器撰写md文章</div><div class="post-footer">
         <span class="post-publish">
                 <i class="fa-solid fa-calendar-days"></i>
-                &nbsp;published on <time datetime="2023-05-13">2023-05-13</time></span><div class="post-tags">
+                &nbsp;<time datetime="2023-05-13">2023-05-13</time>
+            </span><div class="post-tags">
                 <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/smms/">smms</a>,&nbsp;<a href="/tags/picgo/">picgo</a>,&nbsp;<a href="/tags/vscode/">vscode</a></div></div>
 </article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/posts/markdown-usage/">First</a>
@@ -136,7 +184,8 @@
         </div><div class="content">欢迎使用Markdown编辑器 你好！ 这是你第一次使用 Markdown编辑器 所展示的欢迎页。如果你想学习如何使用Markdown编辑器, 可以仔</div><div class="post-footer">
         <span class="post-publish">
                 <i class="fa-solid fa-calendar-days"></i>
-                &nbsp;published on <time datetime="2023-04-24">2023-04-24</time></span></div>
+                &nbsp;<time datetime="2023-04-24">2023-04-24</time>
+            </span></div>
 </article></div></div>
             </main><footer class="footer">
         <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.111.3">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
