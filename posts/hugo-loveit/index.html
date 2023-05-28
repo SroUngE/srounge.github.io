@@ -27,7 +27,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/example.org\/posts\/hugo-loveit\/"
-        },"genre": "posts","keywords": "hugo, loveit","wordcount":  1807 ,
+        },"genre": "posts","keywords": "hugo, loveit","wordcount":  2120 ,
         "url": "http:\/\/example.org\/posts\/hugo-loveit\/","datePublished": "2023-05-14T00:00:00+00:00","dateModified": "2023-05-14T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -44,7 +44,7 @@
             <a href="/" title="Rong&#39;s Blog">Rong&#39;s Blog</a>
         </div>
         <div class="menu">
-            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/about/"> About </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+            <div class="menu-inner"><a class="menu-item" href="/posts/" title="Posts"><i class="fa-solid fa-book" style="color: #2f4154;"></i> Posts </a><a class="menu-item" href="/categories/" title="Categories"><i class="fa-solid fa-folder" style="color: #2f4154;"></i> Categories </a><a class="menu-item" href="/about/" title="About"><i class="fa-solid fa-user" style="color: #2f4154;"></i> About </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
                         <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
                         <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
                             <i class="fas fa-search fa-fw" aria-hidden="true"></i>
@@ -86,7 +86,7 @@
                     <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
                         Cancel
                     </a>
-                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/about/" title="">About</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                </div><a class="menu-item" href="/posts/" title="Posts"><i class="fa-solid fa-book" style="color: #2f4154;"></i>Posts</a><a class="menu-item" href="/categories/" title="Categories"><i class="fa-solid fa-folder" style="color: #2f4154;"></i>Categories</a><a class="menu-item" href="/about/" title="About"><i class="fa-solid fa-user" style="color: #2f4154;"></i>About</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
                 <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
             </a></div>
     </div>
@@ -95,7 +95,7 @@
     </div>
     <div class="search-dropdown mobile">
         <div id="search-dropdown-mobile"></div>
-    </div><main class="main"><head>
+    </div><head>
     <style>
         .banner {
             position: relative;
@@ -142,14 +142,15 @@
         One is not born, but rather becomes, a woman.
     </div>
 </div>
-<div class="container"><div class="toc" id="toc-auto">
+<main class="main">                             
+                <div class="container"><div class="toc animate__animated animate__fadeInRight" id="toc-auto">
             <h2 class="toc-title">Contents</h2>
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">个人博客（二）：Hugo框架Loveit主题自定义美化</h1><div class="post-meta">
             <div class="post-meta-line">
                 </div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-05-14">2023-05-14</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;1807 words&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;4 minutes&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-05-14">2023-05-14</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;2120 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;5 minutes&nbsp;</div>
         </div><div class="featured-image"><img
         class="lazyload"
         src="/svg/loading.min.svg"
@@ -165,20 +166,21 @@
                 <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
   <ul>
     <li><a href="#启动hugo">启动Hugo</a></li>
-    <li><a href="#自定义logo字体">自定义logo字体</a></li>
-    <li><a href="#自定义图片展示样式">自定义图片展示样式</a></li>
-    <li><a href="#自定义目录样式">自定义目录样式</a></li>
-    <li><a href="#自定义page样式">自定义Page样式</a></li>
-    <li><a href="#自定义文章列表样式">自定义文章列表样式</a></li>
-    <li><a href="#自定义post页面样式">自定义Post页面样式</a></li>
-    <li><a href="#自定义banner">自定义Banner</a></li>
+    <li><a href="#1-自定义logo字体">1. 自定义logo字体</a></li>
+    <li><a href="#2-自定义导航栏图标">2. 自定义导航栏图标</a></li>
+    <li><a href="#3-自定义图片展示样式">3. 自定义图片展示样式</a></li>
+    <li><a href="#4-自定义目录样式">4. 自定义目录样式</a></li>
+    <li><a href="#5-自定义page样式">5. 自定义Page样式</a></li>
+    <li><a href="#6-自定义文章列表样式">6. 自定义文章列表样式</a></li>
+    <li><a href="#7-自定义post页面样式">7. 自定义Post页面样式</a></li>
+    <li><a href="#8-自定义banner">8. 自定义Banner</a></li>
   </ul>
 </nav></div>
             </div><div class="content" id="content"><h2 id="启动hugo">启动Hugo</h2>
 <p>首先要以debug的模式启动Hugo，这样本地改动之后可以立即应用到页面上</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ hugo serve --disableFastRender
 </span></span></code></pre></div><p>在Hugo中，如果你要覆盖原来的css，就要把主题的css样式按完全相同的路径copy到自己目录下。</p>
-<h2 id="自定义logo字体">自定义logo字体</h2>
+<h2 id="1-自定义logo字体">1. 自定义logo字体</h2>
 <p>logo的字体是一个全局变量，Loveit中的全局变量存在<code>blog\themes\Loveit\assets\css\_variable.css</code>，为了要覆盖这些全局变量，Loveit提供了一个覆盖文叫<code>blog\themes\Loveit\assets\css\_override.css</code>, 新建文件<code>blog\assets\css\_override.css</code>，这里我用了google font，写入以下：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-scss" data-lang="scss"><span class="line"><span class="cl"><span class="k">@import</span> <span class="sx">url(&#39;https://fonts.font.im/css?family=Kaushan+Script&#39;)</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="nv">$header-title-font-family</span><span class="o">:</span> <span class="s1">&#39;Kaushan Script&#39;</span><span class="o">,</span> <span class="ni">cursive</span><span class="p">;</span>
@@ -191,7 +193,46 @@
         data-sizes="auto"
         alt="https://s2.loli.net/2023/05/22/U7ijIvEtSdhrpKa.png"
         title="https://s2.loli.net/2023/05/22/U7ijIvEtSdhrpKa.png" /></p>
-<h2 id="自定义图片展示样式">自定义图片展示样式</h2>
+<h2 id="2-自定义导航栏图标">2. 自定义导航栏图标</h2>
+<p><code>Loveit</code>提供配置<code>config.toml</code>，可以在导航栏的前后增加图标，以下是我的配置，这里有个坑的地方是要用单引号，不然会编码错误。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="p">[</span><span class="nx">menu</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">  <span class="p">[[</span><span class="nx">menu</span><span class="p">.</span><span class="nx">main</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">weight</span> <span class="p">=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">identifier</span> <span class="p">=</span> <span class="s2">&#34;posts&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="c"># 你可以在名称 (允许 HTML 格式) 之前添加其他信息, 例如图标</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">pre</span> <span class="p">=</span> <span class="s1">&#39;&lt;i class=&#34;fa-solid fa-book&#34; style=&#34;color: #2f4154;&#34;&gt;&lt;/i&gt;&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="c"># 你可以在名称 (允许 HTML 格式) 之后添加其他信息, 例如图标</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">post</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">name</span> <span class="p">=</span> <span class="s2">&#34;Posts&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">url</span> <span class="p">=</span> <span class="s2">&#34;/posts/&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="c"># 当你将鼠标悬停在此菜单链接上时, 将显示的标题</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">title</span> <span class="p">=</span> <span class="s2">&#34;Posts&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">[[</span><span class="nx">menu</span><span class="p">.</span><span class="nx">main</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">weight</span> <span class="p">=</span> <span class="mi">2</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">identifier</span> <span class="p">=</span> <span class="s2">&#34;categories&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">pre</span> <span class="p">=</span> <span class="s1">&#39;&lt;i class=&#34;fa-solid fa-folder&#34; style=&#34;color: #2f4154;&#34;&gt;&lt;/i&gt;&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">post</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">name</span> <span class="p">=</span> <span class="s2">&#34;Categories&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">url</span> <span class="p">=</span> <span class="s2">&#34;/categories/&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">title</span> <span class="p">=</span> <span class="s2">&#34;Categories&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">[[</span><span class="nx">menu</span><span class="p">.</span><span class="nx">main</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">weight</span> <span class="p">=</span> <span class="mi">3</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">identifier</span> <span class="p">=</span> <span class="s2">&#34;about&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">pre</span> <span class="p">=</span> <span class="s1">&#39;&lt;i class=&#34;fa-solid fa-user&#34; style=&#34;color: #2f4154;&#34;&gt;&lt;/i&gt;&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">post</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">name</span> <span class="p">=</span> <span class="s2">&#34;About&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">url</span> <span class="p">=</span> <span class="s2">&#34;/about/&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">title</span> <span class="p">=</span> <span class="s2">&#34;About&#34;</span>
+</span></span></code></pre></div><p>效果如下：<br>
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://s2.loli.net/2023/05/28/VQbO1FxdSfCeLM4.png"
+        data-srcset="https://s2.loli.net/2023/05/28/VQbO1FxdSfCeLM4.png, https://s2.loli.net/2023/05/28/VQbO1FxdSfCeLM4.png 1.5x, https://s2.loli.net/2023/05/28/VQbO1FxdSfCeLM4.png 2x"
+        data-sizes="auto"
+        alt="https://s2.loli.net/2023/05/28/VQbO1FxdSfCeLM4.png"
+        title="https://s2.loli.net/2023/05/28/VQbO1FxdSfCeLM4.png" /></p>
+<h2 id="3-自定义图片展示样式">3. 自定义图片展示样式</h2>
 <p>覆盖样式<code>blog\themes\Loveit\assets\css\_page\_single.scss</code>，就要新建同样的文件路径<code>blog\assets\css\_page\_single.scss</code>，建好路径之后，把这个文件copy过来。<br>
 我想要的样式是图片铺满，有一些阴影的效果，以下是我的设置：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-scss" data-lang="scss"><span class="line"><span class="cl"><span class="nt">img</span> <span class="p">{</span>
@@ -215,14 +256,14 @@
         alt="https://s2.loli.net/2023/05/14/3AnLZarDt1JB8dY.jpg"
         title="https://s2.loli.net/2023/05/14/3AnLZarDt1JB8dY.jpg" /><br>
 Hugo有提供<code>figure</code> &amp; <code>image</code>来支持画廊的模式，我最终决定不采用，1是因为这样破坏了markdown的语法，2是因为我目前没有需要展示很多值得点开去放大的照片的需求，因此这里仅仅只是调整图片的样式。</p>
-<h2 id="自定义目录样式">自定义目录样式</h2>
+<h2 id="4-自定义目录样式">4. 自定义目录样式</h2>
 <p>CSS文件的路径是<code>blog\themes\Loveit\assets\css\_partial\_single\_toc.scss</code>。目录方面我的调整是把竖线去掉，然后稍微调整了一下灰色竖线的距离目录文件的距离，以及目录的位置。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-scss" data-lang="scss"><span class="line"><span class="cl"><span class="na">contents</span><span class="o">:</span> <span class="s2">&#34;|&#34;</span><span class="p">;</span> <span class="c1">//这一行被我去掉了
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>
 </span></span><span class="line"><span class="cl"><span class="nn">#toc-auto</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="na">padding</span><span class="o">:</span> <span class="mi">0</span> <span class="mi">1</span><span class="mf">.2</span><span class="kt">rem</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><h2 id="自定义page样式">自定义Page样式</h2>
+</span></span></code></pre></div><h2 id="5-自定义page样式">5. 自定义Page样式</h2>
 <p>CSS文件的路径是<code>blog\themes\Loveit\assets\css\_page\_index.scss</code>。我调整了width，设置了padding，加了个人喜欢的带阴影的风格：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-scss" data-lang="scss"><span class="line"><span class="cl"><span class="nc">.page</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="na">max-width</span><span class="o">:</span> <span class="mi">880</span><span class="kt">px</span><span class="p">;</span>
@@ -236,7 +277,7 @@ Hugo有提供<code>figure</code> &amp; <code>image</code>来支持画廊的模�
 </span></span><span class="line"><span class="cl">    <span class="na">box-shadow</span><span class="o">:</span> <span class="mi">0</span> <span class="mi">12</span><span class="kt">px</span> <span class="mi">50</span><span class="kt">px</span> <span class="mi">0</span> <span class="nf">rgba</span><span class="p">(</span><span class="mi">0</span><span class="o">,</span><span class="mi">0</span><span class="o">,</span><span class="mi">0</span><span class="o">,</span><span class="mi">0</span><span class="mf">.18</span><span class="p">)</span><span class="o">,</span> <span class="mi">0</span> <span class="mi">4</span><span class="kt">px</span> <span class="mi">15</span><span class="kt">px</span> <span class="mi">0</span> <span class="nf">rgba</span><span class="p">(</span><span class="mi">0</span><span class="o">,</span><span class="mi">0</span><span class="o">,</span><span class="mi">0</span><span class="o">,</span><span class="mi">0</span><span class="mf">.15</span><span class="p">)</span> <span class="k">!important</span><span class="p">;</span>  
 </span></span><span class="line"><span class="cl">  <span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><h2 id="自定义文章列表样式">自定义文章列表样式</h2>
+</span></span></code></pre></div><h2 id="6-自定义文章列表样式">6. 自定义文章列表样式</h2>
 <p>个人比较喜欢极简的风格，原来的卡片样式颜色太多，然后排版也乱，于是自己再重新设计了以下，成果如下：
 <img
         class="lazyload"
@@ -265,7 +306,7 @@ Hugo有提供<code>figure</code> &amp; <code>image</code>来支持画廊的模�
 </span></span><span class="line"><span class="cl">    <span class="c">&lt;!-- 去掉阅读更多的超链接 --&gt;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-</span></span></code></pre></div><h2 id="自定义post页面样式">自定义Post页面样式</h2>
+</span></span></code></pre></div><h2 id="7-自定义post页面样式">7. 自定义Post页面样式</h2>
 <p>同样的，我想把文章开头的作者去掉，以及文章结尾的一些配置都去掉：<br>
 修改<code>\blog\layouts\posts\single.html</code></p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;post-meta&#34;</span><span class="p">&gt;</span>
@@ -332,16 +373,21 @@ Hugo有提供<code>figure</code> &amp; <code>image</code>来支持画廊的模�
         data-sizes="auto"
         alt="https://s2.loli.net/2023/05/25/iXA6ZS5l4fQyu2w.png"
         title="https://s2.loli.net/2023/05/25/iXA6ZS5l4fQyu2w.png" /></p>
-<h2 id="自定义banner">自定义Banner</h2>
+<h2 id="8-自定义banner">8. 自定义Banner</h2>
 <p>需要在<code>main</code> 和 <code>container</code>中间插入banner，因此要修改<code>blog\layouts\_default</code>为：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">main</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;main&#34;</span><span class="p">&gt;</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">{{- /* Body wrapper */ -}}
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;wrapper&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    {{- partial &#34;header.html&#34; . -}}
 </span></span><span class="line"><span class="cl">    <span class="c">&lt;!-- 插入banner --&gt;</span>
 </span></span><span class="line"><span class="cl">    {{- partial &#34;banner.html&#34; . -}}
 </span></span><span class="line"><span class="cl">    <span class="c">&lt;!-- 插入banner --&gt;</span>
-</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;container&#34;</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">        {{- block &#34;content&#34; . }}{{ end -}}
-</span></span><span class="line"><span class="cl">    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">main</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">main</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;main&#34;</span><span class="p">&gt;</span>                             
+</span></span><span class="line"><span class="cl">        <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;container&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">            {{- block &#34;content&#34; . }}{{ end -}}
+</span></span><span class="line"><span class="cl">        <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;/</span><span class="nt">main</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    {{- partial &#34;footer.html&#34; . -}}
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
 </span></span></code></pre></div><p>然后在添加自己的<code>partial</code>文件：<code>blog\layouts\partials\banner.html</code></p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl">    <span class="c">&lt;!-- 自定义css --&gt;</span>
@@ -360,7 +406,12 @@ Hugo有提供<code>figure</code> &amp; <code>image</code>来支持画廊的模�
         data-sizes="auto"
         alt="https://s2.loli.net/2023/05/25/SChgUm5ey8Pqj1T.png"
         title="https://s2.loli.net/2023/05/25/SChgUm5ey8Pqj1T.png" />
-to be continue</p></div><div class="post-footer" id="post-footer">
+因为添加banner之后会影响TOC，所以TOC的css也需要改以下</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-scss" data-lang="scss"><span class="line"><span class="cl"><span class="nn">#toc-auto</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="na">display</span><span class="o">:</span> <span class="ni">block</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// position: absolute; 设置根据父容器的位置
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="na">width</span><span class="o">:</span> <span class="mi">10000</span><span class="kt">px</span><span class="p">;</span>
+</span></span></code></pre></div></div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
