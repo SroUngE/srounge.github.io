@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>JVM(一) - 内存结构 - Rong&#39;s Blog</title><meta name="Description" content="简单地自定义Loveit主题的样式。"><meta property="og:title" content="JVM(一) - 内存结构" />
+<meta property="og:description" content="简单地自定义Loveit主题的样式。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://example.org/posts/jvm1-memory/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-05-14T00:00:00+00:00" />
+<meta property="article:modified_time" content="2023-05-14T00:00:00+00:00" /><meta property="og:site_name" content="My cool site" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="JVM(一) - 内存结构"/>
+<meta name="twitter:description" content="简单地自定义Loveit主题的样式。"/>
+<meta name="application-name" content="My cool site">
+<meta name="apple-mobile-web-app-title" content="My cool site"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://example.org/posts/jvm1-memory/" /><link rel="prev" href="http://example.org/posts/hugo-loveit/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "JVM(一) - 内存结构",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/example.org\/posts\/jvm1-memory\/"
+        },"genre": "posts","keywords": "jvm, loveit","wordcount":  2202 ,
+        "url": "http:\/\/example.org\/posts\/jvm1-memory\/","datePublished": "2023-05-14T00:00:00+00:00","dateModified": "2023-05-14T00:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "SroUngE"
+            },"description": "简单地自定义Loveit主题的样式。"
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Rong&#39;s Blog">Rong&#39;s Blog</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/" title="Posts"><i class="fa-solid fa-book" style="color: #2f4154;"></i> Posts </a><a class="menu-item" href="/categories/" title="Categories"><i class="fa-solid fa-folder" style="color: #2f4154;"></i> Categories </a><a class="menu-item" href="/about/" title="About"><i class="fa-solid fa-user" style="color: #2f4154;"></i> About </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Rong&#39;s Blog">Rong&#39;s Blog</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="Posts"><i class="fa-solid fa-book" style="color: #2f4154;"></i>Posts</a><a class="menu-item" href="/categories/" title="Categories"><i class="fa-solid fa-folder" style="color: #2f4154;"></i>Categories</a><a class="menu-item" href="/about/" title="About"><i class="fa-solid fa-user" style="color: #2f4154;"></i>About</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><head>
+    <style>
+        .banner {
+            position: relative;
+            overflow: hidden;
+            height: 60vh;
+            width: 100%;
+            background-image: linear-gradient(rgb(75, 0, 155), rgb(255, 255, 255));
+        
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            line-height: 0.9;
+        }
+
+        .title {
+            margin: 0 auto;
+            padding: 0 2rem;
+            text-align: center;
+            letter-spacing: -0.01em;
+            color: rgb(255, 255, 255);
+            font-weight: 800;
+            font-size: 2.75rem;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI";
+            opacity: .9;
+
+            @media screen and (min-width:480px) {
+                font-size: 3.25rem;
+            }
+
+            @media screen and (min-width:760px) {
+                font-size: 4.25rem;
+            }
+
+            @media screen and (min-width: 1440px) {
+                font-size: 5.375rem;
+            } 
+   
+        }
+    </style>
+</head>
+<div class="banner"> 
+    <div class="title">
+        One is not born, but rather becomes, a woman.
+    </div>
+</div>
+<main class="main">                             
+                <div class="container"><div class="toc animate__animated animate__fadeInRight" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">JVM(一) - 内存结构</h1><div class="post-meta">
+            <div class="post-meta-line">
+                </div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-05-14">2023-05-14</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;2202 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;5 minutes&nbsp;</div>
+        </div><div class="featured-image"><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://s2.loli.net/2023/05/28/o7c4BFAqEDYx5Xg.png"
+        data-srcset="https://s2.loli.net/2023/05/28/o7c4BFAqEDYx5Xg.png, https://s2.loli.net/2023/05/28/o7c4BFAqEDYx5Xg.png 1.5x, https://s2.loli.net/2023/05/28/o7c4BFAqEDYx5Xg.png 2x"
+        data-sizes="auto"
+        alt="https://s2.loli.net/2023/05/28/o7c4BFAqEDYx5Xg.png"
+        title="简单地自定义Loveit主题的样式。" /></div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-程序计数器-program-counter-register">1. 程序计数器 (Program Counter Register)</a></li>
+    <li><a href="#2-虚拟机栈-java-virtual-machine-stacks">2. 虚拟机栈 (Java Virtual Machine Stacks)</a></li>
+    <li><a href="#3-堆-heap">3. 堆 (Heap)</a></li>
+    <li><a href="#4-方法区-method-area">4. 方法区 (Method Area)</a></li>
+    <li><a href="#5-本地方法栈-native-method-stacks">5. 本地方法栈 (Native Method Stacks)</a></li>
+    <li><a href="#6-内存诊断">6. 内存诊断</a>
+      <ul>
+        <li><a href="#61-cpu占用过高">6.1 CPU占用过高</a></li>
+        <li><a href="#62-程序运行很长时间没有结果">6.2 程序运行很长时间没有结果</a></li>
+        <li><a href="#63-堆内存诊断">6.3 堆内存诊断</a></li>
+        <li><a href="#64-垃圾回收后内存占用仍然很高">6.4 垃圾回收后内存占用仍然很高</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="1-程序计数器-program-counter-register">1. 程序计数器 (Program Counter Register)</h2>
+<ol>
+<li>作用：存储下一条JVM指令的执行地址。</li>
+</ol>
+<blockquote>
+<p>如果该方法不是native方法，则pc寄存器包含当前正在执行的Java虚拟机指令的地址。 如果线程当前正在执行的方法是native方法，则Java虚拟机的pc寄存器的值为Undefined。</p>
+</blockquote>
+<ol start="2">
+<li>线程：每条线程都需要有一个独立的程序计数器。</li>
+</ol>
+<blockquote>
+<p>由于Java虚拟机的多线程是通过线程轮流切换并分配处理器执行时间的方式来实现的，在任何一个确定的时刻，一个处理器（对于多核处理器来说是一个内核）只会执行一条线程中的指令。因此，为了线程切换后能恢复到正确的执行位置，每条线程都需要有一个独立的程序计数器，各条线程之间的计数器互不影响，独立存储，我们称这类内存区域为“线程私有”的内存。</p>
+</blockquote>
+<ol start="3">
+<li>溢出：Java虚拟机的pc寄存器足够大，可以在特定平台上保存返回地址或本机指针。</li>
+</ol>
+<h2 id="2-虚拟机栈-java-virtual-machine-stacks">2. 虚拟机栈 (Java Virtual Machine Stacks)</h2>
+<ol>
+<li>作用：用于存储局部变量表、操作栈、动态链接、方法出口等信息方法被执行的时。</li>
+</ol>
+<blockquote>
+<p>每一个方法被调用直至执行完成的过程，就对应着一个栈帧在虚拟机栈中从入栈到出栈的过程。</p>
+</blockquote>
+<ol start="2">
+<li>
+<p>线程：Java虚拟机栈也是线程私有的，它的生命周期与线程相同。</p>
+</li>
+<li>
+<p>溢出：在Java虚拟机规范中，对这个区域规定了两种异常状况。</p>
+</li>
+</ol>
+<blockquote>
+<p>1.如果线程请求的栈深度大于虚拟机所设定的深度，则Java虚拟机将引发StackOverflowError。<br>
+2.如果可以动态扩展Java虚拟机堆栈，尝试进行扩展时没有足够的内存来实现扩展，则Java虚拟机将引发OutOfMemoryError。<br>
+3.或者如果没有足够的内存可用于为新线程创建初始Java虚拟机堆栈，则Java虚拟机将引发OutOfMemoryError。</p>
+</blockquote>
+<h2 id="3-堆-heap">3. 堆 (Heap)</h2>
+<ol>
+<li>作用：堆是运行时数据区，从中分配了所有类实例和数组的内存。</li>
+</ol>
+<blockquote>
+<p>1.对象的堆存储由为垃圾收集器回收。如果从内存回收的角度看，由于现在收集器基本都是采用的分代收集算法，所以Java堆中还可以细分为：新生代和老年代；再细致一点的有Eden空间、From Survivor空间、To Survivor空间等。
+2.对象永远不会显式释放。</p>
+</blockquote>
+<ol start="2">
+<li>
+<p>线程：堆是在虚拟机启动时创建的，在所有线程之间共享的。</p>
+</li>
+<li>
+<p>溢出：如果在堆中没有内存完成实例分配，并且堆也无法再扩展时，将会抛出OutOfMemoryError异常。</p>
+</li>
+</ol>
+<blockquote>
+<p>1.堆的大小可以是固定的，也可以根据计算的需要进行扩展，如果不需要更大的堆，则可以将其收缩。堆的内存不必是连续的。<br>
+2.Java虚拟机实现可以为程序员或用户提供对堆的初始大小的控制，并且，如果可以动态扩展或收缩堆，则可以控制最大和最小堆大小。</p>
+</blockquote>
+<h2 id="4-方法区-method-area">4. 方法区 (Method Area)</h2>
+<ol>
+<li>
+<p>作用：用于存储已被虚拟机加载的类信息、常量、静态变量、即时编译器编译后的代码等数据。</p>
+</li>
+<li>
+<p>线程：方法区与堆一样，是各个线程共享的内存区域。</p>
+</li>
+<li>
+<p>溢出：当方法区无法满足内存分配需求时，将抛出OutOfMemoryError异常。</p>
+</li>
+</ol>
+<blockquote>
+<p>方法区是在虚拟机启动时创建的。尽管方法区在逻辑上是堆的一部分，但是简单的实现可以选择不进行垃圾回收或压缩。该规范没有规定方法区的位置或管理已编译代码的策略。方法区可以是固定大小的，或者可以根据计算的需要进行扩展，如果不需要更大的方法区域，则可以缩小。方法区域的内存不必是连续的。</p>
+</blockquote>
+<h2 id="5-本地方法栈-native-method-stacks">5. 本地方法栈 (Native Method Stacks)</h2>
+<ol>
+<li>
+<p>作用：为虚拟机使用到的Native方法服务。</p>
+</li>
+<li>
+<p>线程：在创建每个线程时为每个线程分配本机方法堆栈。</p>
+</li>
+<li>
+<p>溢出：与虚拟机栈一样，在Java虚拟机规范中，对这个区域规定了两种异常状况。</p>
+</li>
+</ol>
+<blockquote>
+<p>1.如果线程中的计算所需的本机方法堆栈超出允许的范围，则Java虚拟机将引发StackOverflowError。<br>
+2.如果可以动态扩展本机方法堆栈并尝试进行本机方法堆栈扩展，但可以提供足够的内存，或者可以提供足够的内存来为新线程创建初始本机方法堆栈，则Java虚拟机将引发OutOfMemoryError</p>
+</blockquote>
+<p>通过一张图来了解如何通过参数来控制各区域的内存大小。
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://s2.loli.net/2023/05/28/bM5RLsU6D2efxpg.png"
+        data-srcset="https://s2.loli.net/2023/05/28/bM5RLsU6D2efxpg.png, https://s2.loli.net/2023/05/28/bM5RLsU6D2efxpg.png 1.5x, https://s2.loli.net/2023/05/28/bM5RLsU6D2efxpg.png 2x"
+        data-sizes="auto"
+        alt="https://s2.loli.net/2023/05/28/bM5RLsU6D2efxpg.png"
+        title="https://s2.loli.net/2023/05/28/bM5RLsU6D2efxpg.png" /><br>
+-Xms设置堆的最小空间。<br>
+-Xmx设置堆的最大空间。<br>
+-XX:NewSize设置新生代最小空间。<br>
+-XX:MaxNewSize设置新生代最大空间。<br>
+-XX:PermSize设置永久代最小空间。<br>
+-XX:MaxPermSize设置永久代最大空间。<br>
+-Xss设置每个线程的堆栈。</p>
+<h2 id="6-内存诊断">6. 内存诊断</h2>
+<h3 id="61-cpu占用过高">6.1 CPU占用过高</h3>
+<p>用top定位哪个进程对cpu的占用过高(Linux)</p>
+<ol>
+<li>首先运行java代码，然后输入<code>top</code>命令，可以看到进程32655占了cpu的99.3%
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://s2.loli.net/2023/05/28/mpIf7CbvoZNtz1y.png"
+        data-srcset="https://s2.loli.net/2023/05/28/mpIf7CbvoZNtz1y.png, https://s2.loli.net/2023/05/28/mpIf7CbvoZNtz1y.png 1.5x, https://s2.loli.net/2023/05/28/mpIf7CbvoZNtz1y.png 2x"
+        data-sizes="auto"
+        alt="https://s2.loli.net/2023/05/28/mpIf7CbvoZNtz1y.png"
+        title="https://s2.loli.net/2023/05/28/mpIf7CbvoZNtz1y.png" /></li>
+<li>然后进一步定位是哪个线程引起的cpu占用过高，使用命令<code>ps H -eo pid,tid,%cpu | grep 进程id</code>，可以看到32665占用率最高
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://s2.loli.net/2023/05/28/9qKCFEWU6p1PLgd.png"
+        data-srcset="https://s2.loli.net/2023/05/28/9qKCFEWU6p1PLgd.png, https://s2.loli.net/2023/05/28/9qKCFEWU6p1PLgd.png 1.5x, https://s2.loli.net/2023/05/28/9qKCFEWU6p1PLgd.png 2x"
+        data-sizes="auto"
+        alt="https://s2.loli.net/2023/05/28/9qKCFEWU6p1PLgd.png"
+        title="https://s2.loli.net/2023/05/28/9qKCFEWU6p1PLgd.png" /></li>
+<li>使用<code>jstake 进程id</code>，把32665十进制换算成16进制，就是0x7f99<br>
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://s2.loli.net/2023/05/28/bDOVusqU4PrATtl.png"
+        data-srcset="https://s2.loli.net/2023/05/28/bDOVusqU4PrATtl.png, https://s2.loli.net/2023/05/28/bDOVusqU4PrATtl.png 1.5x, https://s2.loli.net/2023/05/28/bDOVusqU4PrATtl.png 2x"
+        data-sizes="auto"
+        alt="https://s2.loli.net/2023/05/28/bDOVusqU4PrATtl.png"
+        title="https://s2.loli.net/2023/05/28/bDOVusqU4PrATtl.png" /></li>
+<li>可以看到他提示在Demo1_16这个类的第8行有问题
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://s2.loli.net/2023/05/28/q3Ihs6gOyBE5akb.png"
+        data-srcset="https://s2.loli.net/2023/05/28/q3Ihs6gOyBE5akb.png, https://s2.loli.net/2023/05/28/q3Ihs6gOyBE5akb.png 1.5x, https://s2.loli.net/2023/05/28/q3Ihs6gOyBE5akb.png 2x"
+        data-sizes="auto"
+        alt="https://s2.loli.net/2023/05/28/q3Ihs6gOyBE5akb.png"
+        title="https://s2.loli.net/2023/05/28/q3Ihs6gOyBE5akb.png" /></li>
+</ol>
+<h3 id="62-程序运行很长时间没有结果">6.2 程序运行很长时间没有结果</h3>
+<ol>
+<li>还是使用jstake指令，在最后面，它会输出一段分析
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://s2.loli.net/2023/05/28/z3Bkavpr8PKoLFQ.png"
+        data-srcset="https://s2.loli.net/2023/05/28/z3Bkavpr8PKoLFQ.png, https://s2.loli.net/2023/05/28/z3Bkavpr8PKoLFQ.png 1.5x, https://s2.loli.net/2023/05/28/z3Bkavpr8PKoLFQ.png 2x"
+        data-sizes="auto"
+        alt="https://s2.loli.net/2023/05/28/z3Bkavpr8PKoLFQ.png"
+        title="https://s2.loli.net/2023/05/28/z3Bkavpr8PKoLFQ.png" /></li>
+<li>查看代码可以看到ab死锁了
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://s2.loli.net/2023/05/28/FGVNelsczgj4P3S.png"
+        data-srcset="https://s2.loli.net/2023/05/28/FGVNelsczgj4P3S.png, https://s2.loli.net/2023/05/28/FGVNelsczgj4P3S.png 1.5x, https://s2.loli.net/2023/05/28/FGVNelsczgj4P3S.png 2x"
+        data-sizes="auto"
+        alt="https://s2.loli.net/2023/05/28/FGVNelsczgj4P3S.png"
+        title="https://s2.loli.net/2023/05/28/FGVNelsczgj4P3S.png" /></li>
+</ol>
+<h3 id="63-堆内存诊断">6.3 堆内存诊断</h3>
+<p>堆内存溢出现例子
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://s2.loli.net/2023/05/28/awURiI9BLs3jcX2.png"
+        data-srcset="https://s2.loli.net/2023/05/28/awURiI9BLs3jcX2.png, https://s2.loli.net/2023/05/28/awURiI9BLs3jcX2.png 1.5x, https://s2.loli.net/2023/05/28/awURiI9BLs3jcX2.png 2x"
+        data-sizes="auto"
+        alt="https://s2.loli.net/2023/05/28/awURiI9BLs3jcX2.png"
+        title="https://s2.loli.net/2023/05/28/awURiI9BLs3jcX2.png" /></p>
+<ol>
+<li>内存诊断 jmap 查看当前系统有拿些java进程
+用<code>jps</code>查看有哪些进程，然后用<code>jmap - heap 18756</code> 查看当前时刻堆内存的使用情况</li>
+<li>内存诊断 jconsole 查看某个时刻堆内存占用情况
+终端输入jconsole，就会打开一个图形化的界面<br>
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://s2.loli.net/2023/05/28/KRlr7VaWGzEevBd.png"
+        data-srcset="https://s2.loli.net/2023/05/28/KRlr7VaWGzEevBd.png, https://s2.loli.net/2023/05/28/KRlr7VaWGzEevBd.png 1.5x, https://s2.loli.net/2023/05/28/KRlr7VaWGzEevBd.png 2x"
+        data-sizes="auto"
+        alt="https://s2.loli.net/2023/05/28/KRlr7VaWGzEevBd.png"
+        title="https://s2.loli.net/2023/05/28/KRlr7VaWGzEevBd.png" />
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://s2.loli.net/2023/05/28/JHtGvmMBEwWPIRd.png"
+        data-srcset="https://s2.loli.net/2023/05/28/JHtGvmMBEwWPIRd.png, https://s2.loli.net/2023/05/28/JHtGvmMBEwWPIRd.png 1.5x, https://s2.loli.net/2023/05/28/JHtGvmMBEwWPIRd.png 2x"
+        data-sizes="auto"
+        alt="https://s2.loli.net/2023/05/28/JHtGvmMBEwWPIRd.png"
+        title="https://s2.loli.net/2023/05/28/JHtGvmMBEwWPIRd.png" />
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://s2.loli.net/2023/05/28/2mkI7efLHtWSuJZ.png"
+        data-srcset="https://s2.loli.net/2023/05/28/2mkI7efLHtWSuJZ.png, https://s2.loli.net/2023/05/28/2mkI7efLHtWSuJZ.png 1.5x, https://s2.loli.net/2023/05/28/2mkI7efLHtWSuJZ.png 2x"
+        data-sizes="auto"
+        alt="https://s2.loli.net/2023/05/28/2mkI7efLHtWSuJZ.png"
+        title="https://s2.loli.net/2023/05/28/2mkI7efLHtWSuJZ.png" /></li>
+</ol>
+<h3 id="64-垃圾回收后内存占用仍然很高">6.4 垃圾回收后内存占用仍然很高</h3>
+<p>jvisualvm 图形界面 多功能的监测工具 可以连续监测</p>
+<ol>
+<li>终端输入jvisual，会打开一个图形化的界面，功能类似jconsole，可以查看堆的使用情况</li>
+<li>jvisual 有一个堆Dump的功能可以给当前的堆内存信息拍个快照
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://s2.loli.net/2023/05/28/1fCNGJIVED8zsju.png"
+        data-srcset="https://s2.loli.net/2023/05/28/1fCNGJIVED8zsju.png, https://s2.loli.net/2023/05/28/1fCNGJIVED8zsju.png 1.5x, https://s2.loli.net/2023/05/28/1fCNGJIVED8zsju.png 2x"
+        data-sizes="auto"
+        alt="https://s2.loli.net/2023/05/28/1fCNGJIVED8zsju.png"
+        title="https://s2.loli.net/2023/05/28/1fCNGJIVED8zsju.png" /></li>
+<li>可以选取前20个大对象，查看它的elementData排查。</li>
+</ol></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>
+                    
+                </span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        
+    </div>
+
+    <div class="post-nav"><a href="/posts/hugo-loveit/" class="prev" rel="prev" title="个人博客(二) - Hugo框架Loveit主题自定义美化"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>个人博客(二) - Hugo框架Loveit主题自定义美化</a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.111.3">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2022 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://srounge.github.io/" target="_blank">SroUngE</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/css/lightgallery-bundle.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/lightgallery.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/thumbnail/lg-thumbnail.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/zoom/lg-zoom.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"lightgallery":true,"search":{"highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

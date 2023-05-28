@@ -3,6 +3,8 @@
     xmlns:xhtml="http://www.w3.org/1999/xhtml"
     ><url>
             <loc>http://example.org/tags/hugo/</loc><lastmod>2023-05-14T00:00:00&#43;00:00</lastmod></url><url>
+            <loc>http://example.org/tags/jvm/</loc><lastmod>2023-05-14T00:00:00&#43;00:00</lastmod></url><url>
+            <loc>http://example.org/posts/jvm1-memory/</loc><lastmod>2023-05-14T00:00:00&#43;00:00</lastmod></url><url>
             <loc>http://example.org/tags/loveit/</loc><lastmod>2023-05-14T00:00:00&#43;00:00</lastmod></url><url>
             <loc>http://example.org/posts/</loc><lastmod>2023-05-14T00:00:00&#43;00:00</lastmod></url><url>
             <loc>http://example.org/</loc><lastmod>2023-05-14T00:00:00&#43;00:00</lastmod></url><url>
