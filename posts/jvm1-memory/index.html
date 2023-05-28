@@ -4,15 +4,15 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
-        <title>JVM(一) - 内存结构 - Rong&#39;s Blog</title><meta name="Description" content="简单地自定义Loveit主题的样式。"><meta property="og:title" content="JVM(一) - 内存结构" />
-<meta property="og:description" content="简单地自定义Loveit主题的样式。" />
+        <title>JVM(一): 内存结构 - Rong&#39;s Blog</title><meta name="Description" content="介绍JVM的内存结构，以及一些常用的内存诊断工具。"><meta property="og:title" content="JVM(一): 内存结构" />
+<meta property="og:description" content="介绍JVM的内存结构，以及一些常用的内存诊断工具。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://example.org/posts/jvm1-memory/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2023-05-14T00:00:00+00:00" />
-<meta property="article:modified_time" content="2023-05-14T00:00:00+00:00" /><meta property="og:site_name" content="My cool site" />
+<meta property="article:published_time" content="2023-05-28T00:00:00+00:00" />
+<meta property="article:modified_time" content="2023-05-28T00:00:00+00:00" /><meta property="og:site_name" content="My cool site" />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="JVM(一) - 内存结构"/>
-<meta name="twitter:description" content="简单地自定义Loveit主题的样式。"/>
+<meta name="twitter:title" content="JVM(一): 内存结构"/>
+<meta name="twitter:description" content="介绍JVM的内存结构，以及一些常用的内存诊断工具。"/>
 <meta name="application-name" content="My cool site">
 <meta name="apple-mobile-web-app-title" content="My cool site"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -22,18 +22,18 @@
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
-        "headline": "JVM(一) - 内存结构",
+        "headline": "JVM(一): 内存结构",
         "inLanguage": "zh-CN",
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/example.org\/posts\/jvm1-memory\/"
-        },"genre": "posts","keywords": "jvm, loveit","wordcount":  2202 ,
-        "url": "http:\/\/example.org\/posts\/jvm1-memory\/","datePublished": "2023-05-14T00:00:00+00:00","dateModified": "2023-05-14T00:00:00+00:00","publisher": {
+        },"genre": "posts","keywords": "jvm","wordcount":  2202 ,
+        "url": "http:\/\/example.org\/posts\/jvm1-memory\/","datePublished": "2023-05-28T00:00:00+00:00","dateModified": "2023-05-28T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
                 "@type": "Person",
                 "name": "SroUngE"
-            },"description": "简单地自定义Loveit主题的样式。"
+            },"description": "介绍JVM的内存结构，以及一些常用的内存诊断工具。"
     }
     </script></head>
     <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
@@ -146,10 +146,10 @@
                 <div class="container"><div class="toc animate__animated animate__fadeInRight" id="toc-auto">
             <h2 class="toc-title">Contents</h2>
             <div class="toc-content" id="toc-content-auto"></div>
-        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">JVM(一) - 内存结构</h1><div class="post-meta">
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">JVM(一): 内存结构</h1><div class="post-meta">
             <div class="post-meta-line">
                 </div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-05-14">2023-05-14</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;2202 words&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-05-28">2023-05-28</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;2202 words&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;5 minutes&nbsp;</div>
         </div><div class="featured-image"><img
         class="lazyload"
@@ -158,7 +158,7 @@
         data-srcset="https://s2.loli.net/2023/05/28/o7c4BFAqEDYx5Xg.png, https://s2.loli.net/2023/05/28/o7c4BFAqEDYx5Xg.png 1.5x, https://s2.loli.net/2023/05/28/o7c4BFAqEDYx5Xg.png 2x"
         data-sizes="auto"
         alt="https://s2.loli.net/2023/05/28/o7c4BFAqEDYx5Xg.png"
-        title="简单地自定义Loveit主题的样式。" /></div><div class="details toc" id="toc-static"  data-kept="">
+        title="介绍JVM的内存结构，以及一些常用的内存诊断工具。" /></div><div class="details toc" id="toc-static"  data-kept="">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
                     <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
@@ -419,7 +419,7 @@
         
     </div>
 
-    <div class="post-nav"><a href="/posts/hugo-loveit/" class="prev" rel="prev" title="个人博客(二) - Hugo框架Loveit主题自定义美化"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>个人博客(二) - Hugo框架Loveit主题自定义美化</a></div>
+    <div class="post-nav"><a href="/posts/hugo-loveit/" class="prev" rel="prev" title="个人博客(二): Hugo框架Loveit主题自定义美化"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>个人博客(二): Hugo框架Loveit主题自定义美化</a></div>
 </div>
 </article></div>
             </main><footer class="footer">
