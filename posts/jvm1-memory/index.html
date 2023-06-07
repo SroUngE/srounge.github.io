@@ -16,7 +16,7 @@
 <meta name="application-name" content="My cool site">
 <meta name="apple-mobile-web-app-title" content="My cool site"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://example.org/posts/jvm1-memory/" /><link rel="prev" href="http://example.org/posts/hugo-loveit/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://example.org/posts/jvm1-memory/" /><link rel="prev" href="http://example.org/posts/hugo-loveit/" /><link rel="next" href="http://example.org/posts/jvm2-gc/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
     {
@@ -27,7 +27,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/example.org\/posts\/jvm1-memory\/"
-        },"genre": "posts","keywords": "jvm","wordcount":  2202 ,
+        },"genre": "posts","keywords": "jvm","wordcount":  2154 ,
         "url": "http:\/\/example.org\/posts\/jvm1-memory\/","datePublished": "2023-05-28T00:00:00+00:00","dateModified": "2023-05-28T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -149,7 +149,7 @@
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">JVM(一): 内存结构</h1><div class="post-meta">
             <div class="post-meta-line">
                 </div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-05-28">2023-05-28</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;2202 words&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-05-28">2023-05-28</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;2154 words&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;5 minutes&nbsp;</div>
         </div><div class="featured-image"><img
         class="lazyload"
@@ -175,7 +175,6 @@
         <li><a href="#61-cpu占用过高">6.1 CPU占用过高</a></li>
         <li><a href="#62-程序运行很长时间没有结果">6.2 程序运行很长时间没有结果</a></li>
         <li><a href="#63-堆内存诊断">6.3 堆内存诊断</a></li>
-        <li><a href="#64-垃圾回收后内存占用仍然很高">6.4 垃圾回收后内存占用仍然很高</a></li>
       </ul>
     </li>
   </ul>
@@ -287,33 +286,42 @@
 <h3 id="61-cpu占用过高">6.1 CPU占用过高</h3>
 <p>用top定位哪个进程对cpu的占用过高(Linux)</p>
 <ol>
-<li>首先运行java代码，然后输入<code>top</code>命令，可以看到进程32655占了cpu的99.3%
-<img
+<li>首先运行java代码，然后输入<code>top</code>命令，可以看到进程32655占了cpu的99.3%</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">top
+</span></span></code></pre></div><p><img
         class="lazyload"
         src="/svg/loading.min.svg"
         data-src="https://s2.loli.net/2023/05/28/mpIf7CbvoZNtz1y.png"
         data-srcset="https://s2.loli.net/2023/05/28/mpIf7CbvoZNtz1y.png, https://s2.loli.net/2023/05/28/mpIf7CbvoZNtz1y.png 1.5x, https://s2.loli.net/2023/05/28/mpIf7CbvoZNtz1y.png 2x"
         data-sizes="auto"
         alt="https://s2.loli.net/2023/05/28/mpIf7CbvoZNtz1y.png"
-        title="https://s2.loli.net/2023/05/28/mpIf7CbvoZNtz1y.png" /></li>
-<li>然后进一步定位是哪个线程引起的cpu占用过高，使用命令<code>ps H -eo pid,tid,%cpu | grep 进程id</code>，可以看到32665占用率最高
-<img
+        title="https://s2.loli.net/2023/05/28/mpIf7CbvoZNtz1y.png" /></p>
+<ol start="2">
+<li>然后进一步定位是哪个线程引起的cpu占用过高，这里可以看到32665占用率最高</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ps H -eo pid,tid,%cpu <span class="p">|</span> grep 进程id
+</span></span></code></pre></div><p><img
         class="lazyload"
         src="/svg/loading.min.svg"
         data-src="https://s2.loli.net/2023/05/28/9qKCFEWU6p1PLgd.png"
         data-srcset="https://s2.loli.net/2023/05/28/9qKCFEWU6p1PLgd.png, https://s2.loli.net/2023/05/28/9qKCFEWU6p1PLgd.png 1.5x, https://s2.loli.net/2023/05/28/9qKCFEWU6p1PLgd.png 2x"
         data-sizes="auto"
         alt="https://s2.loli.net/2023/05/28/9qKCFEWU6p1PLgd.png"
-        title="https://s2.loli.net/2023/05/28/9qKCFEWU6p1PLgd.png" /></li>
-<li>使用<code>jstake 进程id</code>，把32665十进制换算成16进制，就是0x7f99<br>
-<img
+        title="https://s2.loli.net/2023/05/28/9qKCFEWU6p1PLgd.png" /></p>
+<ol start="3">
+<li>使用<code>jstake</code>，把32665十进制换算成16进制，就是0x7f99</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">jstake 进程id
+</span></span></code></pre></div><p><img
         class="lazyload"
         src="/svg/loading.min.svg"
         data-src="https://s2.loli.net/2023/05/28/bDOVusqU4PrATtl.png"
         data-srcset="https://s2.loli.net/2023/05/28/bDOVusqU4PrATtl.png, https://s2.loli.net/2023/05/28/bDOVusqU4PrATtl.png 1.5x, https://s2.loli.net/2023/05/28/bDOVusqU4PrATtl.png 2x"
         data-sizes="auto"
         alt="https://s2.loli.net/2023/05/28/bDOVusqU4PrATtl.png"
-        title="https://s2.loli.net/2023/05/28/bDOVusqU4PrATtl.png" /></li>
+        title="https://s2.loli.net/2023/05/28/bDOVusqU4PrATtl.png" /></p>
+<ol start="4">
 <li>可以看到他提示在Demo1_16这个类的第8行有问题
 <img
         class="lazyload"
@@ -326,15 +334,18 @@
 </ol>
 <h3 id="62-程序运行很长时间没有结果">6.2 程序运行很长时间没有结果</h3>
 <ol>
-<li>还是使用jstake指令，在最后面，它会输出一段分析
-<img
+<li>还是使用jstake指令，在最后面，它会输出一段分析</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">jstake 进程id
+</span></span></code></pre></div><p><img
         class="lazyload"
         src="/svg/loading.min.svg"
         data-src="https://s2.loli.net/2023/05/28/z3Bkavpr8PKoLFQ.png"
         data-srcset="https://s2.loli.net/2023/05/28/z3Bkavpr8PKoLFQ.png, https://s2.loli.net/2023/05/28/z3Bkavpr8PKoLFQ.png 1.5x, https://s2.loli.net/2023/05/28/z3Bkavpr8PKoLFQ.png 2x"
         data-sizes="auto"
         alt="https://s2.loli.net/2023/05/28/z3Bkavpr8PKoLFQ.png"
-        title="https://s2.loli.net/2023/05/28/z3Bkavpr8PKoLFQ.png" /></li>
+        title="https://s2.loli.net/2023/05/28/z3Bkavpr8PKoLFQ.png" /></p>
+<ol start="2">
 <li>查看代码可以看到ab死锁了
 <img
         class="lazyload"
@@ -346,20 +357,29 @@
         title="https://s2.loli.net/2023/05/28/FGVNelsczgj4P3S.png" /></li>
 </ol>
 <h3 id="63-堆内存诊断">6.3 堆内存诊断</h3>
-<p>堆内存溢出现例子
+<h4 id="631-内存诊断-jmap">6.3.1 内存诊断 jmap</h4>
+<p>先用<code>jps</code>查看有哪些进程<br>
 <img
         class="lazyload"
         src="/svg/loading.min.svg"
-        data-src="https://s2.loli.net/2023/05/28/awURiI9BLs3jcX2.png"
-        data-srcset="https://s2.loli.net/2023/05/28/awURiI9BLs3jcX2.png, https://s2.loli.net/2023/05/28/awURiI9BLs3jcX2.png 1.5x, https://s2.loli.net/2023/05/28/awURiI9BLs3jcX2.png 2x"
+        data-src="https://s2.loli.net/2023/06/07/2njOKDb7SrlvFqf.png"
+        data-srcset="https://s2.loli.net/2023/06/07/2njOKDb7SrlvFqf.png, https://s2.loli.net/2023/06/07/2njOKDb7SrlvFqf.png 1.5x, https://s2.loli.net/2023/06/07/2njOKDb7SrlvFqf.png 2x"
         data-sizes="auto"
-        alt="https://s2.loli.net/2023/05/28/awURiI9BLs3jcX2.png"
-        title="https://s2.loli.net/2023/05/28/awURiI9BLs3jcX2.png" /></p>
-<ol>
-<li>内存诊断 jmap 查看当前系统有拿些java进程
-用<code>jps</code>查看有哪些进程，然后用<code>jmap - heap 18756</code> 查看当前时刻堆内存的使用情况</li>
-<li>内存诊断 jconsole 查看某个时刻堆内存占用情况
-终端输入jconsole，就会打开一个图形化的界面<br>
+        alt="https://s2.loli.net/2023/06/07/2njOKDb7SrlvFqf.png"
+        title="https://s2.loli.net/2023/06/07/2njOKDb7SrlvFqf.png" /><br>
+然后用<code>jmap</code> 查看当前时刻堆内存的使用情况</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">jmap -heap 进程id
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">jhsbd jmap -dump:live,format<span class="o">=</span>b,file<span class="o">=</span>/temp/file.hprof <span class="m">18756</span>
+</span></span></code></pre></div><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://s2.loli.net/2023/06/07/iYD9KaPy5CeXvuj.png"
+        data-srcset="https://s2.loli.net/2023/06/07/iYD9KaPy5CeXvuj.png, https://s2.loli.net/2023/06/07/iYD9KaPy5CeXvuj.png 1.5x, https://s2.loli.net/2023/06/07/iYD9KaPy5CeXvuj.png 2x"
+        data-sizes="auto"
+        alt="https://s2.loli.net/2023/06/07/iYD9KaPy5CeXvuj.png"
+        title="https://s2.loli.net/2023/06/07/iYD9KaPy5CeXvuj.png" /></p>
+<h4 id="632-内存诊断-jconsole">6.3.2 内存诊断 jconsole</h4>
+<p>终端输入jconsole，就会打开一个图形化的界面<br>
 <img
         class="lazyload"
         src="/svg/loading.min.svg"
@@ -383,13 +403,10 @@
         data-srcset="https://s2.loli.net/2023/05/28/2mkI7efLHtWSuJZ.png, https://s2.loli.net/2023/05/28/2mkI7efLHtWSuJZ.png 1.5x, https://s2.loli.net/2023/05/28/2mkI7efLHtWSuJZ.png 2x"
         data-sizes="auto"
         alt="https://s2.loli.net/2023/05/28/2mkI7efLHtWSuJZ.png"
-        title="https://s2.loli.net/2023/05/28/2mkI7efLHtWSuJZ.png" /></li>
-</ol>
-<h3 id="64-垃圾回收后内存占用仍然很高">6.4 垃圾回收后内存占用仍然很高</h3>
-<p>jvisualvm 图形界面 多功能的监测工具 可以连续监测</p>
-<ol>
-<li>终端输入jvisual，会打开一个图形化的界面，功能类似jconsole，可以查看堆的使用情况</li>
-<li>jvisual 有一个堆Dump的功能可以给当前的堆内存信息拍个快照
+        title="https://s2.loli.net/2023/05/28/2mkI7efLHtWSuJZ.png" /></p>
+<h4 id="633-内存诊断-jvisualvm">6.3.3 内存诊断 jvisualvm</h4>
+<p>a. 终端输入jvisual，会打开一个图形化的界面，功能类似jconsole，可以查看堆的使用情况<br>
+b. jvisual 有一个堆Dump的功能可以给当前的堆内存信息拍个快照<br>
 <img
         class="lazyload"
         src="/svg/loading.min.svg"
@@ -397,9 +414,8 @@
         data-srcset="https://s2.loli.net/2023/05/28/1fCNGJIVED8zsju.png, https://s2.loli.net/2023/05/28/1fCNGJIVED8zsju.png 1.5x, https://s2.loli.net/2023/05/28/1fCNGJIVED8zsju.png 2x"
         data-sizes="auto"
         alt="https://s2.loli.net/2023/05/28/1fCNGJIVED8zsju.png"
-        title="https://s2.loli.net/2023/05/28/1fCNGJIVED8zsju.png" /></li>
-<li>可以选取前20个大对象，查看它的elementData排查。</li>
-</ol></div><div class="post-footer" id="post-footer">
+        title="https://s2.loli.net/2023/05/28/1fCNGJIVED8zsju.png" /><br>
+c. 可以选取前20个大对象，查看它的elementData排查。</p></div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
@@ -419,7 +435,8 @@
         
     </div>
 
-    <div class="post-nav"><a href="/posts/hugo-loveit/" class="prev" rel="prev" title="个人博客(二): Hugo框架Loveit主题自定义美化"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>个人博客(二): Hugo框架Loveit主题自定义美化</a></div>
+    <div class="post-nav"><a href="/posts/hugo-loveit/" class="prev" rel="prev" title="个人博客(二): Hugo框架Loveit主题自定义美化"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>个人博客(二): Hugo框架Loveit主题自定义美化</a>
+            <a href="/posts/jvm2-gc/" class="next" rel="next" title="JVM(二): 垃圾回收">JVM(二): 垃圾回收<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
 </div>
 </article></div>
             </main><footer class="footer">
