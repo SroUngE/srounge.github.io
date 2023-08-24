@@ -1,0 +1,18 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>spirng - Tag - Rong&#39;s Blog</title>
+        <link>http://example.org/tags/spirng/</link>
+        <description>spirng - Tag - Rong&#39;s Blog</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>977683159@qq.com (SroUngE)</managingEditor>
+            <webMaster>977683159@qq.com (SroUngE)</webMaster><lastBuildDate>Thu, 24 Aug 2023 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://example.org/tags/spirng/" rel="self" type="application/rss+xml" /><item>
+    <title>Spring 集成Javax Validation 和 Hibernate Validator</title>
+    <link>http://example.org/posts/spring-validation/</link>
+    <pubDate>Thu, 24 Aug 2023 00:00:00 &#43;0000</pubDate>
+    <author>SroUngE</author>
+    <guid>http://example.org/posts/spring-validation/</guid>
+    <description><![CDATA[<div class="featured-image">
+                <img src="https://s2.loli.net/2023/08/24/XNtMIbkOjmi4GzW.png" referrerpolicy="no-referrer">
+            </div>]]></description>
+</item>
+</channel>
+</rss>
