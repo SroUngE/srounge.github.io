@@ -27,7 +27,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/example.org\/posts\/hugo-loveit\/"
-        },"genre": "posts","keywords": "hugo, loveit","wordcount":  2120 ,
+        },"genre": "posts","keywords": "hugo, loveit","wordcount":  2152 ,
         "url": "http:\/\/example.org\/posts\/hugo-loveit\/","datePublished": "2023-05-14T00:00:00+00:00","dateModified": "2023-05-14T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -102,7 +102,7 @@
             overflow: hidden;
             height: 60vh;
             width: 100%;
-            background-image: linear-gradient(rgb(75, 0, 155), rgb(255, 255, 255));
+            background-image: linear-gradient(rgb(75, 0, 155), #f8f8f8);
         
             display: flex;
             flex-direction: column;
@@ -149,7 +149,7 @@
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">个人博客(二): Hugo框架Loveit主题自定义美化</h1><div class="post-meta">
             <div class="post-meta-line">
                 </div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-05-14">2023-05-14</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;2120 words&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-05-14">2023-05-14</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;2152 words&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;5 minutes&nbsp;</div>
         </div><div class="featured-image"><img
         class="lazyload"
@@ -240,7 +240,7 @@
 </span></span><span class="line"><span class="cl">  <span class="na">min-height</span><span class="o">:</span> <span class="mi">1</span><span class="kt">em</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">  <span class="c1">// =====My Custom====
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="na">width</span><span class="o">:</span> <span class="mi">90</span><span class="kt">%</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">  <span class="na">margin</span><span class="o">:</span> <span class="mi">1</span><span class="kt">rem</span> <span class="ni">auto</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="na">margin</span><span class="o">:</span> <span class="mi">2</span><span class="kt">rem</span> <span class="ni">auto</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">  <span class="na">display</span><span class="o">:</span> <span class="ni">block</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">  <span class="na">box-shadow</span><span class="o">:</span> <span class="mi">0</span> <span class="mi">5</span><span class="kt">px</span> <span class="mi">11</span><span class="kt">px</span> <span class="mi">0</span> <span class="nf">rgba</span><span class="p">(</span><span class="mi">0</span><span class="o">,</span><span class="mi">0</span><span class="o">,</span><span class="mi">0</span><span class="o">,</span><span class="mi">0</span><span class="mf">.18</span><span class="p">)</span><span class="o">,</span> <span class="mi">0</span> <span class="mi">4</span><span class="kt">px</span> <span class="mi">15</span><span class="kt">px</span> <span class="mi">0</span> <span class="nf">rgba</span><span class="p">(</span><span class="mi">0</span><span class="o">,</span><span class="mi">0</span><span class="o">,</span><span class="mi">0</span><span class="o">,</span><span class="mi">0</span><span class="mf">.15</span><span class="p">)</span> <span class="k">!important</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">  <span class="na">border-radius</span><span class="o">:</span> <span class="mi">3</span><span class="kt">px</span><span class="p">;</span>
@@ -258,15 +258,26 @@
 Hugo有提供<code>figure</code> &amp; <code>image</code>来支持画廊的模式，我最终决定不采用，1是因为这样破坏了markdown的语法，2是因为我目前没有需要展示很多值得点开去放大的照片的需求，因此这里仅仅只是调整图片的样式。</p>
 <h2 id="4-自定义目录样式">4. 自定义目录样式</h2>
 <p>CSS文件的路径是<code>blog\themes\Loveit\assets\css\_partial\_single\_toc.scss</code>。目录方面我的调整是把竖线去掉，然后稍微调整了一下灰色竖线的距离目录文件的距离，以及目录的位置。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-scss" data-lang="scss"><span class="line"><span class="cl"><span class="na">contents</span><span class="o">:</span> <span class="s2">&#34;|&#34;</span><span class="p">;</span> <span class="c1">//这一行被我去掉了
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-scss" data-lang="scss"><span class="line"><span class="cl"><span class="c1">// contents: &#34;|&#34;; 去掉小标题的左边界
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>
 </span></span><span class="line"><span class="cl"><span class="nn">#toc-auto</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="na">padding</span><span class="o">:</span> <span class="mi">0</span> <span class="mi">1</span><span class="mf">.2</span><span class="kt">rem</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><h2 id="5-自定义page样式">5. 自定义Page样式</h2>
+</span></span><span class="line"><span class="cl">  <span class="na">padding</span><span class="o">:</span> <span class="mi">0</span> <span class="mi">2</span><span class="kt">rem</span><span class="p">;</span> <span class="c1">// 加宽左右边界
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="c1">// border-left: 4px solid $global-border-color; 去掉左边界
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span></code></pre></div><p>调整之后的目录如下所示：<br>
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://s2.loli.net/2023/08/26/yIvn7hpVL6JOWt1.png"
+        data-srcset="https://s2.loli.net/2023/08/26/yIvn7hpVL6JOWt1.png, https://s2.loli.net/2023/08/26/yIvn7hpVL6JOWt1.png 1.5x, https://s2.loli.net/2023/08/26/yIvn7hpVL6JOWt1.png 2x"
+        data-sizes="auto"
+        alt="https://s2.loli.net/2023/08/26/yIvn7hpVL6JOWt1.png"
+        title="https://s2.loli.net/2023/08/26/yIvn7hpVL6JOWt1.png" /></p>
+<h2 id="5-自定义page样式">5. 自定义Page样式</h2>
 <p>CSS文件的路径是<code>blog\themes\Loveit\assets\css\_page\_index.scss</code>。我调整了width，设置了padding，加了个人喜欢的带阴影的风格：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-scss" data-lang="scss"><span class="line"><span class="cl"><span class="nc">.page</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="na">max-width</span><span class="o">:</span> <span class="mi">880</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="na">margin-bottom</span><span class="o">:</span> <span class="mi">100</span><span class="kt">px</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">  <span class="na">padding-bottom</span><span class="o">:</span> <span class="mi">100</span><span class="kt">px</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">  <span class="c1">// 小于680px的时候不改
@@ -411,6 +422,7 @@ Hugo有提供<code>figure</code> &amp; <code>image</code>来支持画廊的模�
 </span></span><span class="line"><span class="cl">  <span class="na">display</span><span class="o">:</span> <span class="ni">block</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">  <span class="c1">// position: absolute; 设置根据父容器的位置
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="na">width</span><span class="o">:</span> <span class="mi">10000</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></div></div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">

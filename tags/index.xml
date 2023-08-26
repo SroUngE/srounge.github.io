@@ -4,7 +4,23 @@
         <link>http://example.org/tags/</link>
         <description>Tags - Tag - Rong&#39;s Blog</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>977683159@qq.com (SroUngE)</managingEditor>
-            <webMaster>977683159@qq.com (SroUngE)</webMaster><lastBuildDate>Thu, 24 Aug 2023 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://example.org/tags/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>977683159@qq.com (SroUngE)</webMaster><lastBuildDate>Sat, 26 Aug 2023 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://example.org/tags/" rel="self" type="application/rss+xml" /><item>
+    <title>hugo</title>
+    <link>http://example.org/tags/hugo/</link>
+    <pubDate>Sat, 26 Aug 2023 00:00:00 &#43;0000</pubDate>
+    <author>SroUngE</author>
+    <guid>http://example.org/tags/hugo/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>loveit</title>
+    <link>http://example.org/tags/loveit/</link>
+    <pubDate>Sat, 26 Aug 2023 00:00:00 &#43;0000</pubDate>
+    <author>SroUngE</author>
+    <guid>http://example.org/tags/loveit/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
     <title>javax</title>
     <link>http://example.org/tags/javax/</link>
     <pubDate>Thu, 24 Aug 2023 00:00:00 &#43;0000</pubDate>
@@ -26,22 +42,6 @@
     <pubDate>Sun, 30 Jul 2023 00:00:00 &#43;0000</pubDate>
     <author>SroUngE</author>
     <guid>http://example.org/tags/jvm/</guid>
-    <description><![CDATA[]]></description>
-</item>
-<item>
-    <title>hugo</title>
-    <link>http://example.org/tags/hugo/</link>
-    <pubDate>Sun, 14 May 2023 00:00:00 &#43;0000</pubDate>
-    <author>SroUngE</author>
-    <guid>http://example.org/tags/hugo/</guid>
-    <description><![CDATA[]]></description>
-</item>
-<item>
-    <title>loveit</title>
-    <link>http://example.org/tags/loveit/</link>
-    <pubDate>Sun, 14 May 2023 00:00:00 &#43;0000</pubDate>
-    <author>SroUngE</author>
-    <guid>http://example.org/tags/loveit/</guid>
     <description><![CDATA[]]></description>
 </item>
 <item>

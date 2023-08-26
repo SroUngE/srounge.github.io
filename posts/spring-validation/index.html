@@ -16,7 +16,7 @@
 <meta name="application-name" content="My cool site">
 <meta name="apple-mobile-web-app-title" content="My cool site"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://example.org/posts/spring-validation/" /><link rel="prev" href="http://example.org/posts/jvm3-class/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://example.org/posts/spring-validation/" /><link rel="prev" href="http://example.org/posts/jvm3-class/" /><link rel="next" href="http://example.org/posts/hugo-loveit-markdown/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
     {
@@ -27,7 +27,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/example.org\/posts\/spring-validation\/"
-        },"genre": "posts","keywords": "spirng, javax","wordcount":  637 ,
+        },"genre": "posts","keywords": "spirng, javax","wordcount":  650 ,
         "url": "http:\/\/example.org\/posts\/spring-validation\/","datePublished": "2023-08-24T00:00:00+00:00","dateModified": "2023-08-24T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -102,7 +102,7 @@
             overflow: hidden;
             height: 60vh;
             width: 100%;
-            background-image: linear-gradient(rgb(75, 0, 155), rgb(255, 255, 255));
+            background-image: linear-gradient(rgb(75, 0, 155), #f8f8f8);
         
             display: flex;
             flex-direction: column;
@@ -149,7 +149,7 @@
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Spring 集成Javax Validation 和 Hibernate Validator</h1><div class="post-meta">
             <div class="post-meta-line">
                 </div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-08-24">2023-08-24</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;637 words&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-08-24">2023-08-24</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;650 words&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;2 minutes&nbsp;</div>
         </div><div class="featured-image"><img
         class="lazyload"
@@ -163,14 +163,19 @@
                     <span>Contents</span>
                     <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
                 </div>
-                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents"></nav></div>
-            </div><div class="content" id="content"><h1 id="spring-集成-javax-validation--hibernate-validator">Spring 集成 javax-validation &amp; hibernate-validator</h1>
-<blockquote>
-<p>当需要在 controller 层对参数进行验证的时候，可以基于 javax-validation 的注解，结合 hibernate-validator 的验证实现器，以实现参数的校验</p>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#spring-集成-javax-validation">Spring 集成 javax-validation</a></li>
+    <li><a href="#spring-集成-javax-validation-和-hibernate-validator">Spring 集成 javax-validation 和 hibernate-validator</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><blockquote>
+<p>当需要在 controller 层对参数进行验证的时候，可以基于 javax-validation 的注解，结合 hibernate-validator 的验证实现器，以实现参数的校验。<a href="https://docs.spring.io/spring-framework/docs/5.3.29/reference/html/core.html#validation" target="_blank" rel="noopener noreffer ">Spring 的官方文档参考</a><br>
+如果是使用 springboot 的小伙伴，则更加简便，因为 springboot 的 starter-web本身已经集成了 hibernate-validator 的依赖，因为只需要引入 javax-validation 的依赖即可。</p>
 </blockquote>
-<p>Spring 的官方文档参考：https://docs.spring.io/spring-framework/docs/5.3.29/reference/html/core.html#validation</p>
-<p>我们项目用的 Spring 版本是 5.3.x，javax-validation 的版本是 2.0.1.Final。
-在没有 hibernate-validator 的情况下，需要显式声明 BindingResult 这个参数在 controller，用于捕获验证结果，以下是一个例子：</p>
+<h2 id="spring-集成-javax-validation">Spring 集成 javax-validation</h2>
+<p>我们项目用的 Spring 版本是 5.3.x，javax-validation 的版本是 2.0.1.Final。<br>
+在没有 hibernate-validator 的情况下，需要在 controller显式声明 BindingResult 这个参数，用于捕获验证结果，以下是一个例子：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">User</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">    <span class="nd">@NotNull</span>
 </span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="n">String</span> <span class="n">id</span><span class="o">;</span>
@@ -186,7 +191,8 @@
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="o">}</span>
 </span></span><span class="line"><span class="cl">    <span class="o">}</span>
 </span></span><span class="line"><span class="cl"><span class="o">}</span>
-</span></span></code></pre></div><p>显然，这样的错误处理太 hard code 了，并且会导致大量的重复代码，因此，需要引入 hibernate-validator 的依赖，我的版本是5.0.1.Final，它会自动捕获错误，并抛出异常。
+</span></span></code></pre></div><h2 id="spring-集成-javax-validation-和-hibernate-validator">Spring 集成 javax-validation 和 hibernate-validator</h2>
+<p>显然，这样的错误处理太 hard code 了，并且会导致大量的重复代码，因此，需要引入 hibernate-validator 的依赖，我的版本是5.0.1.Final，它会自动捕获错误，并抛出异常。
 以下是一个例子：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Validated</span>
 </span></span><span class="line"><span class="cl"><span class="nd">@RestController</span>
@@ -196,9 +202,9 @@
 </span></span><span class="line"><span class="cl">        <span class="c1">// service call
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="o">}</span>
 </span></span><span class="line"><span class="cl"><span class="o">}</span>
-</span></span></code></pre></div><p>基于 hibernate 的验证处理，当验证失败的时候，会自动抛出一个异常：<code>MethodArgumentNotValidException</code>，可以看下这个异常继承了<code>BindingException</code>类</p>
+</span></span></code></pre></div><p>基于 hibernate 的验证处理，当验证失败的时候，会自动抛出一个异常：<code>MethodArgumentNotValidException</code>，可以看下这个异常继承了<code>BindingException</code>类，</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MethodArgumentNotValidException</span> <span class="kd">extends</span> <span class="n">BindException</span>
-</span></span></code></pre></div><p><code>BindingException</code>类又实现了<code>BindingResult</code>接口，重写了 getMessage，来拼接 BindingResult 中得到的信息</p>
+</span></span></code></pre></div><p><code>BindingException</code>类又实现了<code>BindingResult</code>接口，重写了 getMessage方法，来拼接 BindingResult 中得到的信息</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">BindException</span> <span class="kd">extends</span> <span class="n">Exception</span> <span class="kd">implements</span> <span class="n">BindingResult</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">    <span class="nd">@Override</span>
 </span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">String</span> <span class="nf">getMessage</span><span class="o">()</span> <span class="o">{</span>
@@ -216,7 +222,7 @@
 </span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">sb</span><span class="o">.</span><span class="na">toString</span><span class="o">();</span>
 </span></span><span class="line"><span class="cl">    <span class="o">}</span>
 </span></span><span class="line"><span class="cl"><span class="o">}</span>
-</span></span></code></pre></div><p>如果是使用 springboot 的小伙伴，则更加简便，因为 springboot 本身已经集成了 hibernate-validator 的依赖，因为只需要引入 javax-validation 的依赖即可。</p></div><div class="post-footer" id="post-footer">
+</span></span></code></pre></div><p>当验证错误都统一捕获并抛出特定异常之后，我们就可以结合Spring 的 <code>@RestControllerAdvice</code>，对抛出的异常统一处理，这里不多做介绍了。</p></div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
@@ -236,7 +242,8 @@
         
     </div>
 
-    <div class="post-nav"><a href="/posts/jvm3-class/" class="prev" rel="prev" title="JVM(三): 类加载与字节码技术"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>JVM(三): 类加载与字节码技术</a></div>
+    <div class="post-nav"><a href="/posts/jvm3-class/" class="prev" rel="prev" title="JVM(三): 类加载与字节码技术"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>JVM(三): 类加载与字节码技术</a>
+            <a href="/posts/hugo-loveit-markdown/" class="next" rel="next" title="个人博客(三): Hugo Loveit 自定义Markdown文章样式">个人博客(三): Hugo Loveit 自定义Markdown文章样式<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
 </div>
 </article></div>
             </main><footer class="footer">
