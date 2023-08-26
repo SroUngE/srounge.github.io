@@ -27,7 +27,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/example.org\/posts\/hugo-loveit\/"
-        },"genre": "posts","keywords": "hugo, loveit","wordcount":  2152 ,
+        },"genre": "posts","keywords": "hugo, loveit","wordcount":  2075 ,
         "url": "http:\/\/example.org\/posts\/hugo-loveit\/","datePublished": "2023-05-14T00:00:00+00:00","dateModified": "2023-05-14T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -55,9 +55,7 @@
                         <span class="search-button search-loading" id="search-loading-desktop">
                             <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
                         </span>
-                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
-                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
-                </a></div>
+                    </span></div>
         </div>
     </div>
 </header><header class="mobile" id="header-mobile">
@@ -86,9 +84,7 @@
                     <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
                         Cancel
                     </a>
-                </div><a class="menu-item" href="/posts/" title="Posts"><i class="fa-solid fa-book" style="color: #2f4154;"></i>Posts</a><a class="menu-item" href="/categories/" title="Categories"><i class="fa-solid fa-folder" style="color: #2f4154;"></i>Categories</a><a class="menu-item" href="/about/" title="About"><i class="fa-solid fa-user" style="color: #2f4154;"></i>About</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
-                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
-            </a></div>
+                </div><a class="menu-item" href="/posts/" title="Posts"><i class="fa-solid fa-book" style="color: #2f4154;"></i>Posts</a><a class="menu-item" href="/categories/" title="Categories"><i class="fa-solid fa-folder" style="color: #2f4154;"></i>Categories</a><a class="menu-item" href="/about/" title="About"><i class="fa-solid fa-user" style="color: #2f4154;"></i>About</a></div>
     </div>
 </header><div class="search-dropdown desktop">
         <div id="search-dropdown-desktop"></div>
@@ -149,7 +145,7 @@
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">个人博客(二): Hugo框架Loveit主题自定义美化</h1><div class="post-meta">
             <div class="post-meta-line">
                 </div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-05-14">2023-05-14</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;2152 words&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-05-14">2023-05-14</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;2075 words&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;5 minutes&nbsp;</div>
         </div><div class="featured-image"><img
         class="lazyload"
@@ -166,8 +162,8 @@
                 <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
   <ul>
     <li><a href="#启动hugo">启动Hugo</a></li>
-    <li><a href="#1-自定义logo字体">1. 自定义logo字体</a></li>
-    <li><a href="#2-自定义导航栏图标">2. 自定义导航栏图标</a></li>
+    <li><a href="#1-自定义导航栏图标">1. 自定义导航栏图标</a></li>
+    <li><a href="#2-自定义logo字体">2. 自定义logo字体</a></li>
     <li><a href="#3-自定义图片展示样式">3. 自定义图片展示样式</a></li>
     <li><a href="#4-自定义目录样式">4. 自定义目录样式</a></li>
     <li><a href="#5-自定义page样式">5. 自定义Page样式</a></li>
@@ -179,21 +175,10 @@
             </div><div class="content" id="content"><h2 id="启动hugo">启动Hugo</h2>
 <p>首先要以debug的模式启动Hugo，这样本地改动之后可以立即应用到页面上</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ hugo serve --disableFastRender
-</span></span></code></pre></div><p>在Hugo中，如果你要覆盖原来的css，就要把主题的css样式按完全相同的路径copy到自己目录下。</p>
-<h2 id="1-自定义logo字体">1. 自定义logo字体</h2>
-<p>logo的字体是一个全局变量，Loveit中的全局变量存在<code>blog\themes\Loveit\assets\css\_variable.css</code>，为了要覆盖这些全局变量，Loveit提供了一个覆盖文叫<code>blog\themes\Loveit\assets\css\_override.css</code>, 新建文件<code>blog\assets\css\_override.css</code>，这里我用了google font，写入以下：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-scss" data-lang="scss"><span class="line"><span class="cl"><span class="k">@import</span> <span class="sx">url(&#39;https://fonts.font.im/css?family=Kaushan+Script&#39;)</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="nv">$header-title-font-family</span><span class="o">:</span> <span class="s1">&#39;Kaushan Script&#39;</span><span class="o">,</span> <span class="ni">cursive</span><span class="p">;</span>
-</span></span></code></pre></div><p>注意，有些时候效果可能会有点延迟。效果如下：<br>
-<img
-        class="lazyload"
-        src="/svg/loading.min.svg"
-        data-src="https://s2.loli.net/2023/05/22/U7ijIvEtSdhrpKa.png"
-        data-srcset="https://s2.loli.net/2023/05/22/U7ijIvEtSdhrpKa.png, https://s2.loli.net/2023/05/22/U7ijIvEtSdhrpKa.png 1.5x, https://s2.loli.net/2023/05/22/U7ijIvEtSdhrpKa.png 2x"
-        data-sizes="auto"
-        alt="https://s2.loli.net/2023/05/22/U7ijIvEtSdhrpKa.png"
-        title="https://s2.loli.net/2023/05/22/U7ijIvEtSdhrpKa.png" /></p>
-<h2 id="2-自定义导航栏图标">2. 自定义导航栏图标</h2>
+</span></span></code></pre></div><blockquote>
+<p>在Hugo中，如果你要覆盖原来的css，就要把主题的css样式按完全相同的路径copy到自己目录下。以下我将只列出我自己copy的路径</p>
+</blockquote>
+<h2 id="1-自定义导航栏图标">1. 自定义导航栏图标</h2>
 <p><code>Loveit</code>提供配置<code>config.toml</code>，可以在导航栏的前后增加图标，以下是我的配置，这里有个坑的地方是要用单引号，不然会编码错误。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="p">[</span><span class="nx">menu</span><span class="p">]</span>
 </span></span><span class="line"><span class="cl">  <span class="p">[[</span><span class="nx">menu</span><span class="p">.</span><span class="nx">main</span><span class="p">]]</span>
@@ -232,15 +217,27 @@
         data-sizes="auto"
         alt="https://s2.loli.net/2023/05/28/VQbO1FxdSfCeLM4.png"
         title="https://s2.loli.net/2023/05/28/VQbO1FxdSfCeLM4.png" /></p>
+<h2 id="2-自定义logo字体">2. 自定义logo字体</h2>
+<p>logo的字体是一个全局变量，Loveit中的全局变量存在文件<code>blog\assets\css\_variable.css</code>中，这里我用了google font，写入以下：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-scss" data-lang="scss"><span class="line"><span class="cl"><span class="k">@import</span> <span class="sx">url(&#39;https://fonts.font.im/css?family=Kaushan+Script&#39;)</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$header-title-font-family</span><span class="o">:</span> <span class="s1">&#39;Kaushan Script&#39;</span><span class="o">,</span> <span class="ni">cursive</span><span class="p">;</span>
+</span></span></code></pre></div><p>注意，有些时候效果可能会有点延迟。效果如下：<br>
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://s2.loli.net/2023/05/22/U7ijIvEtSdhrpKa.png"
+        data-srcset="https://s2.loli.net/2023/05/22/U7ijIvEtSdhrpKa.png, https://s2.loli.net/2023/05/22/U7ijIvEtSdhrpKa.png 1.5x, https://s2.loli.net/2023/05/22/U7ijIvEtSdhrpKa.png 2x"
+        data-sizes="auto"
+        alt="https://s2.loli.net/2023/05/22/U7ijIvEtSdhrpKa.png"
+        title="https://s2.loli.net/2023/05/22/U7ijIvEtSdhrpKa.png" /></p>
 <h2 id="3-自定义图片展示样式">3. 自定义图片展示样式</h2>
-<p>覆盖样式<code>blog\themes\Loveit\assets\css\_page\_single.scss</code>，就要新建同样的文件路径<code>blog\assets\css\_page\_single.scss</code>，建好路径之后，把这个文件copy过来。<br>
-我想要的样式是图片铺满，有一些阴影的效果，以下是我的设置：</p>
+<p>图片样式的设置在文件<code>blog\assets\css\_page\_single.scss</code></p>
+<p>我想要的样式是图片铺满，有一些阴影的效果，以下是我的设置：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-scss" data-lang="scss"><span class="line"><span class="cl"><span class="nt">img</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="na">max-width</span><span class="o">:</span> <span class="mi">100</span><span class="kt">%</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">  <span class="na">min-height</span><span class="o">:</span> <span class="mi">1</span><span class="kt">em</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">  <span class="c1">// =====My Custom====
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="na">width</span><span class="o">:</span> <span class="mi">90</span><span class="kt">%</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">  <span class="na">margin</span><span class="o">:</span> <span class="mi">2</span><span class="kt">rem</span> <span class="ni">auto</span><span class="p">;</span>
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="na">margin</span><span class="o">:</span> <span class="mi">2</span><span class="kt">rem</span> <span class="ni">auto</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">  <span class="na">display</span><span class="o">:</span> <span class="ni">block</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">  <span class="na">box-shadow</span><span class="o">:</span> <span class="mi">0</span> <span class="mi">5</span><span class="kt">px</span> <span class="mi">11</span><span class="kt">px</span> <span class="mi">0</span> <span class="nf">rgba</span><span class="p">(</span><span class="mi">0</span><span class="o">,</span><span class="mi">0</span><span class="o">,</span><span class="mi">0</span><span class="o">,</span><span class="mi">0</span><span class="mf">.18</span><span class="p">)</span><span class="o">,</span> <span class="mi">0</span> <span class="mi">4</span><span class="kt">px</span> <span class="mi">15</span><span class="kt">px</span> <span class="mi">0</span> <span class="nf">rgba</span><span class="p">(</span><span class="mi">0</span><span class="o">,</span><span class="mi">0</span><span class="o">,</span><span class="mi">0</span><span class="o">,</span><span class="mi">0</span><span class="mf">.15</span><span class="p">)</span> <span class="k">!important</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">  <span class="na">border-radius</span><span class="o">:</span> <span class="mi">3</span><span class="kt">px</span><span class="p">;</span>
@@ -286,6 +283,17 @@ Hugo有提供<code>figure</code> &amp; <code>image</code>来支持画廊的模�
 </span></span><span class="line"><span class="cl">    <span class="na">padding-right</span><span class="o">:</span> <span class="mi">5</span><span class="kt">%</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="na">border-radius</span><span class="o">:</span> <span class="mi">1</span><span class="mf">.5</span><span class="kt">rem</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="na">box-shadow</span><span class="o">:</span> <span class="mi">0</span> <span class="mi">12</span><span class="kt">px</span> <span class="mi">50</span><span class="kt">px</span> <span class="mi">0</span> <span class="nf">rgba</span><span class="p">(</span><span class="mi">0</span><span class="o">,</span><span class="mi">0</span><span class="o">,</span><span class="mi">0</span><span class="o">,</span><span class="mi">0</span><span class="mf">.18</span><span class="p">)</span><span class="o">,</span> <span class="mi">0</span> <span class="mi">4</span><span class="kt">px</span> <span class="mi">15</span><span class="kt">px</span> <span class="mi">0</span> <span class="nf">rgba</span><span class="p">(</span><span class="mi">0</span><span class="o">,</span><span class="mi">0</span><span class="o">,</span><span class="mi">0</span><span class="o">,</span><span class="mi">0</span><span class="mf">.15</span><span class="p">)</span> <span class="k">!important</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>为了自适应手机端的样式，需要修改<code>blog\themes\Loveit\assets\css\_core\_layout.scss</code>：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-scss" data-lang="scss"><span class="line"><span class="cl"><span class="nc">.wrapper</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">main</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nc">.container</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="na">padding</span><span class="o">:</span> <span class="mi">0</span> <span class="mi">1</span><span class="mf">.75</span><span class="kt">rem</span><span class="p">;</span> <span class="c1">// increase padding
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>      <span class="k">@media</span> <span class="n">only</span> <span class="ni">screen</span> <span class="ow">and</span> <span class="p">(</span><span class="na">max-width</span><span class="o">:</span> <span class="mi">680</span><span class="kt">px</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="na">background-color</span><span class="o">:</span> <span class="mh">#fff</span><span class="p">;</span> <span class="c1">// set the backgroud as white when mobile
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>      <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl">  <span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></div><h2 id="6-自定义文章列表样式">6. 自定义文章列表样式</h2>
@@ -399,7 +407,7 @@ Hugo有提供<code>figure</code> &amp; <code>image</code>来支持画廊的模�
 </span></span><span class="line"><span class="cl">    <span class="p">&lt;/</span><span class="nt">main</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl">    {{- partial &#34;footer.html&#34; . -}}
 </span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-</span></span></code></pre></div><p>然后在添加自己的<code>partial</code>文件：<code>blog\layouts\partials\banner.html</code></p>
+</span></span></code></pre></div><p>然后再添加自己的<code>partial</code>文件：<code>blog\layouts\partials\banner.html</code></p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl">    <span class="c">&lt;!-- 自定义css --&gt;</span>
 </span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>

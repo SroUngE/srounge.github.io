@@ -27,7 +27,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/example.org\/posts\/hugo-loveit-markdown\/"
-        },"genre": "posts","keywords": "hugo, loveit","wordcount":  517 ,
+        },"genre": "posts","keywords": "hugo, loveit","wordcount":  532 ,
         "url": "http:\/\/example.org\/posts\/hugo-loveit-markdown\/","datePublished": "2023-08-26T00:00:00+00:00","dateModified": "2023-08-26T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -55,9 +55,7 @@
                         <span class="search-button search-loading" id="search-loading-desktop">
                             <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
                         </span>
-                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
-                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
-                </a></div>
+                    </span></div>
         </div>
     </div>
 </header><header class="mobile" id="header-mobile">
@@ -86,9 +84,7 @@
                     <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
                         Cancel
                     </a>
-                </div><a class="menu-item" href="/posts/" title="Posts"><i class="fa-solid fa-book" style="color: #2f4154;"></i>Posts</a><a class="menu-item" href="/categories/" title="Categories"><i class="fa-solid fa-folder" style="color: #2f4154;"></i>Categories</a><a class="menu-item" href="/about/" title="About"><i class="fa-solid fa-user" style="color: #2f4154;"></i>About</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
-                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
-            </a></div>
+                </div><a class="menu-item" href="/posts/" title="Posts"><i class="fa-solid fa-book" style="color: #2f4154;"></i>Posts</a><a class="menu-item" href="/categories/" title="Categories"><i class="fa-solid fa-folder" style="color: #2f4154;"></i>Categories</a><a class="menu-item" href="/about/" title="About"><i class="fa-solid fa-user" style="color: #2f4154;"></i>About</a></div>
     </div>
 </header><div class="search-dropdown desktop">
         <div id="search-dropdown-desktop"></div>
@@ -149,7 +145,7 @@
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">个人博客(三): Hugo Loveit 自定义Markdown文章样式</h1><div class="post-meta">
             <div class="post-meta-line">
                 </div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-08-26">2023-08-26</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;517 words&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-08-26">2023-08-26</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;532 words&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;2 minutes&nbsp;</div>
         </div><div class="featured-image"><img
         class="lazyload"
@@ -205,7 +201,9 @@
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></div><p>接着要修改<code>blog\assets\css\_partial\_single\_code.scss</code>文件来给代码块加边距：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-scss" data-lang="scss"><span class="line"><span class="cl"><span class="nt">code</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="nc">.highlight</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="na">padding</span><span class="o">:</span> <span class="mf">.2</span><span class="kt">rem</span> <span class="mf">.4</span><span class="kt">rem</span><span class="p">;</span> <span class="c1">// add left and right padding
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="na">border-radius</span><span class="o">:</span> <span class="mi">6</span><span class="kt">px</span><span class="p">;</span> <span class="c1">// add border radius
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nc">.highlight</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="na">margin</span><span class="o">:</span> <span class="mi">1</span><span class="kt">rem</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">// turn up margin top and bottom    
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
