@@ -27,7 +27,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/example.org\/posts\/java-generic\/"
-        },"genre": "posts","keywords": "java, generic","wordcount":  2500 ,
+        },"genre": "posts","keywords": "java, generic","wordcount":  2872 ,
         "url": "http:\/\/example.org\/posts\/java-generic\/","datePublished": "2023-11-01T00:00:00+00:00","dateModified": "2023-11-01T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -145,8 +145,8 @@
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Java 泛型的深入思考：从历史起源到最佳实践</h1><div class="post-meta">
             <div class="post-meta-line">
                 </div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-11-01">2023-11-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;2500 words&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;5 minutes&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-11-01">2023-11-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;2872 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;6 minutes&nbsp;</div>
         </div><div class="featured-image"><img
         class="lazyload"
         src="/svg/loading.min.svg"
@@ -167,13 +167,16 @@
       <ul>
         <li><a href="#1-请不要使用原生态类型">1. 请不要使用原生态类型</a></li>
         <li><a href="#2-消除非受检异常">2. 消除非受检异常</a></li>
-        <li><a href="#3-对可具体化类型特殊处理">3. 对可具体化类型特殊处理</a></li>
       </ul>
     </li>
     <li><a href="#泛型擦除">泛型擦除</a></li>
   </ul>
 </nav></div>
-            </div><div class="content" id="content"><p>本篇文章会尽量引用官方的文档，以及具有权威性的文章。</p>
+            </div><div class="content" id="content"><p>本篇文章会尽量引用官方的文档，以及具有权威性的文章。
+<a href="https://docs.oracle.com/javase/tutorial/java/generics/" target="_blank" rel="noopener noreffer ">Generics tutorial by The Java™ Tutorials - Oracle</a><br>
+<a href="https://github.com/clxering/Effective-Java-3rd-edition-Chinese-English-bilingual" target="_blank" rel="noopener noreffer ">Effective Java - Joshua Bloch)</a><br>
+<a href="https://www.oracle.com/technetwork/java/javase/generics-tutorial-159168.pdf" target="_blank" rel="noopener noreffer ">Generics in the Java Programming Language - Gilad Bracha)</a><br>
+<a href="https://go.dev/blog/when-generics" target="_blank" rel="noopener noreffer ">When To Use Generics)</a></p>
 <h2 id="泛型的历史">泛型的历史</h2>
 <p>当这些理论出现之后，泛型变得可能：</p>
 <ul>
@@ -208,10 +211,10 @@ main ();
 <h2 id="泛型的意义">泛型的意义</h2>
 <p>所以泛型存在的意义是什么？ 下面引用 Java 官方文档的一个介绍：</p>
 <blockquote>
-<p>In a nutshell, generics enable <em>types</em> (classes and interfaces) to be parameters when defining classes, interfaces and methods.
+<p>In a nutshell, generics enable <em>types</em> (classes and interfaces) to be parameters when defining classes, interfaces and methods.<br>
 在定义类，接口，方法的时候，泛型使得类型（类和接口）得以成为参数。</p>
 </blockquote>
-<p>这句话翻译过来就是，泛型是一种把类型传递为参数的机制，因此泛型的别名也叫<strong>参数化类型(type parameters )</strong>。那这样做有什么好处呢？或者说用泛型我们为了达到什么目的？</p>
+<p>这句话翻译过来就是，泛型是一种把类型传递为参数的机制，因此泛型的别名也叫<strong>参数化类型(type parameters)</strong>。那这样做有什么好处呢？或者说用泛型我们为了达到什么目的？</p>
 <p>引用自 Java 官方文档：</p>
 <ol>
 <li><strong>编译时强类型检查</strong>：Java 编译器会对泛型代码应用强类型检查，使得类型问题在编译阶段而不是运行时被暴露</li>
@@ -237,7 +240,6 @@ main ();
 <blockquote>
 <p>如果你发现你写的代码几乎完全一样，区别只是代码里使用的类型不同，那就要考虑使用泛型来实现。</p>
 </blockquote>
-<p><a href="https://go.dev/blog/when-generics" target="_blank" rel="noopener noreffer ">When To Use Generics)</a></p>
 <hr>
 <blockquote>
 <p>以下内容来自 《Effective Java》 第五章节 - 泛型</p>
@@ -254,21 +256,21 @@ main ();
 unchecked cast: 未检查的转换
 </code></pre><p><strong>每一个未受检警告都说明运行时可能出现<code>ClassCastException</code></strong>，要尽可能地消除每一个非受检警告（Unchecked Warning），因为如果消除了所有警告，就可以确保代码是类型安全的。   <br>
 如果无法消除警告，同时可以证明警告引起的代码是类型安全的，只有在这种情况下，才可以用一个@SuppressWarnings(unchecked)注解来禁止这种警告。<strong>应该始终在尽可能小的范围内使用这个注解</strong></p>
-<hr>
 <blockquote>
-<p>以下内容来自 《Java Generics and Collections》第8章</p>
+<p>更多深入的内容可以查看 《Java Generics and Collections》第8章</p>
 </blockquote>
-<h3 id="3-对可具体化类型特殊处理">3. 对可具体化类型特殊处理</h3>
 <h2 id="泛型擦除">泛型擦除</h2>
-<p><strong>可具体化(reifiable)类型</strong>，是类型信息在运行时完全可用的类型。包括：</p>
+<p>说到泛型擦除之前先要理解下这些概念：
+<strong>可具体化(reifiable)类型</strong>，是类型信息在运行时完全可用的类型。包括：</p>
 <ul>
 <li>基本类型，如int</li>
 <li>非泛型类型，如String, Runnable</li>
 <li>原生态类型，如List</li>
 <li>无界通配符的调用，如List<!-- raw HTML omitted --></li>
 </ul>
-<p><strong>不可具体化(Non-reifiable types)类型</strong>，是在编译时通过类型擦除移除信息的类型 - 未定义为无界通配符的泛型类型的调用。不可具体化的类型在运行时没有提供所有信息。例如，尽管<code>List&lt;String&gt;</code> 和 <code>List&lt;Number&gt;</code>在编译时被声明为不同类型，但在编译之后都被简化为了<code>List</code>类型，因此，JVM 无法在运行时区分这些类型。</p>
-<p>来看看下面这些例子：</p>
+<p><strong>不可具体化(Non-reifiable types)类型</strong>，是在编译时通过类型擦除移除信息的类型。<br>
+例如，尽管<code>List&lt;String&gt;</code> 和 <code>List&lt;Number&gt;</code>在编译时被声明为不同类型，但在编译之后都被简化为了<code>List</code>类型，因此，JVM 无法在运行时区分这些类型。</p>
+<p>不可具体化的类型在编译之后，将被擦除类型信息。来看看下面这些例子：</p>
 <p><strong>有限制的类型擦除</strong></p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Box</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">    
@@ -353,7 +355,48 @@ unchecked cast: 未检查的转换
 </span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">validate</span><span class="o">((</span><span class="n">Integer</span><span class="o">)</span><span class="n">obj</span><span class="o">);</span>
 </span></span><span class="line"><span class="cl">    <span class="o">}</span>
 </span></span><span class="line"><span class="cl"><span class="o">}</span>
-</span></span></code></pre></div><p><a href="https://docs.oracle.com/javase/tutorial/java/generics/erasure.html" target="_blank" rel="noopener noreffer ">Type Erasure (The Java™ Tutorials &gt; Learning the Java Language &gt; Generics (Updated)) (oracle.com)</a></p></div><div class="post-footer" id="post-footer">
+</span></span></code></pre></div><p><strong>通过反射获取泛型的真正类型</strong></p>
+<p>如果你试图通过<code>getTypeParameters</code>获取泛型的类型的话，那你将只会得到占位符：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">list</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;();</span>
+</span></span><span class="line"><span class="cl"><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="n">list</span><span class="o">.</span><span class="na">getClass</span><span class="o">().</span><span class="na">getTypeParameters</span><span class="o">()));</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 输出: [E]
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Integer</span><span class="o">&gt;</span> <span class="n">map</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;&gt;();</span>
+</span></span><span class="line"><span class="cl"><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="n">map</span><span class="o">.</span><span class="na">getClass</span><span class="o">().</span><span class="na">getTypeParameters</span><span class="o">()));</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 输出：[K,V]
+</span></span></span></code></pre></div><p>但是你可以通过<code>getGenericSuperclass</code>来获取泛型信息，但他并不是全能的，他的原理是通过定义在类上的签名，通过反射，获取泛型的类型，因此它只适用于这种情况：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">GiftBox</span> <span class="kd">extends</span> <span class="n">Box</span><span class="o">&lt;</span><span class="n">Gift</span><span class="o">&gt;</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nd">@Test</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">testGenericType_predefined</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">GiftBox</span> <span class="n">box</span> <span class="o">=</span> <span class="k">new</span> <span class="n">GiftBox</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Type</span> <span class="n">genericSuperclass</span> <span class="o">=</span> <span class="n">box</span><span class="o">.</span><span class="na">getClass</span><span class="o">().</span><span class="na">getGenericSuperclass</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 可以拿到，通过类签名GiftBox extends Box&lt;Gift&gt;，得到声明的泛型，然后反射拿到
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">genericSuperclass</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">(</span><span class="n">genericSuperclass</span> <span class="k">instanceof</span> <span class="n">ParameterizedType</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Type</span> <span class="n">actualTypeArgument</span> <span class="o">=</span> <span class="o">((</span><span class="n">ParameterizedType</span><span class="o">)</span><span class="n">genericSuperclass</span><span class="o">).</span><span class="na">getActualTypeArguments</span><span class="o">()[</span><span class="mi">0</span><span class="o">];</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">actualTypeArgument</span><span class="o">.</span><span class="na">getTypeName</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="cm">/*
+</span></span></span><span class="line"><span class="cl"><span class="cm"> 输出：
+</span></span></span><span class="line"><span class="cl"><span class="cm"> com.demo.generics.Box&lt;com.demo.generics.Gift&gt;
+</span></span></span><span class="line"><span class="cl"><span class="cm"> com.demo.generics.Gift
+</span></span></span><span class="line"><span class="cl"><span class="cm"> */</span>
+</span></span></code></pre></div><p>对于这种情况，它也还是拿不到的：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Test</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">testGenericType_not_predefined</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Box</span><span class="o">&lt;</span><span class="n">Gift</span><span class="o">&gt;</span> <span class="n">box</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Box</span><span class="o">&lt;&gt;();</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 无法拿到，Box&lt;Gift&gt; 被类型擦除为Box，此时字节码中没有存在的签名使得可以通过反射得到泛型的类型
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">Type</span> <span class="n">genericSuperclass</span> <span class="o">=</span> <span class="n">box</span><span class="o">.</span><span class="na">getClass</span><span class="o">().</span><span class="na">getGenericSuperclass</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">genericSuperclass</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">(</span><span class="n">genericSuperclass</span> <span class="k">instanceof</span> <span class="n">ParameterizedType</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Type</span> <span class="n">actualTypeArgument</span> <span class="o">=</span> <span class="o">((</span><span class="n">ParameterizedType</span><span class="o">)</span><span class="n">genericSuperclass</span><span class="o">).</span><span class="na">getActualTypeArguments</span><span class="o">()[</span><span class="mi">0</span><span class="o">];</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">actualTypeArgument</span><span class="o">.</span><span class="na">getTypeName</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div></div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
