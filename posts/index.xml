@@ -4,7 +4,27 @@
         <link>http://example.org/posts/</link>
         <description>All Posts | Rong&#39;s Blog</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>977683159@qq.com (SroUngE)</managingEditor>
-            <webMaster>977683159@qq.com (SroUngE)</webMaster><lastBuildDate>Sat, 26 Aug 2023 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://example.org/posts/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>977683159@qq.com (SroUngE)</webMaster><lastBuildDate>Wed, 01 Nov 2023 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://example.org/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>Java 泛型的深入思考：从历史起源到最佳实践</title>
+    <link>http://example.org/posts/java-generic/</link>
+    <pubDate>Wed, 01 Nov 2023 00:00:00 &#43;0000</pubDate>
+    <author>SroUngE</author>
+    <guid>http://example.org/posts/java-generic/</guid>
+    <description><![CDATA[<div class="featured-image">
+                <img src="https://s2.loli.net/2023/05/14/vWZJg25R1CVkXc6.png" referrerpolicy="no-referrer">
+            </div>一个关于Java泛型的简短的研究调查和思考，依据官方的参考资料，试图理解泛型存在的意义，以及它的最佳实践。]]></description>
+</item>
+<item>
+    <title>Java 泛型的深入思考：从历史起源到最佳实践</title>
+    <link>http://example.org/posts/java-markdown/</link>
+    <pubDate>Tue, 19 Sep 2023 00:00:00 &#43;0000</pubDate>
+    <author>SroUngE</author>
+    <guid>http://example.org/posts/java-markdown/</guid>
+    <description><![CDATA[<div class="featured-image">
+                <img src="https://s2.loli.net/2023/05/14/vWZJg25R1CVkXc6.png" referrerpolicy="no-referrer">
+            </div>一个关于Java泛型的简短的研究调查和思考，依据具有权威性的参考资料，试图理解泛型存在的意义，以及它的最佳实践。]]></description>
+</item>
+<item>
     <title>个人博客(三): Hugo Loveit 自定义Markdown文章样式</title>
     <link>http://example.org/posts/hugo-loveit-markdown/</link>
     <pubDate>Sat, 26 Aug 2023 00:00:00 &#43;0000</pubDate>

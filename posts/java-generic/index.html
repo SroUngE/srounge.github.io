@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>Java 泛型的深入思考：从历史起源到最佳实践 - Rong&#39;s Blog</title><meta name="Description" content="一个关于Java泛型的简短的研究调查和思考，依据官方的参考资料，试图理解泛型存在的意义，以及它的最佳实践。"><meta property="og:title" content="Java 泛型的深入思考：从历史起源到最佳实践" />
+<meta property="og:description" content="一个关于Java泛型的简短的研究调查和思考，依据官方的参考资料，试图理解泛型存在的意义，以及它的最佳实践。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://example.org/posts/java-generic/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-11-01T00:00:00+00:00" />
+<meta property="article:modified_time" content="2023-11-01T00:00:00+00:00" /><meta property="og:site_name" content="My cool site" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Java 泛型的深入思考：从历史起源到最佳实践"/>
+<meta name="twitter:description" content="一个关于Java泛型的简短的研究调查和思考，依据官方的参考资料，试图理解泛型存在的意义，以及它的最佳实践。"/>
+<meta name="application-name" content="My cool site">
+<meta name="apple-mobile-web-app-title" content="My cool site"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://example.org/posts/java-generic/" /><link rel="prev" href="http://example.org/posts/java-markdown/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Java 泛型的深入思考：从历史起源到最佳实践",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/example.org\/posts\/java-generic\/"
+        },"genre": "posts","keywords": "java, generic","wordcount":  2500 ,
+        "url": "http:\/\/example.org\/posts\/java-generic\/","datePublished": "2023-11-01T00:00:00+00:00","dateModified": "2023-11-01T00:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "SroUngE"
+            },"description": "一个关于Java泛型的简短的研究调查和思考，依据官方的参考资料，试图理解泛型存在的意义，以及它的最佳实践。"
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Rong&#39;s Blog">Rong&#39;s Blog</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/" title="Posts"><i class="fa-solid fa-book" style="color: #2f4154;"></i> Posts </a><a class="menu-item" href="/categories/" title="Categories"><i class="fa-solid fa-folder" style="color: #2f4154;"></i> Categories </a><a class="menu-item" href="/about/" title="About"><i class="fa-solid fa-user" style="color: #2f4154;"></i> About </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Rong&#39;s Blog">Rong&#39;s Blog</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="Posts"><i class="fa-solid fa-book" style="color: #2f4154;"></i>Posts</a><a class="menu-item" href="/categories/" title="Categories"><i class="fa-solid fa-folder" style="color: #2f4154;"></i>Categories</a><a class="menu-item" href="/about/" title="About"><i class="fa-solid fa-user" style="color: #2f4154;"></i>About</a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><head>
+    <style>
+        .banner {
+            position: relative;
+            overflow: hidden;
+            height: 60vh;
+            width: 100%;
+            background-image: linear-gradient(rgb(75, 0, 155), #f8f8f8);
+        
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            line-height: 0.9;
+        }
+
+        .title {
+            margin: 0 auto;
+            padding: 0 2rem;
+            text-align: center;
+            letter-spacing: -0.01em;
+            color: rgb(255, 255, 255);
+            font-weight: 800;
+            font-size: 2.75rem;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI";
+            opacity: .9;
+
+            @media screen and (min-width:480px) {
+                font-size: 3.25rem;
+            }
+
+            @media screen and (min-width:760px) {
+                font-size: 4.25rem;
+            }
+
+            @media screen and (min-width: 1440px) {
+                font-size: 5.375rem;
+            } 
+   
+        }
+    </style>
+</head>
+<div class="banner"> 
+    <div class="title">
+        One is not born, but rather becomes, a woman.
+    </div>
+</div>
+<main class="main">                             
+                <div class="container"><div class="toc animate__animated animate__fadeInRight" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Java 泛型的深入思考：从历史起源到最佳实践</h1><div class="post-meta">
+            <div class="post-meta-line">
+                </div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-11-01">2023-11-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;2500 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;5 minutes&nbsp;</div>
+        </div><div class="featured-image"><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://s2.loli.net/2023/05/14/vWZJg25R1CVkXc6.png"
+        data-srcset="https://s2.loli.net/2023/05/14/vWZJg25R1CVkXc6.png, https://s2.loli.net/2023/05/14/vWZJg25R1CVkXc6.png 1.5x, https://s2.loli.net/2023/05/14/vWZJg25R1CVkXc6.png 2x"
+        data-sizes="auto"
+        alt="https://s2.loli.net/2023/05/14/vWZJg25R1CVkXc6.png"
+        title="一个关于Java泛型的简短的研究调查和思考，依据官方的参考资料，试图理解泛型存在的意义，以及它的最佳实践。" /></div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#泛型的历史">泛型的历史</a></li>
+    <li><a href="#泛型的意义">泛型的意义</a></li>
+    <li><a href="#泛型的最佳实践">泛型的最佳实践</a>
+      <ul>
+        <li><a href="#1-请不要使用原生态类型">1. 请不要使用原生态类型</a></li>
+        <li><a href="#2-消除非受检异常">2. 消除非受检异常</a></li>
+        <li><a href="#3-对可具体化类型特殊处理">3. 对可具体化类型特殊处理</a></li>
+      </ul>
+    </li>
+    <li><a href="#泛型擦除">泛型擦除</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>本篇文章会尽量引用官方的文档，以及具有权威性的文章。</p>
+<h2 id="泛型的历史">泛型的历史</h2>
+<p>当这些理论出现之后，泛型变得可能：</p>
+<ul>
+<li>类型推断（Type Interface）：20 世纪 70 年代，自动确定表达式的类型</li>
+<li>多态（Polymorphism）：20 世纪 60 年代，允许在不同类型的数据上执行相同的操作</li>
+</ul>
+<p>泛型的概念最早可以追溯到 20 世纪 70 年代末和 80 年代初，当时它首次出现在一些函数式编程语言中。其中，一种叫做 ML(Meta Language)的编程语言，最早在 1973 年，由 Robin Milner(1991 年图灵奖获得者)创建，是泛型概念的早期引入者之一。ML 引入了多态类型和类型推断的概念，这对泛型编程起到了重要的影响。</p>
+<pre tabindex="0"><code>fun length [] = 0
+    | length (x::xs) = 1 + length xs;
+
+fun main() =
+    let
+        val intList = [1, 2, 3];
+        val stringList = [&#34;Rong&#34;, &#34;Chao&#34;, &#34;Yao&#34;, &#34;Yuanyang&#34;, &#34;Brook&#34;];
+main ();
+</code></pre><p>在 ML 之后，泛型概念逐渐在其他编程语言中得到了采纳和发展。C++引入了 template 作为一种泛型编程的方式，它首次出现在 20 世纪 80 年代。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C++" data-lang="C++"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="n">T</span> <span class="n">getMax</span><span class="p">(</span><span class="k">const</span> <span class="n">T</span><span class="o">&amp;</span> <span class="n">a</span><span class="p">,</span> <span class="k">const</span> <span class="n">T</span><span class="o">&amp;</span> <span class="n">b</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="p">(</span><span class="n">a</span> <span class="o">&gt;</span> <span class="n">b</span><span class="p">)</span> <span class="o">?</span> <span class="nl">a</span> <span class="p">:</span> <span class="n">b</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">intResult</span> <span class="o">=</span> <span class="n">getMax</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">double</span> <span class="n">doubleResult</span> <span class="o">=</span> <span class="n">getMax</span><span class="p">(</span><span class="mf">3.14</span><span class="p">,</span> <span class="mf">2.71</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>Java的首个版本是于1995年发布的，当时它的主要目的是创建一种适用于嵌入式设备和网络编程的跨平台语言。然而随着时间的推移，类型安全性变得更加重要，因此在2004年，Java1.5引入了泛型。</p>
+<blockquote>
+<p>It&rsquo;s all about type safety！</p>
+</blockquote>
+<h2 id="泛型的意义">泛型的意义</h2>
+<p>所以泛型存在的意义是什么？ 下面引用 Java 官方文档的一个介绍：</p>
+<blockquote>
+<p>In a nutshell, generics enable <em>types</em> (classes and interfaces) to be parameters when defining classes, interfaces and methods.
+在定义类，接口，方法的时候，泛型使得类型（类和接口）得以成为参数。</p>
+</blockquote>
+<p>这句话翻译过来就是，泛型是一种把类型传递为参数的机制，因此泛型的别名也叫<strong>参数化类型(type parameters )</strong>。那这样做有什么好处呢？或者说用泛型我们为了达到什么目的？</p>
+<p>引用自 Java 官方文档：</p>
+<ol>
+<li><strong>编译时强类型检查</strong>：Java 编译器会对泛型代码应用强类型检查，使得类型问题在编译阶段而不是运行时被暴露</li>
+<li><strong>消除类型转换</strong>：<code>Cast-iron guarantee: the implicit casts added by the compilation of generics never fail.</code>由编译器产生的类型转换永远不会失败。</li>
+<li><strong>代码重用</strong>：使得不同的类型可以使用一样的代码</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">// The following code snippet without generics requires casting:
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">List</span> <span class="n">list</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="n">list</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">&#34;hello&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">String</span> <span class="n">s</span> <span class="o">=</span> <span class="o">(</span><span class="n">String</span><span class="o">)</span> <span class="n">list</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// When re-written to use generics, the code does not require casting:
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">list</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;();</span>
+</span></span><span class="line"><span class="cl"><span class="n">list</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">&#34;hello&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">String</span> <span class="n">s</span> <span class="o">=</span> <span class="n">list</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>   <span class="c1">// no cast
+</span></span></span></code></pre></div><h2 id="泛型的最佳实践">泛型的最佳实践</h2>
+<p>Go 编程有一条通用准则：</p>
+<blockquote>
+<p>write Go programs by writing code, not by defining types.</p>
+</blockquote>
+<p>这句话的意思是，如果从定义泛型开始写代码，那你可能搞错了方向，从编写函数开始，如果发现使用泛型更好，再使用泛型。</p>
+<p>所以什么时候使用泛型更好？先说结论：</p>
+<blockquote>
+<p>如果你发现你写的代码几乎完全一样，区别只是代码里使用的类型不同，那就要考虑使用泛型来实现。</p>
+</blockquote>
+<p><a href="https://go.dev/blog/when-generics" target="_blank" rel="noopener noreffer ">When To Use Generics)</a></p>
+<hr>
+<blockquote>
+<p>以下内容来自 《Effective Java》 第五章节 - 泛型</p>
+</blockquote>
+<h3 id="1-请不要使用原生态类型">1. 请不要使用原生态类型</h3>
+<p>每一种泛型都定义了一个原生态类型（Raw Type），即不带任何实际类型参数的泛型名称。例如<code>List&lt;E&gt;</code>相对应的原生态类型就是<code>List</code>。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">List</span> <span class="n">list</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">();</span>
+</span></span></code></pre></div><p><strong>原生态类型就像是从泛型声明中删除了所有泛型信息一样。失去了泛型在安全性和描述性方面的所有优势</strong> 那为什么 java 语言的设计者还要允许这样使用呢？这是为了提供兼容性。</p>
+<p>那么<code>List</code>和<code>List&lt;Object&gt;</code>有什么区别呢？<br>
+原生态类型<code>List</code>逃避了泛型检查，失去了类型安全性，而参数化类型<code>List&lt;Object&gt;</code>则明确的告知编译器，它能持有任意类型的对象。</p>
+<h3 id="2-消除非受检异常">2. 消除非受检异常</h3>
+<p>当编译器无法从表达式中解析出当前类型的具体类型的时候，就会出现非受检警告：</p>
+<pre tabindex="0"><code>unchecked assignment: 未检查的赋值  
+unchecked cast: 未检查的转换
+</code></pre><p><strong>每一个未受检警告都说明运行时可能出现<code>ClassCastException</code></strong>，要尽可能地消除每一个非受检警告（Unchecked Warning），因为如果消除了所有警告，就可以确保代码是类型安全的。   <br>
+如果无法消除警告，同时可以证明警告引起的代码是类型安全的，只有在这种情况下，才可以用一个@SuppressWarnings(unchecked)注解来禁止这种警告。<strong>应该始终在尽可能小的范围内使用这个注解</strong></p>
+<hr>
+<blockquote>
+<p>以下内容来自 《Java Generics and Collections》第8章</p>
+</blockquote>
+<h3 id="3-对可具体化类型特殊处理">3. 对可具体化类型特殊处理</h3>
+<h2 id="泛型擦除">泛型擦除</h2>
+<p><strong>可具体化(reifiable)类型</strong>，是类型信息在运行时完全可用的类型。包括：</p>
+<ul>
+<li>基本类型，如int</li>
+<li>非泛型类型，如String, Runnable</li>
+<li>原生态类型，如List</li>
+<li>无界通配符的调用，如List<!-- raw HTML omitted --></li>
+</ul>
+<p><strong>不可具体化(Non-reifiable types)类型</strong>，是在编译时通过类型擦除移除信息的类型 - 未定义为无界通配符的泛型类型的调用。不可具体化的类型在运行时没有提供所有信息。例如，尽管<code>List&lt;String&gt;</code> 和 <code>List&lt;Number&gt;</code>在编译时被声明为不同类型，但在编译之后都被简化为了<code>List</code>类型，因此，JVM 无法在运行时区分这些类型。</p>
+<p>来看看下面这些例子：</p>
+<p><strong>有限制的类型擦除</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Box</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="n">T</span> <span class="n">id</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">T</span> <span class="nf">getId</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">id</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>对字节码文件反编译后的代码：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Box</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="nf">Box</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 这里的类型被擦除为Object
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">public</span> <span class="n">Object</span> <span class="nf">getId</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">id</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 这里的类型被擦除为Object
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">private</span> <span class="n">Object</span> <span class="n">id</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p><strong>有限制类型擦除</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">StringBox</span><span class="o">&lt;</span><span class="n">T</span> <span class="kd">extends</span> <span class="n">String</span><span class="o">&gt;</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="n">T</span> <span class="n">id</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">T</span> <span class="nf">getId</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">id</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>对字节码文件反编译后的代码：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">StringBox</span>
+</span></span><span class="line"><span class="cl"><span class="o">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="nf">StringBox</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 这里的类型被擦除为String
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">public</span> <span class="n">String</span> <span class="nf">getId</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">id</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 这里的类型被擦除为String
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">private</span> <span class="n">String</span> <span class="n">id</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>Java 为了保证向下兼容性，它的泛型全部都是在编译期间实现的。编译器执行类型检查和类型推断，然后生成普通的非泛型的字节码。这种就叫做类型擦除。编译器在编译的过程中执行类型检查来保证类型安全，但是在随后的字节码生成之前将其擦除。</p>
+<p><strong>多态与类型擦除的兼容</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">Validator</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">boolean</span> <span class="nf">validate</span><span class="o">(</span><span class="n">T</span> <span class="n">param</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">IntegerValidator</span> <span class="kd">implements</span> <span class="n">Validator</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;{</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">validate</span><span class="o">(</span><span class="n">Integer</span> <span class="n">param</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">param</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>你可能以为反编译的代码是这样的：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">Validator</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">boolean</span> <span class="nf">validate</span><span class="o">(</span><span class="n">Object</span> <span class="n">param</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">IntegerValidator</span> <span class="kd">implements</span> <span class="n">Validator</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">validate</span><span class="o">(</span><span class="n">Integer</span> <span class="n">param</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">param</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>然而如果真的是这样的话，此时<code>IntegerValidator</code>是无法运行的，因为它<strong>实际创建的<code>validate(Integer param)</code>，没有覆盖<code>Validator</code>方法里的<code>validate(Object param)</code></strong>，因此Java编译器会添加一个桥接(bridge)方法来实现泛型的多态。以下是真正的<code>IntegerValidator</code>反编译后的代码：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">IntegerValidator</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">implements</span> <span class="n">Validator</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="nf">IntegerValidator</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">validate</span><span class="o">(</span><span class="n">Integer</span> <span class="n">param</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">param</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 这是真正的重写接口的方法，它调用了validate(Integer param)，起到了桥接的作用
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">public</span> <span class="kd">volatile</span> <span class="kt">boolean</span> <span class="nf">validate</span><span class="o">(</span><span class="n">Object</span> <span class="n">obj</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">validate</span><span class="o">((</span><span class="n">Integer</span><span class="o">)</span><span class="n">obj</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p><a href="https://docs.oracle.com/javase/tutorial/java/generics/erasure.html" target="_blank" rel="noopener noreffer ">Type Erasure (The Java™ Tutorials &gt; Learning the Java Language &gt; Generics (Updated)) (oracle.com)</a></p></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>
+                    
+                </span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        
+    </div>
+
+    <div class="post-nav"><a href="/posts/java-markdown/" class="prev" rel="prev" title="Java 泛型的深入思考：从历史起源到最佳实践"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>Java 泛型的深入思考：从历史起源到最佳实践</a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.111.3">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2022 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://srounge.github.io/" target="_blank">SroUngE</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/css/lightgallery-bundle.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/lightgallery.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/thumbnail/lg-thumbnail.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/zoom/lg-zoom.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"lightgallery":true,"search":{"highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

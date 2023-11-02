@@ -4,7 +4,23 @@
         <link>http://example.org/tags/</link>
         <description>Tags - Tag - Rong&#39;s Blog</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>977683159@qq.com (SroUngE)</managingEditor>
-            <webMaster>977683159@qq.com (SroUngE)</webMaster><lastBuildDate>Sat, 26 Aug 2023 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://example.org/tags/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>977683159@qq.com (SroUngE)</webMaster><lastBuildDate>Wed, 01 Nov 2023 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://example.org/tags/" rel="self" type="application/rss+xml" /><item>
+    <title>generic</title>
+    <link>http://example.org/tags/generic/</link>
+    <pubDate>Wed, 01 Nov 2023 00:00:00 &#43;0000</pubDate>
+    <author>SroUngE</author>
+    <guid>http://example.org/tags/generic/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>java</title>
+    <link>http://example.org/tags/java/</link>
+    <pubDate>Wed, 01 Nov 2023 00:00:00 &#43;0000</pubDate>
+    <author>SroUngE</author>
+    <guid>http://example.org/tags/java/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
     <title>hugo</title>
     <link>http://example.org/tags/hugo/</link>
     <pubDate>Sat, 26 Aug 2023 00:00:00 &#43;0000</pubDate>
