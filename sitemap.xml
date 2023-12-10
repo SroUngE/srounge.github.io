@@ -2,12 +2,15 @@
     xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
     xmlns:xhtml="http://www.w3.org/1999/xhtml"
     ><url>
+            <loc>http://example.org/posts/</loc><lastmod>2023-12-10T00:00:00&#43;00:00</lastmod></url><url>
+            <loc>http://example.org/tags/react/</loc><lastmod>2023-12-10T00:00:00&#43;00:00</lastmod></url><url>
+            <loc>http://example.org/</loc><lastmod>2023-12-10T00:00:00&#43;00:00</lastmod></url><url>
+            <loc>http://example.org/tags/springboot/</loc><lastmod>2023-12-10T00:00:00&#43;00:00</lastmod></url><url>
+            <loc>http://example.org/tags/</loc><lastmod>2023-12-10T00:00:00&#43;00:00</lastmod></url><url>
+            <loc>http://example.org/posts/react-springboot/</loc><lastmod>2023-12-10T00:00:00&#43;00:00</lastmod></url><url>
             <loc>http://example.org/posts/effective-generics-chinese/</loc><lastmod>2023-11-26T00:00:00&#43;00:00</lastmod></url><url>
             <loc>http://example.org/tags/generic/</loc><lastmod>2023-11-26T00:00:00&#43;00:00</lastmod></url><url>
             <loc>http://example.org/tags/java/</loc><lastmod>2023-11-26T00:00:00&#43;00:00</lastmod></url><url>
-            <loc>http://example.org/posts/</loc><lastmod>2023-11-26T00:00:00&#43;00:00</lastmod></url><url>
-            <loc>http://example.org/</loc><lastmod>2023-11-26T00:00:00&#43;00:00</lastmod></url><url>
-            <loc>http://example.org/tags/</loc><lastmod>2023-11-26T00:00:00&#43;00:00</lastmod></url><url>
             <loc>http://example.org/posts/java-generic/</loc><lastmod>2023-11-01T00:00:00&#43;00:00</lastmod></url><url>
             <loc>http://example.org/tags/hugo/</loc><lastmod>2023-08-26T00:00:00&#43;00:00</lastmod></url><url>
             <loc>http://example.org/tags/loveit/</loc><lastmod>2023-08-26T00:00:00&#43;00:00</lastmod></url><url>
