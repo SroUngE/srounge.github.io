@@ -27,7 +27,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/example.org\/posts\/effective-generics-chinese\/"
-        },"genre": "posts","keywords": "java, generic","wordcount":  3803 ,
+        },"genre": "posts","keywords": "java, generic","wordcount":  4493 ,
         "url": "http:\/\/example.org\/posts\/effective-generics-chinese\/","datePublished": "2023-11-26T00:00:00+00:00","dateModified": "2023-11-26T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -145,8 +145,8 @@
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">[翻译]高效泛型——Effective Generics</h1><div class="post-meta">
             <div class="post-meta-line">
                 </div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-11-26">2023-11-26</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;3803 words&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;8 minutes&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-11-26">2023-11-26</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;4493 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;9 minutes&nbsp;</div>
         </div><div class="featured-image"><img
         class="lazyload"
         src="/svg/loading.min.svg"
@@ -164,6 +164,7 @@
     <li><a href="#81-谨慎调用遗留代码">8.1 谨慎调用遗留代码</a></li>
     <li><a href="#82-使用-checked-collections-来强制保证安全性">8.2 使用 Checked Collections 来强制保证安全性</a></li>
     <li><a href="#83-专门处理可具体化的类型">8.3 专门处理可具体化的类型</a></li>
+    <li><a href="#84-保持二进制兼容">8.4 保持二进制兼容</a></li>
   </ul>
 </nav></div>
             </div><div class="content" id="content"><h1 id="chapter-8-effective-generics">CHAPTER 8 Effective Generics</h1>
@@ -314,7 +315,25 @@ specialized class：</p>
 <p><code>ListStrings</code>类的实现简单明了，尽管需要小心一些以保持良好的性能。Java集合框架指定，当一个列表支持快速随机访问时，它应该实现标记接口<code>RandomAccess</code>，以使得泛型算法在应用于随机或者顺序访问列表时表现良好。它也提供两个抽象类，<code>AbstractList</code>和
 <code>AbstractSequentialList</code>，适用于定义随机或者顺序的访问列表。比如，<code>ArrayList</code>实现了<code> RandomAccess</code>，也继承了<code>AbstractList</code>，而<code>LinkedList</code>继承了<code>AbstractSequentialList</code>。<code>AbstractList</code>类根据提供随机访问的五种抽象方法来定义<code>List</code>接口的方法(size, get, set, add, remove)，这些方法必须在子类中定义。同样的，<code>AbstractSequentialList</code>类根据提供顺序访问的两种抽象方法来定义(size, listIterator)<code>List</code>接口的所有方法，并且必须在子类中定义。</p>
 <p><code>wrap</code>方法检查给定的列表是否实现了<code>RandomAccess</code>接口。如果实现了，它返回一个继承了<code>AbstractList</code>类且实现了<code>RandomAccess</code>接口的<code>Random</code>类的实例，否则它返回一个继承了<code>AbstractSequentialList</code>类的<code>Sequential</code>类的实例。<code>Random</code>类实现了必须由<code>AbstractList</code>的一个子类提供的五个方法。类似地，<code>Sequential</code>类实现了必须由<code>AbstractSequentialList</code>的一个子类提供的两个方法，其中第二个方法返回一个类，它实现了<code>ListIterator</code>接口的9个方法。如下所述，通过委托来实现列表迭代器，而不是简单地返回原始的列表迭代器，这样可以改进包装器的安全属性。所有这些方法都可以通过委托直接实现。</p>
-<p><code>wrap</code>方法返回一个底层列表的视图，如果尝试插入不是String类型的元素，将引起类型转换异常。这些检查类似于<code>checkedList</code>包装类提供的检查。然而，对于wrap方法，编译器会插入的相关转换(通过委托实现<code>listIterator</code>接口的这九个方法的一个原因是为了确保插入这些转换)，而对于<code>checked list</code>，这些转换是通过反射执行的。泛型通常会使得这些检查多余，但是当存在遗留代码或者unchecked warnings时，或者当处理如8.2章节提到的安全问题时，他们会很有用。</p></div><div class="post-footer" id="post-footer">
+<p><code>wrap</code>方法返回一个底层列表的视图，如果尝试插入不是String类型的元素，将引起类型转换异常。这些检查类似于<code>checkedList</code>包装类提供的检查。然而，对于wrap方法，编译器会插入的相关转换(通过委托实现<code>listIterator</code>接口的这九个方法的一个原因是为了确保插入这些转换)，而对于<code>checked list</code>，这些转换是通过反射执行的。泛型通常会使得这些检查多余，但是当存在遗留代码或者unchecked warnings时，或者当处理如8.2章节提到的安全问题时，他们会很有用。</p>
+<h2 id="84-保持二进制兼容">8.4 保持二进制兼容</h2>
+<p>正如我们所强调的，为了简化升级，泛型是通过擦除来实现的。当要升级遗留代码为泛型时，我们想要保证新的泛型代码能够和任何现有代码一起工作，包括那些我们没有源代码的类文件。在这种情况下，我们才说遗留代码和泛型代码是二进制兼容的( <em>binary compatible</em>)。</p>
+<p>当泛型代码被擦除之后的代码签名和遗留代码的签名一样，并且两个版本的代码都被编译成相同的字节码的时候，才能保证二进制兼容性。通常，这是泛型的自然结果，但在这一节，让我们看看一些不常见的可能导致问题的情况。这一节的某些例子取自Mark  Reinhold 写在Sun内部的笔记。</p>
+<p><strong>调整擦除</strong> 一个不常见的情况与Collections类中的<code>max</code>方法的泛型有关。我们在小节3.2和小节3.6讨论过它，但它值得快速一看。</p>
+<p>这里是遗留代码的方法签名：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">// legacy version
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">public</span> <span class="kd">static</span> <span class="n">Object</span> <span class="nf">max</span><span class="o">(</span><span class="n">Collection</span> <span class="n">coll</span><span class="o">)</span>
+</span></span></code></pre></div><p>这里是自然的泛型签名，使用通配符来获得最大的灵活性：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">// generic version -- breaks binary compatibility
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">public</span> <span class="kd">static</span> <span class="o">&lt;</span><span class="n">T</span> <span class="kd">extends</span> <span class="n">Comparable</span><span class="o">&lt;?</span> <span class="kd">super</span> <span class="n">T</span><span class="o">&gt;&gt;</span> 
+</span></span><span class="line"><span class="cl"><span class="n">T</span> <span class="nf">max</span><span class="o">(</span><span class="n">Collection</span><span class="o">&lt;?</span> <span class="kd">extends</span> <span class="n">T</span><span class="o">&gt;</span> <span class="n">coll</span><span class="o">)</span>
+</span></span></code></pre></div><p>但这个方法擦除之后是错的——它的返回类型是<code>Comparable</code>而不是<code>Object</code>。俄日了得到正确的签名，我们需要用多个界限来调整类型参数的界限。这是改正后的版本：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">// generic version -- maintains binary compatibility
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">public</span> <span class="kd">static</span> <span class="o">&lt;</span><span class="n">T</span> <span class="kd">extends</span> <span class="n">Object</span> <span class="o">&amp;</span> <span class="n">Comparable</span><span class="o">&lt;?</span> <span class="kd">super</span> <span class="n">T</span><span class="o">&gt;&gt;</span>
+</span></span><span class="line"><span class="cl"> <span class="n">T</span> <span class="nf">max</span><span class="o">(</span><span class="n">Collection</span><span class="o">&lt;?</span> <span class="kd">extends</span> <span class="n">T</span><span class="o">&gt;</span> <span class="n">coll</span><span class="o">)</span>
+</span></span></code></pre></div><p>当有多个边界的时候，类型擦除会取最左边界。所以现在 <code>T</code> 擦除之后的类型是 <code>Object</code>，给出了我们需要的结果类型。</p>
+<p>泛化过程中出现了一些问题也可能因为原始的遗留代码包含的类型比它可能有的要小。比如，遗留代码版的 <code>max</code> 可能返回类型<code>Comparable</code>，这比<code>Object</code>更具体，这样的话，就不需要使用多个边界来调整类型了。</p>
+<p><strong>桥接</strong> 另一个很重要的不常见的情况跟桥接有关。又一次，<code>Comparable</code>提供了很好的例子。</p></div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
@@ -340,7 +359,7 @@ specialized class：</p>
 </article></div>
             </main><footer class="footer">
         <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.111.3">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
-                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2022 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://srounge.github.io/" target="_blank">SroUngE</a></span></div>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2022 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://srounge.github.io/" target="_blank">SroUngE</a></span></div>
         </div>
     </footer></div>
 
