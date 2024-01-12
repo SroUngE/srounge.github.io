@@ -27,7 +27,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/example.org\/posts\/effective-generics-chinese\/"
-        },"genre": "posts","keywords": "java, generic","wordcount":  4493 ,
+        },"genre": "posts","keywords": "java, generic","wordcount":  4492 ,
         "url": "http:\/\/example.org\/posts\/effective-generics-chinese\/","datePublished": "2023-11-26T00:00:00+00:00","dateModified": "2023-11-26T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -145,7 +145,7 @@
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">[翻译]高效泛型——Effective Generics</h1><div class="post-meta">
             <div class="post-meta-line">
                 </div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-11-26">2023-11-26</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;4493 words&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-11-26">2023-11-26</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;4492 words&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;9 minutes&nbsp;</div>
         </div><div class="featured-image"><img
         class="lazyload"
@@ -333,7 +333,7 @@ specialized class：</p>
 </span></span><span class="line"><span class="cl"> <span class="n">T</span> <span class="nf">max</span><span class="o">(</span><span class="n">Collection</span><span class="o">&lt;?</span> <span class="kd">extends</span> <span class="n">T</span><span class="o">&gt;</span> <span class="n">coll</span><span class="o">)</span>
 </span></span></code></pre></div><p>当有多个边界的时候，类型擦除会取最左边界。所以现在 <code>T</code> 擦除之后的类型是 <code>Object</code>，给出了我们需要的结果类型。</p>
 <p>泛化过程中出现了一些问题也可能因为原始的遗留代码包含的类型比它可能有的要小。比如，遗留代码版的 <code>max</code> 可能返回类型<code>Comparable</code>，这比<code>Object</code>更具体，这样的话，就不需要使用多个边界来调整类型了。</p>
-<p><strong>桥接</strong> 另一个很重要的不常见的情况跟桥接有关。又一次，<code>Comparable</code>提供了很好的例子。</p></div><div class="post-footer" id="post-footer">
+<p><strong>桥接</strong> 另一个很重要的不常见的情况跟桥接有关。<code>Comparable</code>又一次提供了很好的例子。</p></div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
