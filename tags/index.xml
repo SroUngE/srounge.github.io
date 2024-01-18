@@ -4,7 +4,23 @@
         <link>http://example.org/tags/</link>
         <description>Tags - Tag - Rong&#39;s Blog</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>977683159@qq.com (SroUngE)</managingEditor>
-            <webMaster>977683159@qq.com (SroUngE)</webMaster><lastBuildDate>Sun, 10 Dec 2023 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://example.org/tags/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>977683159@qq.com (SroUngE)</webMaster><lastBuildDate>Fri, 12 Jan 2024 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://example.org/tags/" rel="self" type="application/rss+xml" /><item>
+    <title>java</title>
+    <link>http://example.org/tags/java/</link>
+    <pubDate>Fri, 12 Jan 2024 00:00:00 &#43;0000</pubDate>
+    <author>SroUngE</author>
+    <guid>http://example.org/tags/java/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>sort</title>
+    <link>http://example.org/tags/sort/</link>
+    <pubDate>Fri, 12 Jan 2024 00:00:00 &#43;0000</pubDate>
+    <author>SroUngE</author>
+    <guid>http://example.org/tags/sort/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
     <title>react</title>
     <link>http://example.org/tags/react/</link>
     <pubDate>Sun, 10 Dec 2023 00:00:00 &#43;0000</pubDate>
@@ -26,14 +42,6 @@
     <pubDate>Sun, 26 Nov 2023 00:00:00 &#43;0000</pubDate>
     <author>SroUngE</author>
     <guid>http://example.org/tags/generic/</guid>
-    <description><![CDATA[]]></description>
-</item>
-<item>
-    <title>java</title>
-    <link>http://example.org/tags/java/</link>
-    <pubDate>Sun, 26 Nov 2023 00:00:00 &#43;0000</pubDate>
-    <author>SroUngE</author>
-    <guid>http://example.org/tags/java/</guid>
     <description><![CDATA[]]></description>
 </item>
 <item>
@@ -74,14 +82,6 @@
     <pubDate>Sun, 30 Jul 2023 00:00:00 &#43;0000</pubDate>
     <author>SroUngE</author>
     <guid>http://example.org/tags/jvm/</guid>
-    <description><![CDATA[]]></description>
-</item>
-<item>
-    <title>picgo</title>
-    <link>http://example.org/tags/picgo/</link>
-    <pubDate>Sat, 13 May 2023 00:00:00 &#43;0000</pubDate>
-    <author>SroUngE</author>
-    <guid>http://example.org/tags/picgo/</guid>
     <description><![CDATA[]]></description>
 </item>
 </channel>

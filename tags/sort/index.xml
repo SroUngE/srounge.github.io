@@ -1,0 +1,18 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>sort - Tag - Rong&#39;s Blog</title>
+        <link>http://example.org/tags/sort/</link>
+        <description>sort - Tag - Rong&#39;s Blog</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>977683159@qq.com (SroUngE)</managingEditor>
+            <webMaster>977683159@qq.com (SroUngE)</webMaster><lastBuildDate>Fri, 12 Jan 2024 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://example.org/tags/sort/" rel="self" type="application/rss+xml" /><item>
+    <title>排序 之 归并排序</title>
+    <link>http://example.org/posts/merge-sort/</link>
+    <pubDate>Fri, 12 Jan 2024 00:00:00 &#43;0000</pubDate>
+    <author>SroUngE</author>
+    <guid>http://example.org/posts/merge-sort/</guid>
+    <description><![CDATA[<div class="featured-image">
+                <img src="https://s2.loli.net/2023/11/26/zB2VJa3Z8lpbHcj.jpg" referrerpolicy="no-referrer">
+            </div>归并排序的算法实现，基于《算法》的java版本，包括自顶向下和自底向上的两种。]]></description>
+</item>
+</channel>
+</rss>
