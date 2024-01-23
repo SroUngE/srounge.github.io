@@ -7,33 +7,33 @@
             <webMaster>977683159@qq.com (SroUngE)</webMaster><lastBuildDate>Fri, 12 Jan 2024 00:00:00 &#43;0000</lastBuildDate>
             <atom:link href="http://example.org/index.xml" rel="self" type="application/rss+xml" />
         <item>
-    <title>排序 之 归并排序</title>
-    <link>http://example.org/posts/merge-sort/</link>
+    <title>排序：归并排序</title>
+    <link>http://example.org/posts/java-sort-merge-sort/</link>
     <pubDate>Fri, 12 Jan 2024 00:00:00 &#43;0000</pubDate>
     <author>SroUngE</author>
-    <guid>http://example.org/posts/merge-sort/</guid>
+    <guid>http://example.org/posts/java-sort-merge-sort/</guid>
     <description><![CDATA[<div class="featured-image">
-                <img src="https://s2.loli.net/2023/11/26/zB2VJa3Z8lpbHcj.jpg" referrerpolicy="no-referrer">
+                <img src="https://s2.loli.net/2024/01/23/3qPWMLs9UBogi7A.png" referrerpolicy="no-referrer">
             </div>归并排序的算法实现，基于《算法》的java版本，包括自顶向下和自底向上的两种。]]></description>
 </item>
 <item>
     <title>把React打包到Springboot的maven项目里</title>
-    <link>http://example.org/posts/react-springboot/</link>
+    <link>http://example.org/posts/spring-react-package/</link>
     <pubDate>Sun, 10 Dec 2023 00:00:00 &#43;0000</pubDate>
     <author>SroUngE</author>
-    <guid>http://example.org/posts/react-springboot/</guid>
+    <guid>http://example.org/posts/spring-react-package/</guid>
     <description><![CDATA[<div class="featured-image">
                 <img src="https://s2.loli.net/2023/12/10/HA5NOofS8BcRxI7.png" referrerpolicy="no-referrer">
             </div>把React项目整合到Springboot项目里，使得最终只有一个jar包，包含前端和后端的所有构建]]></description>
 </item>
 <item>
-    <title>[翻译]高效泛型——Effective Generics</title>
-    <link>http://example.org/posts/effective-generics-chinese/</link>
+    <title>[翻译]Java高效泛型——Effective Generics</title>
+    <link>http://example.org/posts/java-effective-generics-chinese/</link>
     <pubDate>Sun, 26 Nov 2023 00:00:00 &#43;0000</pubDate>
     <author>SroUngE</author>
-    <guid>http://example.org/posts/effective-generics-chinese/</guid>
+    <guid>http://example.org/posts/java-effective-generics-chinese/</guid>
     <description><![CDATA[<div class="featured-image">
-                <img src="https://s2.loli.net/2023/11/26/zB2VJa3Z8lpbHcj.jpg" referrerpolicy="no-referrer">
+                <img src="https://s2.loli.net/2024/01/23/FdJWU6IpNZGfACv.png" referrerpolicy="no-referrer">
             </div>翻译《Java Generics and Collections》这本书的第8章节Effective Generics，其中介绍了一些关于如何在代码实践中有效使用泛型的建议。]]></description>
 </item>
 <item>
@@ -43,7 +43,7 @@
     <author>SroUngE</author>
     <guid>http://example.org/posts/java-generic/</guid>
     <description><![CDATA[<div class="featured-image">
-                <img src="https://s2.loli.net/2023/11/26/zB2VJa3Z8lpbHcj.jpg" referrerpolicy="no-referrer">
+                <img src="https://s2.loli.net/2024/01/23/FdJWU6IpNZGfACv.png" referrerpolicy="no-referrer">
             </div>一个关于Java泛型的简短的研究调查和思考，依据官方的参考资料，试图理解泛型存在的意义，以及它的最佳实践。]]></description>
 </item>
 <item>
@@ -63,7 +63,7 @@
     <author>SroUngE</author>
     <guid>http://example.org/posts/spring-validation/</guid>
     <description><![CDATA[<div class="featured-image">
-                <img src="https://s2.loli.net/2023/08/26/DsX4Sz7xepgjnOd.png" referrerpolicy="no-referrer">
+                <img src="https://s2.loli.net/2024/01/23/dNxfvZVi97lMgWz.png" referrerpolicy="no-referrer">
             </div>]]></description>
 </item>
 <item>
@@ -73,7 +73,7 @@
     <author>SroUngE</author>
     <guid>http://example.org/posts/jvm3-class/</guid>
     <description><![CDATA[<div class="featured-image">
-                <img src="https://s2.loli.net/2023/05/28/o7c4BFAqEDYx5Xg.png" referrerpolicy="no-referrer">
+                <img src="https://s2.loli.net/2024/01/23/GE8SiwClZc45BRU.jpg" referrerpolicy="no-referrer">
             </div>介绍JVM的内存结构，以及一些常用的内存诊断工具。]]></description>
 </item>
 <item>
@@ -83,7 +83,7 @@
     <author>SroUngE</author>
     <guid>http://example.org/posts/jvm2-gc/</guid>
     <description><![CDATA[<div class="featured-image">
-                <img src="https://s2.loli.net/2023/05/28/o7c4BFAqEDYx5Xg.png" referrerpolicy="no-referrer">
+                <img src="https://s2.loli.net/2024/01/23/GE8SiwClZc45BRU.jpg" referrerpolicy="no-referrer">
             </div>介绍JVM垃圾回收的算法，垃圾收集器，以及调优。]]></description>
 </item>
 <item>
@@ -93,7 +93,7 @@
     <author>SroUngE</author>
     <guid>http://example.org/posts/jvm1-memory/</guid>
     <description><![CDATA[<div class="featured-image">
-                <img src="https://s2.loli.net/2023/05/28/o7c4BFAqEDYx5Xg.png" referrerpolicy="no-referrer">
+                <img src="https://s2.loli.net/2024/01/23/GE8SiwClZc45BRU.jpg" referrerpolicy="no-referrer">
             </div>介绍JVM的内存结构，以及一些常用的内存诊断工具。]]></description>
 </item>
 <item>

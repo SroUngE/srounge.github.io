@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>把React打包到Springboot的maven项目里 - Rong&#39;s Blog</title><meta name="Description" content="把React项目整合到Springboot项目里，使得最终只有一个jar包，包含前端和后端的所有构建"><meta property="og:title" content="把React打包到Springboot的maven项目里" />
+<meta property="og:description" content="把React项目整合到Springboot项目里，使得最终只有一个jar包，包含前端和后端的所有构建" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://example.org/posts/spring-react-package/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-12-10T00:00:00+00:00" />
+<meta property="article:modified_time" content="2023-12-10T00:00:00+00:00" /><meta property="og:site_name" content="My cool site" />
+
+<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="把React打包到Springboot的maven项目里"/>
+<meta name="twitter:description" content="把React项目整合到Springboot项目里，使得最终只有一个jar包，包含前端和后端的所有构建"/>
+<meta name="application-name" content="My cool site">
+<meta name="apple-mobile-web-app-title" content="My cool site"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://example.org/posts/spring-react-package/" /><link rel="prev" href="http://example.org/posts/java-effective-generics-chinese/" /><link rel="next" href="http://example.org/posts/java-sort-merge-sort/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "把React打包到Springboot的maven项目里",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/example.org\/posts\/spring-react-package\/"
+        },"genre": "posts","keywords": "React, Spring","wordcount":  1492 ,
+        "url": "http:\/\/example.org\/posts\/spring-react-package\/","datePublished": "2023-12-10T00:00:00+00:00","dateModified": "2023-12-10T00:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "SroUngE"
+            },"description": "把React项目整合到Springboot项目里，使得最终只有一个jar包，包含前端和后端的所有构建"
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Rong&#39;s Blog">Rong&#39;s Blog</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/" title="Posts"><i class="fa-solid fa-book" style="color: #2f4154;"></i> Posts </a><a class="menu-item" href="/categories/" title="Categories"><i class="fa-solid fa-folder" style="color: #2f4154;"></i> Categories </a><a class="menu-item" href="/about/" title="About"><i class="fa-solid fa-user" style="color: #2f4154;"></i> About </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Rong&#39;s Blog">Rong&#39;s Blog</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="Posts"><i class="fa-solid fa-book" style="color: #2f4154;"></i>Posts</a><a class="menu-item" href="/categories/" title="Categories"><i class="fa-solid fa-folder" style="color: #2f4154;"></i>Categories</a><a class="menu-item" href="/about/" title="About"><i class="fa-solid fa-user" style="color: #2f4154;"></i>About</a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><head>
+    <style>
+        .banner {
+            position: relative;
+            overflow: hidden;
+            height: 60vh;
+            width: 100%;
+            background-image: linear-gradient(rgb(75, 0, 155), #f8f8f8);
+        
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            line-height: 0.9;
+        }
+
+        .title {
+            margin: 0 auto;
+            padding: 0 2rem;
+            text-align: center;
+            letter-spacing: -0.01em;
+            color: rgb(255, 255, 255);
+            font-weight: 800;
+            font-size: 2.75rem;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI";
+            opacity: .9;
+
+            @media screen and (min-width:480px) {
+                font-size: 3.25rem;
+            }
+
+            @media screen and (min-width:760px) {
+                font-size: 4.25rem;
+            }
+
+            @media screen and (min-width: 1440px) {
+                font-size: 5.375rem;
+            } 
+   
+        }
+    </style>
+</head>
+<div class="banner"> 
+    <div class="title">
+        One is not born, but rather becomes, a woman.
+    </div>
+</div>
+<main class="main">                             
+                <div class="container"><div class="toc animate__animated animate__fadeInRight" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">把React打包到Springboot的maven项目里</h1><div class="post-meta">
+            <div class="post-meta-line">
+                </div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-12-10">2023-12-10</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;1492 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;3 minutes&nbsp;</div>
+        </div><div class="featured-image"><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://s2.loli.net/2023/12/10/HA5NOofS8BcRxI7.png"
+        data-srcset="https://s2.loli.net/2023/12/10/HA5NOofS8BcRxI7.png, https://s2.loli.net/2023/12/10/HA5NOofS8BcRxI7.png 1.5x, https://s2.loli.net/2023/12/10/HA5NOofS8BcRxI7.png 2x"
+        data-sizes="auto"
+        alt="https://s2.loli.net/2023/12/10/HA5NOofS8BcRxI7.png"
+        title="把React项目整合到Springboot项目里，使得最终只有一个jar包，包含前端和后端的所有构建" /></div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#环境准备">环境准备</a></li>
+    <li><a href="#初始化spring-boot项目">初始化Spring Boot项目</a>
+      <ul>
+        <li><a href="#1-创建spring-boot项目">1. 创建Spring Boot项目</a></li>
+        <li><a href="#2-安装并启动">2. 安装并启动</a></li>
+      </ul>
+    </li>
+    <li><a href="#初始化react项目">初始化React项目</a>
+      <ul>
+        <li><a href="#1-创建react项目">1. 创建React项目</a></li>
+        <li><a href="#2-安装并启动-1">2. 安装并启动</a></li>
+      </ul>
+    </li>
+    <li><a href="#maven插件打包react的build信息">Maven插件打包React的build信息</a>
+      <ul>
+        <li><a href="#1-引入frontend-maven-plugin插件">1. 引入frontend-maven-plugin插件</a></li>
+        <li><a href="#2-打包react的build信息">2. 打包React的build信息</a></li>
+      </ul>
+    </li>
+    <li><a href="#连接spring-boot-和-react">连接Spring Boot 和 React</a>
+      <ul>
+        <li><a href="#1-修改spring-boot寻找页面的路径">1. 修改Spring Boot寻找页面的路径</a></li>
+        <li><a href="#2-创建controller">2. 创建Controller</a></li>
+        <li><a href="#3修改react代理">3.修改React代理</a></li>
+      </ul>
+    </li>
+    <li><a href="#大功告成">大功告成</a></li>
+    <li><a href="#进一步的优化">进一步的优化</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><blockquote>
+<p>我需要做一个简单的Spring Boot + React的前后端项目，考虑到前端的代码和内容不会过多，因此希望把react项目放到Spring Boot项目里，使得在构建项目的时候可以前后端一起打包。在网上找了几个教程，都不是特别满意，最后自己整理了一下，项目已经push到<a href="https://github.com/SroUngE/react-in-springboot" target="_blank" rel="noopener noreffer ">Github</a>了。</p>
+</blockquote>
+<h2 id="环境准备">环境准备</h2>
+<ul>
+<li>Maven 3.6+</li>
+<li>Java 17</li>
+<li>Node.js v18.17.0</li>
+</ul>
+<h2 id="初始化spring-boot项目">初始化Spring Boot项目</h2>
+<h3 id="1-创建spring-boot项目">1. 创建Spring Boot项目</h3>
+<p>使用Spring Initializr来快速创建Spring Boot项目
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://s2.loli.net/2023/12/10/Cnbt7jUO8s2BaFz.png"
+        data-srcset="https://s2.loli.net/2023/12/10/Cnbt7jUO8s2BaFz.png, https://s2.loli.net/2023/12/10/Cnbt7jUO8s2BaFz.png 1.5x, https://s2.loli.net/2023/12/10/Cnbt7jUO8s2BaFz.png 2x"
+        data-sizes="auto"
+        alt="https://s2.loli.net/2023/12/10/Cnbt7jUO8s2BaFz.png"
+        title="https://s2.loli.net/2023/12/10/Cnbt7jUO8s2BaFz.png" /></p>
+<p>引入Spring Web的依赖，用于后端Web开发，引入Thymeleaf依赖，用于匹配前端页面
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://s2.loli.net/2023/12/10/PCYFmWy5AUl4ieH.png"
+        data-srcset="https://s2.loli.net/2023/12/10/PCYFmWy5AUl4ieH.png, https://s2.loli.net/2023/12/10/PCYFmWy5AUl4ieH.png 1.5x, https://s2.loli.net/2023/12/10/PCYFmWy5AUl4ieH.png 2x"
+        data-sizes="auto"
+        alt="https://s2.loli.net/2023/12/10/PCYFmWy5AUl4ieH.png"
+        title="https://s2.loli.net/2023/12/10/PCYFmWy5AUl4ieH.png" /></p>
+<h3 id="2-安装并启动">2. 安装并启动</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">mvn clean install
+</span></span></code></pre></div><p>启动Spring Boot项目，此时访问<code>http://localhost:8080</code>，显示空白页面
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://s2.loli.net/2023/12/10/DbMprycFXZ3lvN4.png"
+        data-srcset="https://s2.loli.net/2023/12/10/DbMprycFXZ3lvN4.png, https://s2.loli.net/2023/12/10/DbMprycFXZ3lvN4.png 1.5x, https://s2.loli.net/2023/12/10/DbMprycFXZ3lvN4.png 2x"
+        data-sizes="auto"
+        alt="https://s2.loli.net/2023/12/10/DbMprycFXZ3lvN4.png"
+        title="https://s2.loli.net/2023/12/10/DbMprycFXZ3lvN4.png" /></p>
+<p>此时的目录结构如下：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">├─src
+</span></span><span class="line"><span class="cl">│  ├─main
+</span></span><span class="line"><span class="cl">│  │  ├─java
+</span></span></code></pre></div><h2 id="初始化react项目">初始化React项目</h2>
+<h3 id="1-创建react项目">1. 创建React项目</h3>
+<p>在项目的<code>src/main/</code>目录下创建一个名为frontend的React项目</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">npx create-react-app frontend
+</span></span></code></pre></div><h3 id="2-安装并启动-1">2. 安装并启动</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">npm install
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">npm run build
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">npm run start
+</span></span></code></pre></div><p>此时访问<code>http://localhost:3000</code>，显示React的主页
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://s2.loli.net/2023/12/10/Nn8DSmRh4xEHv9f.png"
+        data-srcset="https://s2.loli.net/2023/12/10/Nn8DSmRh4xEHv9f.png, https://s2.loli.net/2023/12/10/Nn8DSmRh4xEHv9f.png 1.5x, https://s2.loli.net/2023/12/10/Nn8DSmRh4xEHv9f.png 2x"
+        data-sizes="auto"
+        alt="https://s2.loli.net/2023/12/10/Nn8DSmRh4xEHv9f.png"
+        title="https://s2.loli.net/2023/12/10/Nn8DSmRh4xEHv9f.png" /></p>
+<p>此时的目录结构如下：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">├─src
+</span></span><span class="line"><span class="cl">│  ├─main
+</span></span><span class="line"><span class="cl">│  │  ├─frontend
+</span></span><span class="line"><span class="cl">│  │  ├─java
+</span></span></code></pre></div><h2 id="maven插件打包react的build信息">Maven插件打包React的build信息</h2>
+<h3 id="1-引入frontend-maven-plugin插件">1. 引入frontend-maven-plugin插件</h3>
+<p>这里需要使用到Github的插件：frontend-maven-plugin</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="nt">&lt;plugin&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;groupId&gt;</span>com.github.eirslett<span class="nt">&lt;/groupId&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;artifactId&gt;</span>frontend-maven-plugin<span class="nt">&lt;/artifactId&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;version&gt;</span>1.15.0<span class="nt">&lt;/version&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/plugin&gt;</span>
+</span></span></code></pre></div><h3 id="2-打包react的build信息">2. 打包React的build信息</h3>
+<ol>
+<li>从远程仓库下载node.js的环境到本地的target文件夹下</li>
+<li>运行<code>npm install</code>指令安装React项目</li>
+<li>运行<code>npm run build</code>指令构建React项目</li>
+<li>将React项目的build文件夹复制到target/classes/static文件夹下</li>
+</ol>
+<p>第1-3步由<code>frontend-maven-plugin</code>完成，配置如下：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="nt">&lt;plugin&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;groupId&gt;</span>com.github.eirslett<span class="nt">&lt;/groupId&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;artifactId&gt;</span>frontend-maven-plugin<span class="nt">&lt;/artifactId&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;version&gt;</span>1.15.0<span class="nt">&lt;/version&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;configuration&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;nodeVersion&gt;</span>v18.17.0<span class="nt">&lt;/nodeVersion&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="c">&lt;!-- The working directory is where you&#39;ve put package.json and your frontend configuration files --&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;workingDirectory&gt;</span>src/main/frontend<span class="nt">&lt;/workingDirectory&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="c">&lt;!-- The installation directory is the folder where your node and npm are installed. --&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;installDirectory&gt;</span>target<span class="nt">&lt;/installDirectory&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/configuration&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;executions&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;execution&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&lt;id&gt;</span>install node and npm<span class="nt">&lt;/id&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&lt;goals&gt;</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&lt;goal&gt;</span>install-node-and-npm<span class="nt">&lt;/goal&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&lt;/goals&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;/execution&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;execution&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&lt;id&gt;</span>running npm install<span class="nt">&lt;/id&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&lt;goals&gt;</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&lt;goal&gt;</span>npm<span class="nt">&lt;/goal&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&lt;/goals&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;/execution&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;execution&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&lt;id&gt;</span>running npm build<span class="nt">&lt;/id&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&lt;goals&gt;</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&lt;goal&gt;</span>npm<span class="nt">&lt;/goal&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&lt;/goals&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&lt;configuration&gt;</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&lt;arguments&gt;</span>run build<span class="nt">&lt;/arguments&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&lt;/configuration&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;/execution&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/executions&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/plugin&gt;</span>
+</span></span></code></pre></div><p>第4步就是在maven的<code>process-resource</code>的生命周期执行的，配置如下：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="nt">&lt;plugin&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;groupId&gt;</span>org.apache.maven.plugins<span class="nt">&lt;/groupId&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;artifactId&gt;</span>maven-resources-plugin<span class="nt">&lt;/artifactId&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;executions&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;execution&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&lt;id&gt;</span>copy React builds into Spring Boot<span class="nt">&lt;/id&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&lt;phase&gt;</span>process-resources<span class="nt">&lt;/phase&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&lt;goals&gt;</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&lt;goal&gt;</span>copy-resources<span class="nt">&lt;/goal&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&lt;/goals&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&lt;configuration&gt;</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&lt;outputDirectory&gt;</span>target/classes/static<span class="nt">&lt;/outputDirectory&gt;</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&lt;resources&gt;</span>
+</span></span><span class="line"><span class="cl">                    <span class="nt">&lt;resource&gt;</span>
+</span></span><span class="line"><span class="cl">                        <span class="c">&lt;!-- the build folder to copy from --&gt;</span>
+</span></span><span class="line"><span class="cl">                        <span class="nt">&lt;directory&gt;</span>src/main/frontend/build<span class="nt">&lt;/directory&gt;</span>
+</span></span><span class="line"><span class="cl">                        <span class="nt">&lt;filtering&gt;</span>true<span class="nt">&lt;/filtering&gt;</span>
+</span></span><span class="line"><span class="cl">                    <span class="nt">&lt;/resource&gt;</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&lt;/resources&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&lt;/configuration&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;/execution&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/executions&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/plugin&gt;</span>
+</span></span></code></pre></div><p>然后执行<code>mvn clean install</code>，首次运行会比较久，我跑了<code>3m27s</code>。结束后，<code>target/classes/static</code>目录有React的build文件，<code>target/node</code>目录有node环境。
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://s2.loli.net/2023/12/10/r4bxso6VPgzRq3J.png"
+        data-srcset="https://s2.loli.net/2023/12/10/r4bxso6VPgzRq3J.png, https://s2.loli.net/2023/12/10/r4bxso6VPgzRq3J.png 1.5x, https://s2.loli.net/2023/12/10/r4bxso6VPgzRq3J.png 2x"
+        data-sizes="auto"
+        alt="https://s2.loli.net/2023/12/10/r4bxso6VPgzRq3J.png"
+        title="https://s2.loli.net/2023/12/10/r4bxso6VPgzRq3J.png" /></p>
+<h2 id="连接spring-boot-和-react">连接Spring Boot 和 React</h2>
+<h3 id="1-修改spring-boot寻找页面的路径">1. 修改Spring Boot寻找页面的路径</h3>
+<p>默认情况下，thymeleaf会去<code>target/templates</code>下匹配页面，需要修改为<code>target/static</code>目录下，因此在<code>application.properties</code>文件里加上：</p>
+<pre tabindex="0"><code class="language-properteis" data-lang="properteis">spring.thymeleaf.prefix=classpath:/static/
+</code></pre><h3 id="2-创建controller">2. 创建Controller</h3>
+<p>在Springboot项目里写一个接口来对接index页面：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kn">package</span><span class="w"> </span><span class="nn">com.example.demo.controller</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kn">import</span><span class="w"> </span><span class="nn">org.springframework.stereotype.Controller</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kn">import</span><span class="w"> </span><span class="nn">org.springframework.web.bind.annotation.GetMapping</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nd">@Controller</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">WebController</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@GetMapping</span><span class="p">(</span><span class="s">&#34;/&#34;</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="nf">index</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="s">&#34;index&#34;</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></div><h3 id="3修改react代理">3.修改React代理</h3>
+<p>因为最终这两个项目会被打包成一个jar包，在同一个server上启动，所以只需要把默认的react的代理设置为本地后端项目的端口即可。在<code>package.json</code>文件的末尾添加：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="s2">&#34;proxy&#34;</span><span class="err">:</span> <span class="s2">&#34;http://locahost:8080&#34;</span>
+</span></span></code></pre></div><h2 id="大功告成">大功告成</h2>
+<p>重新<code>mvn clean install</code>之后，启动Spring Boot，打开<code>http://locahost:8080</code>，显示：
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://s2.loli.net/2023/12/10/bwOWc4hdjC6kHNn.png"
+        data-srcset="https://s2.loli.net/2023/12/10/bwOWc4hdjC6kHNn.png, https://s2.loli.net/2023/12/10/bwOWc4hdjC6kHNn.png 1.5x, https://s2.loli.net/2023/12/10/bwOWc4hdjC6kHNn.png 2x"
+        data-sizes="auto"
+        alt="https://s2.loli.net/2023/12/10/bwOWc4hdjC6kHNn.png"
+        title="https://s2.loli.net/2023/12/10/bwOWc4hdjC6kHNn.png" /></p>
+<h2 id="进一步的优化">进一步的优化</h2>
+<p>可以看到每次<code>mvn clean install</code>的时候都会需要安装一遍node，其实node只需要安装一次就可以了。因此可以创建一个property叫做<code>skipNodeInstall</code>，在clean阶段不clean node文件夹，然后跳过插件的<code>install node and npm</code> 和 <code>running npm install</code> 这两步。</p></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>
+                    
+                </span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        
+    </div>
+
+    <div class="post-nav"><a href="/posts/java-effective-generics-chinese/" class="prev" rel="prev" title="[翻译]Java高效泛型——Effective Generics"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>[翻译]Java高效泛型——Effective Generics</a>
+            <a href="/posts/java-sort-merge-sort/" class="next" rel="next" title="排序：归并排序">排序：归并排序<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.121.2">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2022 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://srounge.github.io/" target="_blank">SroUngE</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/css/lightgallery-bundle.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/lightgallery.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/thumbnail/lg-thumbnail.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/zoom/lg-zoom.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"lightgallery":true,"search":{"highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

@@ -1,8 +1,8 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>jvm - Tag - Rong&#39;s Blog</title>
+        <title>JVM - Tag - Rong&#39;s Blog</title>
         <link>http://example.org/tags/jvm/</link>
-        <description>jvm - Tag - Rong&#39;s Blog</description>
+        <description>JVM - Tag - Rong&#39;s Blog</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>977683159@qq.com (SroUngE)</managingEditor>
             <webMaster>977683159@qq.com (SroUngE)</webMaster><lastBuildDate>Sun, 30 Jul 2023 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://example.org/tags/jvm/" rel="self" type="application/rss+xml" /><item>
     <title>JVM(三): 类加载与字节码技术</title>
@@ -11,7 +11,7 @@
     <author>SroUngE</author>
     <guid>http://example.org/posts/jvm3-class/</guid>
     <description><![CDATA[<div class="featured-image">
-                <img src="https://s2.loli.net/2023/05/28/o7c4BFAqEDYx5Xg.png" referrerpolicy="no-referrer">
+                <img src="https://s2.loli.net/2024/01/23/GE8SiwClZc45BRU.jpg" referrerpolicy="no-referrer">
             </div>介绍JVM的内存结构，以及一些常用的内存诊断工具。]]></description>
 </item>
 <item>
@@ -21,7 +21,7 @@
     <author>SroUngE</author>
     <guid>http://example.org/posts/jvm2-gc/</guid>
     <description><![CDATA[<div class="featured-image">
-                <img src="https://s2.loli.net/2023/05/28/o7c4BFAqEDYx5Xg.png" referrerpolicy="no-referrer">
+                <img src="https://s2.loli.net/2024/01/23/GE8SiwClZc45BRU.jpg" referrerpolicy="no-referrer">
             </div>介绍JVM垃圾回收的算法，垃圾收集器，以及调优。]]></description>
 </item>
 <item>
@@ -31,7 +31,7 @@
     <author>SroUngE</author>
     <guid>http://example.org/posts/jvm1-memory/</guid>
     <description><![CDATA[<div class="featured-image">
-                <img src="https://s2.loli.net/2023/05/28/o7c4BFAqEDYx5Xg.png" referrerpolicy="no-referrer">
+                <img src="https://s2.loli.net/2024/01/23/GE8SiwClZc45BRU.jpg" referrerpolicy="no-referrer">
             </div>介绍JVM的内存结构，以及一些常用的内存诊断工具。]]></description>
 </item>
 </channel>

@@ -1,27 +1,27 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>java - Tag - Rong&#39;s Blog</title>
+        <title>Java - Tag - Rong&#39;s Blog</title>
         <link>http://example.org/tags/java/</link>
-        <description>java - Tag - Rong&#39;s Blog</description>
+        <description>Java - Tag - Rong&#39;s Blog</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>977683159@qq.com (SroUngE)</managingEditor>
             <webMaster>977683159@qq.com (SroUngE)</webMaster><lastBuildDate>Fri, 12 Jan 2024 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://example.org/tags/java/" rel="self" type="application/rss+xml" /><item>
-    <title>排序 之 归并排序</title>
-    <link>http://example.org/posts/merge-sort/</link>
+    <title>排序：归并排序</title>
+    <link>http://example.org/posts/java-sort-merge-sort/</link>
     <pubDate>Fri, 12 Jan 2024 00:00:00 &#43;0000</pubDate>
     <author>SroUngE</author>
-    <guid>http://example.org/posts/merge-sort/</guid>
+    <guid>http://example.org/posts/java-sort-merge-sort/</guid>
     <description><![CDATA[<div class="featured-image">
-                <img src="https://s2.loli.net/2023/11/26/zB2VJa3Z8lpbHcj.jpg" referrerpolicy="no-referrer">
+                <img src="https://s2.loli.net/2024/01/23/3qPWMLs9UBogi7A.png" referrerpolicy="no-referrer">
             </div>归并排序的算法实现，基于《算法》的java版本，包括自顶向下和自底向上的两种。]]></description>
 </item>
 <item>
-    <title>[翻译]高效泛型——Effective Generics</title>
-    <link>http://example.org/posts/effective-generics-chinese/</link>
+    <title>[翻译]Java高效泛型——Effective Generics</title>
+    <link>http://example.org/posts/java-effective-generics-chinese/</link>
     <pubDate>Sun, 26 Nov 2023 00:00:00 &#43;0000</pubDate>
     <author>SroUngE</author>
-    <guid>http://example.org/posts/effective-generics-chinese/</guid>
+    <guid>http://example.org/posts/java-effective-generics-chinese/</guid>
     <description><![CDATA[<div class="featured-image">
-                <img src="https://s2.loli.net/2023/11/26/zB2VJa3Z8lpbHcj.jpg" referrerpolicy="no-referrer">
+                <img src="https://s2.loli.net/2024/01/23/FdJWU6IpNZGfACv.png" referrerpolicy="no-referrer">
             </div>翻译《Java Generics and Collections》这本书的第8章节Effective Generics，其中介绍了一些关于如何在代码实践中有效使用泛型的建议。]]></description>
 </item>
 <item>
@@ -31,7 +31,7 @@
     <author>SroUngE</author>
     <guid>http://example.org/posts/java-generic/</guid>
     <description><![CDATA[<div class="featured-image">
-                <img src="https://s2.loli.net/2023/11/26/zB2VJa3Z8lpbHcj.jpg" referrerpolicy="no-referrer">
+                <img src="https://s2.loli.net/2024/01/23/FdJWU6IpNZGfACv.png" referrerpolicy="no-referrer">
             </div>一个关于Java泛型的简短的研究调查和思考，依据官方的参考资料，试图理解泛型存在的意义，以及它的最佳实践。]]></description>
 </item>
 </channel>

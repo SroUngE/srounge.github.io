@@ -5,7 +5,15 @@
         <description>Tags - Tag - Rong&#39;s Blog</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>977683159@qq.com (SroUngE)</managingEditor>
             <webMaster>977683159@qq.com (SroUngE)</webMaster><lastBuildDate>Fri, 12 Jan 2024 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://example.org/tags/" rel="self" type="application/rss+xml" /><item>
-    <title>java</title>
+    <title>Algorithm</title>
+    <link>http://example.org/tags/algorithm/</link>
+    <pubDate>Fri, 12 Jan 2024 00:00:00 &#43;0000</pubDate>
+    <author>SroUngE</author>
+    <guid>http://example.org/tags/algorithm/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>Java</title>
     <link>http://example.org/tags/java/</link>
     <pubDate>Fri, 12 Jan 2024 00:00:00 &#43;0000</pubDate>
     <author>SroUngE</author>
@@ -13,15 +21,7 @@
     <description><![CDATA[]]></description>
 </item>
 <item>
-    <title>sort</title>
-    <link>http://example.org/tags/sort/</link>
-    <pubDate>Fri, 12 Jan 2024 00:00:00 &#43;0000</pubDate>
-    <author>SroUngE</author>
-    <guid>http://example.org/tags/sort/</guid>
-    <description><![CDATA[]]></description>
-</item>
-<item>
-    <title>react</title>
+    <title>React</title>
     <link>http://example.org/tags/react/</link>
     <pubDate>Sun, 10 Dec 2023 00:00:00 &#43;0000</pubDate>
     <author>SroUngE</author>
@@ -29,7 +29,7 @@
     <description><![CDATA[]]></description>
 </item>
 <item>
-    <title>spring</title>
+    <title>Spring</title>
     <link>http://example.org/tags/spring/</link>
     <pubDate>Sun, 10 Dec 2023 00:00:00 &#43;0000</pubDate>
     <author>SroUngE</author>
@@ -37,15 +37,15 @@
     <description><![CDATA[]]></description>
 </item>
 <item>
-    <title>generic</title>
-    <link>http://example.org/tags/generic/</link>
-    <pubDate>Sun, 26 Nov 2023 00:00:00 &#43;0000</pubDate>
+    <title>Blog</title>
+    <link>http://example.org/tags/blog/</link>
+    <pubDate>Sat, 26 Aug 2023 00:00:00 &#43;0000</pubDate>
     <author>SroUngE</author>
-    <guid>http://example.org/tags/generic/</guid>
+    <guid>http://example.org/tags/blog/</guid>
     <description><![CDATA[]]></description>
 </item>
 <item>
-    <title>hugo</title>
+    <title>Hugo</title>
     <link>http://example.org/tags/hugo/</link>
     <pubDate>Sat, 26 Aug 2023 00:00:00 &#43;0000</pubDate>
     <author>SroUngE</author>
@@ -53,7 +53,7 @@
     <description><![CDATA[]]></description>
 </item>
 <item>
-    <title>loveit</title>
+    <title>Loveit</title>
     <link>http://example.org/tags/loveit/</link>
     <pubDate>Sat, 26 Aug 2023 00:00:00 &#43;0000</pubDate>
     <author>SroUngE</author>
@@ -61,23 +61,7 @@
     <description><![CDATA[]]></description>
 </item>
 <item>
-    <title>javax</title>
-    <link>http://example.org/tags/javax/</link>
-    <pubDate>Thu, 24 Aug 2023 00:00:00 &#43;0000</pubDate>
-    <author>SroUngE</author>
-    <guid>http://example.org/tags/javax/</guid>
-    <description><![CDATA[]]></description>
-</item>
-<item>
-    <title>spirng</title>
-    <link>http://example.org/tags/spirng/</link>
-    <pubDate>Thu, 24 Aug 2023 00:00:00 &#43;0000</pubDate>
-    <author>SroUngE</author>
-    <guid>http://example.org/tags/spirng/</guid>
-    <description><![CDATA[]]></description>
-</item>
-<item>
-    <title>jvm</title>
+    <title>JVM</title>
     <link>http://example.org/tags/jvm/</link>
     <pubDate>Sun, 30 Jul 2023 00:00:00 &#43;0000</pubDate>
     <author>SroUngE</author>

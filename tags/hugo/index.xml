@@ -1,8 +1,8 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>hugo - Tag - Rong&#39;s Blog</title>
+        <title>Hugo - Tag - Rong&#39;s Blog</title>
         <link>http://example.org/tags/hugo/</link>
-        <description>hugo - Tag - Rong&#39;s Blog</description>
+        <description>Hugo - Tag - Rong&#39;s Blog</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>977683159@qq.com (SroUngE)</managingEditor>
             <webMaster>977683159@qq.com (SroUngE)</webMaster><lastBuildDate>Sat, 26 Aug 2023 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://example.org/tags/hugo/" rel="self" type="application/rss+xml" /><item>
     <title>个人博客(三): Hugo Loveit 自定义Markdown文章样式</title>
