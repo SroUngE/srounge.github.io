@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>Interview Redis - Rong&#39;s Blog</title><meta name="Description" content="基于ChartGPT3.5，回答常见的Redis面试题。"><meta property="og:title" content="Interview Redis" />
+<meta property="og:description" content="基于ChartGPT3.5，回答常见的Redis面试题。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://example.org/posts/interview-redis/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2024-01-25T00:00:00+00:00" />
+<meta property="article:modified_time" content="2024-01-25T00:00:00+00:00" /><meta property="og:site_name" content="My cool site" />
+
+<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Interview Redis"/>
+<meta name="twitter:description" content="基于ChartGPT3.5，回答常见的Redis面试题。"/>
+<meta name="application-name" content="My cool site">
+<meta name="apple-mobile-web-app-title" content="My cool site"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://example.org/posts/interview-redis/" /><link rel="prev" href="http://example.org/posts/java-sort-merge-sort/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Interview Redis",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/example.org\/posts\/interview-redis\/"
+        },"genre": "posts","keywords": "Redis","wordcount":  2262 ,
+        "url": "http:\/\/example.org\/posts\/interview-redis\/","datePublished": "2024-01-25T00:00:00+00:00","dateModified": "2024-01-25T00:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "SroUngE"
+            },"description": "基于ChartGPT3.5，回答常见的Redis面试题。"
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Rong&#39;s Blog">Rong&#39;s Blog</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/" title="Posts"><i class="fa-solid fa-book" style="color: #2f4154;"></i> Posts </a><a class="menu-item" href="/categories/" title="Categories"><i class="fa-solid fa-folder" style="color: #2f4154;"></i> Categories </a><a class="menu-item" href="/about/" title="About"><i class="fa-solid fa-user" style="color: #2f4154;"></i> About </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Rong&#39;s Blog">Rong&#39;s Blog</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="Posts"><i class="fa-solid fa-book" style="color: #2f4154;"></i>Posts</a><a class="menu-item" href="/categories/" title="Categories"><i class="fa-solid fa-folder" style="color: #2f4154;"></i>Categories</a><a class="menu-item" href="/about/" title="About"><i class="fa-solid fa-user" style="color: #2f4154;"></i>About</a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><head>
+    <style>
+        .banner {
+            position: relative;
+            overflow: hidden;
+            height: 60vh;
+            width: 100%;
+            background-image: linear-gradient(rgb(75, 0, 155), #f8f8f8);
+        
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            line-height: 0.9;
+        }
+
+        .title {
+            margin: 0 auto;
+            padding: 0 2rem;
+            text-align: center;
+            letter-spacing: -0.01em;
+            color: rgb(255, 255, 255);
+            font-weight: 800;
+            font-size: 2.75rem;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI";
+            opacity: .9;
+
+            @media screen and (min-width:480px) {
+                font-size: 3.25rem;
+            }
+
+            @media screen and (min-width:760px) {
+                font-size: 4.25rem;
+            }
+
+            @media screen and (min-width: 1440px) {
+                font-size: 5.375rem;
+            } 
+   
+        }
+    </style>
+</head>
+<div class="banner"> 
+    <div class="title">
+        One is not born, but rather becomes, a woman.
+    </div>
+</div>
+<main class="main">                             
+                <div class="container"><div class="toc animate__animated animate__fadeInRight" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Interview Redis</h1><div class="post-meta">
+            <div class="post-meta-line">
+                </div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-01-25">2024-01-25</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;2262 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;5 minutes&nbsp;</div>
+        </div><div class="featured-image"><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://s2.loli.net/2024/01/23/FdJWU6IpNZGfACv.png"
+        data-srcset="https://s2.loli.net/2024/01/23/FdJWU6IpNZGfACv.png, https://s2.loli.net/2024/01/23/FdJWU6IpNZGfACv.png 1.5x, https://s2.loli.net/2024/01/23/FdJWU6IpNZGfACv.png 2x"
+        data-sizes="auto"
+        alt="https://s2.loli.net/2024/01/23/FdJWU6IpNZGfACv.png"
+        title="基于ChartGPT3.5，回答常见的Redis面试题。" /></div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#redis-介绍">Redis 介绍</a>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+    <li><a href="#redis-的数据结构类型">Redis 的数据结构类型</a></li>
+    <li><a href="#redis-的高性能">Redis 的高性能</a></li>
+    <li><a href="#缓存穿透缓存雪崩缓存击穿">缓存穿透，缓存雪崩，缓存击穿</a></li>
+    <li><a href="#redis-的过期策略">Redis 的过期策略</a></li>
+    <li><a href="#redis-的内存淘汰策略">Redis 的内存淘汰策略</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><ul>
+<li></li>
+</ul>
+<ul>
+<li></li>
+</ul>
+<h2 id="redis-介绍">Redis 介绍</h2>
+<h4 id="介绍">介绍</h4>
+<p>Redis，英文全称是 <strong>Remote Dictionary Server</strong>（远程字典服务），是一个开源的内存 Key-Value 存储系统，常用于缓存、会话管理和消息队列。它支持多种数据结构如字符串、哈希、列表等，具有<strong>快速读写</strong>和<strong>持久化</strong>的特性，适合处理大规模的数据和高并发访问。</p>
+<h4 id="优点">优点</h4>
+<ul>
+<li>高性能，得益于其基于内存的特性，使其能够迅速读写数据。</li>
+<li>灵活性，灵活的数据模型和丰富的数据结构支持，使得开发者可以选择最适合其需求的存储方式，提高了应用的灵活性。</li>
+<li>可持久性，允许在需要时将数据保存到磁盘，保证数据不会因意外丢失。</li>
+</ul>
+<h4 id="缺点">缺点</h4>
+<ul>
+<li>内存限制，由于 Redis 将所有数据存储在内存中，不适合用作海量数据的高性能读写。</li>
+<li>高并发性能限制，单线程处理命令意味着在某些高并发情况下可能出现性能瓶颈。</li>
+</ul>
+<h2 id="redis-的数据结构类型">Redis 的数据结构类型</h2>
+<p>Redis支持多种数据结构类型，包括</p>
+<ol>
+<li>String（字符串）：存储文本或二进制数据。</li>
+<li>Hash（哈希）：将多个键值对组织在一起，常用于存储对象。</li>
+<li>List（列表）：双向链表，支持从两端添加和弹出元素，可用于实现队列、栈等数据结构。</li>
+<li>Set（集合）：无序且唯一的元素集合，支持集合间的交、并、差运算。</li>
+<li>zset（有序集合）：类似集合，但每个元素关联一个分数，可用于实现排行榜等功能。</li>
+</ol>
+<h2 id="redis-的高性能">Redis 的高性能</h2>
+<p>Redis具有高性能的原因主要包括以下几点：</p>
+<ol>
+<li>
+<p><strong>基于内存：</strong> Redis将数据存储在内存中，相比于从磁盘读取数据，内存访问速度更快，提高了读写性能。</p>
+</li>
+<li>
+<p><strong>单线程模型：</strong> Redis采用单线程模型处理命令，通过避免线程切换的开销，简化了并发控制，从而提高了性能。虽然是单线程，但通过非阻塞的I/O和事件驱动的方式，Redis仍能有效地处理并发请求。</p>
+</li>
+<li>
+<p><strong>高效的数据结构：</strong> Redis支持多种数据结构，如哈希表、跳跃表等，这些数据结构的设计和实现都经过优化，提高了读写操作的效率。</p>
+</li>
+<li>
+<p><strong>非阻塞的 I/O 操作：</strong> Redis使用了非阻塞的I/O操作，可以在等待数据从磁盘加载或网络传输时执行其他操作，充分利用了系统资源。</p>
+</li>
+<li>
+<p><strong>事件驱动：</strong> Redis采用事件驱动的方式处理命令，通过异步非阻塞的事件循环，能够高效地响应输入事件，提高了系统的响应速度。</p>
+</li>
+</ol>
+<h2 id="缓存穿透缓存雪崩缓存击穿">缓存穿透，缓存雪崩，缓存击穿</h2>
+<p><strong>缓存穿透（Cache Penetration）</strong></p>
+<p>缓存穿透是指查询一个根本不存在的数据，由于缓存没有命中，请求直接传递到数据库，导致无谓的查询操作。攻击者可通过构造恶意的请求，不断请求不存在的缓存数据，使得系统每次都要去查询数据库，从而消耗资源。</p>
+<p><strong>解决方法</strong></p>
+<ul>
+<li>可以在查询结果为空时，仍然将空结果进行缓存，但设置较短的过期时间，避免频繁查询数据库。</li>
+<li>使用布隆过滤器等机制，过滤掉不存在的数据的请求。</li>
+</ul>
+<p><strong>缓存雪崩（Cache Avalanche）</strong></p>
+<p>缓存雪崩指的是缓存中大量的缓存数据在同一时间失效，导致大量的请求直接击穿到底层存储系统，造成系统瞬时压力激增，可能导致系统崩溃。这通常是由于缓存数据设置了相同的过期时间，一旦过期，大量的请求落在同一时刻。</p>
+<p><strong>解决方法</strong></p>
+<ul>
+<li>设置不同的过期时间，使缓存数据的失效时间分散开来，防止同时失效。</li>
+<li>采用缓存预热策略，提前加载热点数据，降低缓存失效的风险。使用多个缓存节点，避免单点故障。</li>
+</ul>
+<p><strong>缓存击穿（Hotspot Invalid）</strong></p>
+<p>缓存击穿指的是缓存某个热门或频繁请求的缓存键过期后，恰好此时有大量请求同时涌入，导致有大量请求直达数据库，增加了数据库的负载。</p>
+<p><strong>解决方法</strong></p>
+<ul>
+<li>使用互斥锁（Mutex Lock）或分布式锁来保护对数据库的访问，防止多个线程同时访问数据库。</li>
+<li>使用热点数据永不过期的策略，或者采用预先加载的方式，确保热点数据始终在缓存中。</li>
+</ul>
+<h2 id="redis-的过期策略">Redis 的过期策略</h2>
+<p>Redis 采用两种主要的过期策略来管理 Key 的过期：</p>
+<ol>
+<li>
+<p><strong>定时过期（Timed Expiry）：</strong> Redis使用定时器（timer）来检测 Key 是否过期。每个 Key 都会设置一个过期时间（TTL，Time To Live），当 Key 的过期时间到达时，定时器会删除这个 Key 。这样，定时删除机制确保过期的 Key 在一定时间内被及时删除。</p>
+</li>
+<li>
+<p><strong>惰性过期（Lazy Expiry）：</strong> 在访问 Key 时才检查它是否过期，过期则删除。这样的机制在实际应用中能够更好地利用系统资源，因为不是所有 Key 都会被及时访问。</p>
+</li>
+</ol>
+<p>这两种过期策略的结合使用，使得Redis能够高效地处理过期的 Key 。在定时删除中，Redis会每隔100ms就随机检查一定数量的Key 是否过期，以及是否需要删除。同时采用惰性删除，当访问某个 Key 时，Redis会检查该 Key 是否过期，如果过期则删除。这两者结合起来确保了过期 Key 能够及时被删除，同时避免了频繁的定时器检查，提高了性能。</p>
+<h2 id="redis-的内存淘汰策略">Redis 的内存淘汰策略</h2>
+<p>当内存达到上限时，可以通过设置 <code>maxmemory-policy</code> 参数来指定Redis的内存淘汰策略。以下是几种具体的内存淘汰策略：</p>
+<ol>
+<li>
+<p><code>noeviction</code>：默认策略，当内存达到上限时，写入操作将会报错，不会删除任何数据。</p>
+</li>
+<li>
+<p><code>allkeys-lru</code>：Redis会从所有键中选择最近最少使用的键进行淘汰。</p>
+</li>
+<li>
+<p><code>allkeys-lfu</code>：Redis会从所有键中选择最不经常使用的键进行淘汰。</p>
+</li>
+<li>
+<p><code>allkeys-random</code>：Redis会从所有键中随机选择一个进行淘汰。</p>
+</li>
+<li>
+<p><code>volatile-lru</code>：Redis会从设置了过期时间的键中选择最近最少使用的键进行淘汰。</p>
+</li>
+<li>
+<p><code>volatile-lfu</code>：Redis会从设置了过期时间的键中选择最不经常使用的键进行淘汰。</p>
+</li>
+<li>
+<p><code>volatile-random</code>：Redis会从设置了过期时间的键中随机选择一个进行淘汰。</p>
+</li>
+<li>
+<p><code>volatile-ttl</code>：Redis会从设置了过期时间的键中，选择剩余时间最短的键进行淘汰。</p>
+</li>
+</ol>
+<p>这些策略可以根据系统的特定需求进行配置。例如，如果希望优先保留设置了过期时间的键，可以选择带有<code>volatile</code>前缀的策略。</p></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>
+                    
+                </span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        
+    </div>
+
+    <div class="post-nav"><a href="/posts/java-sort-merge-sort/" class="prev" rel="prev" title="排序：归并排序"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>排序：归并排序</a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.121.2">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2022 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://srounge.github.io/" target="_blank">SroUngE</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/css/lightgallery-bundle.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/lightgallery.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/thumbnail/lg-thumbnail.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/zoom/lg-zoom.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"lightgallery":true,"search":{"highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

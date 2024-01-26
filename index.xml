@@ -4,9 +4,21 @@
         <link>http://example.org/</link>
         <description>This is my cool site</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>977683159@qq.com (SroUngE)</managingEditor>
-            <webMaster>977683159@qq.com (SroUngE)</webMaster><lastBuildDate>Fri, 12 Jan 2024 00:00:00 &#43;0000</lastBuildDate>
+            <webMaster>977683159@qq.com (SroUngE)</webMaster><lastBuildDate>Thu, 25 Jan 2024 00:00:00 &#43;0000</lastBuildDate>
             <atom:link href="http://example.org/index.xml" rel="self" type="application/rss+xml" />
         <item>
+    <title>Interview Redis</title>
+    <link>http://example.org/posts/interview-redis/</link>
+    <pubDate>Thu, 25 Jan 2024 00:00:00 &#43;0000</pubDate>
+    <author>SroUngE</author>
+    <guid>http://example.org/posts/interview-redis/</guid>
+    <description><![CDATA[<div class="featured-image">
+                <img src="https://s2.loli.net/2024/01/23/FdJWU6IpNZGfACv.png" referrerpolicy="no-referrer">
+            </div><ul>
+<li></li>
+</ul>]]></description>
+</item>
+<item>
     <title>排序：归并排序</title>
     <link>http://example.org/posts/java-sort-merge-sort/</link>
     <pubDate>Fri, 12 Jan 2024 00:00:00 &#43;0000</pubDate>
@@ -95,16 +107,6 @@
     <description><![CDATA[<div class="featured-image">
                 <img src="https://s2.loli.net/2024/01/23/GE8SiwClZc45BRU.jpg" referrerpolicy="no-referrer">
             </div>介绍JVM的内存结构，以及一些常用的内存诊断工具。]]></description>
-</item>
-<item>
-    <title>个人博客(二): Hugo框架Loveit主题自定义美化</title>
-    <link>http://example.org/posts/hugo-loveit/</link>
-    <pubDate>Sun, 14 May 2023 00:00:00 &#43;0000</pubDate>
-    <author>SroUngE</author>
-    <guid>http://example.org/posts/hugo-loveit/</guid>
-    <description><![CDATA[<div class="featured-image">
-                <img src="https://s2.loli.net/2023/05/14/vWZJg25R1CVkXc6.png" referrerpolicy="no-referrer">
-            </div>简单地自定义Loveit主题的样式。]]></description>
 </item>
 </channel>
 </rss>
