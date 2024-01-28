@@ -27,7 +27,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/example.org\/posts\/interview-redis\/"
-        },"genre": "posts","keywords": "Redis","wordcount":  2262 ,
+        },"genre": "posts","keywords": "Redis","wordcount":  2590 ,
         "url": "http:\/\/example.org\/posts\/interview-redis\/","datePublished": "2024-01-25T00:00:00+00:00","dateModified": "2024-01-25T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -145,8 +145,8 @@
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Interview Redis</h1><div class="post-meta">
             <div class="post-meta-line">
                 </div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-01-25">2024-01-25</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;2262 words&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;5 minutes&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-01-25">2024-01-25</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;2590 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;6 minutes&nbsp;</div>
         </div><div class="featured-image"><img
         class="lazyload"
         src="/svg/loading.min.svg"
@@ -171,6 +171,7 @@
     <li><a href="#缓存穿透缓存雪崩缓存击穿">缓存穿透，缓存雪崩，缓存击穿</a></li>
     <li><a href="#redis-的过期策略">Redis 的过期策略</a></li>
     <li><a href="#redis-的内存淘汰策略">Redis 的内存淘汰策略</a></li>
+    <li><a href="#redis-的常见应用场景">Redis 的常见应用场景</a></li>
   </ul>
 </nav></div>
             </div><div class="content" id="content"><ul>
@@ -282,7 +283,17 @@
 <p><code>volatile-ttl</code>：Redis会从设置了过期时间的键中，选择剩余时间最短的键进行淘汰。</p>
 </li>
 </ol>
-<p>这些策略可以根据系统的特定需求进行配置。例如，如果希望优先保留设置了过期时间的键，可以选择带有<code>volatile</code>前缀的策略。</p></div><div class="post-footer" id="post-footer">
+<p>这些策略可以根据系统的特定需求进行配置。例如，如果希望优先保留设置了过期时间的键，可以选择带有<code>volatile</code>前缀的策略。</p>
+<h2 id="redis-的常见应用场景">Redis 的常见应用场景</h2>
+<ol>
+<li><strong>缓存管理：</strong> 使用Redis缓存热点数据，减轻数据库负担，提高响应速度。</li>
+<li><strong>会话管理：</strong> 存储用户会话数据，实现分布式Session管理（不同服务器同个Session），确保用户登录状态的一致性。</li>
+<li><strong>消息队列：</strong> 通过Redis的发布/订阅机制，实现异步消息通信，提高系统解耦性。</li>
+<li><strong>分布式锁：</strong> 利用Redis的原子性操作 <code>setnx</code> ，实现分布式环境下的锁机制，保证数据一致性。</li>
+<li><strong>计数器：</strong> Redis自带计数器功能，非常适合用于统计网站访数据，高效实现原子递增和递减操作。</li>
+<li><strong>实时排行榜：</strong> 利用有序集合 <code>zset</code> 存储分数和成员，实现实时排名功能，如用户积分排行。</li>
+<li><strong>位操作：</strong> 使用Redis的位操作可以轻松地表示用户在线状态。每一位可以代表一个用户的在线或离线状态，通过位运算实现高效的在线状态管理。</li>
+</ol></div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
