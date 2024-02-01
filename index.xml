@@ -4,9 +4,29 @@
         <link>http://example.org/</link>
         <description>This is my cool site</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>977683159@qq.com (SroUngE)</managingEditor>
-            <webMaster>977683159@qq.com (SroUngE)</webMaster><lastBuildDate>Thu, 25 Jan 2024 00:00:00 &#43;0000</lastBuildDate>
+            <webMaster>977683159@qq.com (SroUngE)</webMaster><lastBuildDate>Thu, 01 Feb 2024 00:00:00 &#43;0000</lastBuildDate>
             <atom:link href="http://example.org/index.xml" rel="self" type="application/rss+xml" />
         <item>
+    <title>Interview Database</title>
+    <link>http://example.org/posts/interview-database/</link>
+    <pubDate>Thu, 01 Feb 2024 00:00:00 &#43;0000</pubDate>
+    <author>SroUngE</author>
+    <guid>http://example.org/posts/interview-database/</guid>
+    <description><![CDATA[<div class="featured-image">
+                <img src="https://s2.loli.net/2024/01/23/FdJWU6IpNZGfACv.png" referrerpolicy="no-referrer">
+            </div>事务 数据事务是一组数据库操作，要么全部执行成功，要么全部失败。目的是确保数据库的一致性，通过将操作集合成一个单一工作单元。 事务 ACID 特性 原子性（]]></description>
+</item>
+<item>
+    <title>Interview MongoDB</title>
+    <link>http://example.org/posts/interview-mongodb/</link>
+    <pubDate>Sun, 28 Jan 2024 00:00:00 &#43;0000</pubDate>
+    <author>SroUngE</author>
+    <guid>http://example.org/posts/interview-mongodb/</guid>
+    <description><![CDATA[<div class="featured-image">
+                <img src="https://s2.loli.net/2024/01/23/FdJWU6IpNZGfACv.png" referrerpolicy="no-referrer">
+            </div>MongoDB介绍 MongoDB是一种开源的NoSQL数据库管理系统，它以文档为基础，使用类似JSON的BSON格式来存储数据。MongoD]]></description>
+</item>
+<item>
     <title>Interview Redis</title>
     <link>http://example.org/posts/interview-redis/</link>
     <pubDate>Thu, 25 Jan 2024 00:00:00 &#43;0000</pubDate>
@@ -14,9 +34,7 @@
     <guid>http://example.org/posts/interview-redis/</guid>
     <description><![CDATA[<div class="featured-image">
                 <img src="https://s2.loli.net/2024/01/23/FdJWU6IpNZGfACv.png" referrerpolicy="no-referrer">
-            </div><ul>
-<li></li>
-</ul>]]></description>
+            </div>基于 ChatGPT3.5，回答常见的 Redis 面试题。]]></description>
 </item>
 <item>
     <title>排序：归并排序</title>
@@ -84,26 +102,6 @@
     <pubDate>Sun, 30 Jul 2023 00:00:00 &#43;0000</pubDate>
     <author>SroUngE</author>
     <guid>http://example.org/posts/jvm3-class/</guid>
-    <description><![CDATA[<div class="featured-image">
-                <img src="https://s2.loli.net/2024/01/23/GE8SiwClZc45BRU.jpg" referrerpolicy="no-referrer">
-            </div>介绍JVM的内存结构，以及一些常用的内存诊断工具。]]></description>
-</item>
-<item>
-    <title>JVM(二): 垃圾回收</title>
-    <link>http://example.org/posts/jvm2-gc/</link>
-    <pubDate>Wed, 07 Jun 2023 00:00:00 &#43;0000</pubDate>
-    <author>SroUngE</author>
-    <guid>http://example.org/posts/jvm2-gc/</guid>
-    <description><![CDATA[<div class="featured-image">
-                <img src="https://s2.loli.net/2024/01/23/GE8SiwClZc45BRU.jpg" referrerpolicy="no-referrer">
-            </div>介绍JVM垃圾回收的算法，垃圾收集器，以及调优。]]></description>
-</item>
-<item>
-    <title>JVM(一): 内存结构</title>
-    <link>http://example.org/posts/jvm1-memory/</link>
-    <pubDate>Sun, 28 May 2023 00:00:00 &#43;0000</pubDate>
-    <author>SroUngE</author>
-    <guid>http://example.org/posts/jvm1-memory/</guid>
     <description><![CDATA[<div class="featured-image">
                 <img src="https://s2.loli.net/2024/01/23/GE8SiwClZc45BRU.jpg" referrerpolicy="no-referrer">
             </div>介绍JVM的内存结构，以及一些常用的内存诊断工具。]]></description>

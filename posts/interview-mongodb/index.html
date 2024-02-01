@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>Interview MongoDB - Rong&#39;s Blog</title><meta name="Description" content="基于 ChatGPT3.5，回答常见的 MongoDB 面试题。"><meta property="og:title" content="Interview MongoDB" />
+<meta property="og:description" content="基于 ChatGPT3.5，回答常见的 MongoDB 面试题。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://example.org/posts/interview-mongodb/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2024-01-28T00:00:00+00:00" />
+<meta property="article:modified_time" content="2024-01-28T00:00:00+00:00" /><meta property="og:site_name" content="My cool site" />
+
+<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Interview MongoDB"/>
+<meta name="twitter:description" content="基于 ChatGPT3.5，回答常见的 MongoDB 面试题。"/>
+<meta name="application-name" content="My cool site">
+<meta name="apple-mobile-web-app-title" content="My cool site"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://example.org/posts/interview-mongodb/" /><link rel="prev" href="http://example.org/posts/interview-redis/" /><link rel="next" href="http://example.org/posts/interview-database/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Interview MongoDB",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/example.org\/posts\/interview-mongodb\/"
+        },"genre": "posts","keywords": "MongoDB","wordcount":  1583 ,
+        "url": "http:\/\/example.org\/posts\/interview-mongodb\/","datePublished": "2024-01-28T00:00:00+00:00","dateModified": "2024-01-28T00:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "SroUngE"
+            },"description": "基于 ChatGPT3.5，回答常见的 MongoDB 面试题。"
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Rong&#39;s Blog">Rong&#39;s Blog</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/" title="Posts"><i class="fa-solid fa-book" style="color: #2f4154;"></i> Posts </a><a class="menu-item" href="/categories/" title="Categories"><i class="fa-solid fa-folder" style="color: #2f4154;"></i> Categories </a><a class="menu-item" href="/about/" title="About"><i class="fa-solid fa-user" style="color: #2f4154;"></i> About </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Rong&#39;s Blog">Rong&#39;s Blog</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="Posts"><i class="fa-solid fa-book" style="color: #2f4154;"></i>Posts</a><a class="menu-item" href="/categories/" title="Categories"><i class="fa-solid fa-folder" style="color: #2f4154;"></i>Categories</a><a class="menu-item" href="/about/" title="About"><i class="fa-solid fa-user" style="color: #2f4154;"></i>About</a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><head>
+    <style>
+        .banner {
+            position: relative;
+            overflow: hidden;
+            height: 60vh;
+            width: 100%;
+            background-image: linear-gradient(rgb(75, 0, 155), #f8f8f8);
+        
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            line-height: 0.9;
+        }
+
+        .title {
+            margin: 0 auto;
+            padding: 0 2rem;
+            text-align: center;
+            letter-spacing: -0.01em;
+            color: rgb(255, 255, 255);
+            font-weight: 800;
+            font-size: 2.75rem;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI";
+            opacity: .9;
+
+            @media screen and (min-width:480px) {
+                font-size: 3.25rem;
+            }
+
+            @media screen and (min-width:760px) {
+                font-size: 4.25rem;
+            }
+
+            @media screen and (min-width: 1440px) {
+                font-size: 5.375rem;
+            } 
+   
+        }
+    </style>
+</head>
+<div class="banner"> 
+    <div class="title">
+        One is not born, but rather becomes, a woman.
+    </div>
+</div>
+<main class="main">                             
+                <div class="container"><div class="toc animate__animated animate__fadeInRight" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Interview MongoDB</h1><div class="post-meta">
+            <div class="post-meta-line">
+                </div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-01-28">2024-01-28</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;1583 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;4 minutes&nbsp;</div>
+        </div><div class="featured-image"><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://s2.loli.net/2024/01/23/FdJWU6IpNZGfACv.png"
+        data-srcset="https://s2.loli.net/2024/01/23/FdJWU6IpNZGfACv.png, https://s2.loli.net/2024/01/23/FdJWU6IpNZGfACv.png 1.5x, https://s2.loli.net/2024/01/23/FdJWU6IpNZGfACv.png 2x"
+        data-sizes="auto"
+        alt="https://s2.loli.net/2024/01/23/FdJWU6IpNZGfACv.png"
+        title="基于 ChatGPT3.5，回答常见的 MongoDB 面试题。" /></div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#mongodb介绍">MongoDB介绍</a></li>
+        <li><a href="#mongodb-查询优化">MongoDB 查询优化</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h3 id="mongodb介绍">MongoDB介绍</h3>
+<p>MongoDB是一种开源的NoSQL数据库管理系统，它以文档为基础，使用类似JSON的BSON格式来存储数据。MongoDB支持灵活的数据模型，不需要预表结构，这使得它适用于各种不同类型的数据存储需求。它常用于大规模、高性能的应用程序，具备水平扩展能力，可以处理大量数据和高并发访问。 MongoDB还提供丰富的查询语言和索引支持，以及内置的复制和故障转移功能，确保系统的可靠性和可用性。</p>
+<h4 id="优点">优点：</h4>
+<ol>
+<li><strong>灵活的数据模型：</strong> MongoDB使用文档（BSON）存储数据，无需预定义表结构，使得数据模型更加灵活适应变化。</li>
+<li><strong>横向扩展：</strong> MongoDB支持水平扩展，可以通过添加更多的节点来处理大规模数据和高并发访问。</li>
+<li><strong>丰富的查询语言：</strong> 支持复杂的查询和聚合操作，提供强大的查询功能。</li>
+<li><strong>自动分片：</strong> MongoDB能够自动将数据分片存储，提高数据的分布和访问效率。</li>
+<li><strong>可靠性和可用性</strong>：MongoDB允许创建数据的副本（复制集），这些副本可以分布在不同的服务器上。如果一个服务器出现故障，系统可以自动将工作切换到其他副本，确保数据的可靠性和服务的可用性。</li>
+</ol>
+<h4 id="缺点">缺点：</h4>
+<ol>
+<li>
+<p><strong>相对较大的存储空间：</strong> BSON格式相对JSON较为冗余，导致存储占用较大空间。</p>
+</li>
+<li>
+<p><strong>相对较慢的写入速度：</strong> 在写入密集型场景下，MongoDB的性能可能略逊于某些关系型数据库。（主要因为每次写入都需要写入到多个副本）</p>
+</li>
+</ol>
+<h4 id="与mysql的对比">与MySQL的对比：</h4>
+<ul>
+<li>
+<p><strong>数据模型：</strong> MongoDB是文档型数据库，而MySQL是关系型数据库，因此<strong>MongoDB更适合处理非结构化或半结构化数据</strong>，而MySQL适用于严格的表结构。</p>
+</li>
+<li>
+<p><strong>查询语言：</strong> MongoDB的查询语言更加灵活，支持复杂的嵌套查询，而MySQL使用SQL语言。</p>
+</li>
+<li>
+<p><strong>事务支持：</strong> MongoDB在某些情况下不支持跨文档的事务，即不能在多个文档上执行原子性的事务操作，而MySQL是一个传统的关系型数据库，支持ACID事务。</p>
+</li>
+<li>
+<p><strong>扩展性：</strong> MongoDB更容易实现横向扩展（向系统中添加更多的机器或节点，分散数据和负载，以提高性能和容量。），而MySQL通常采用纵向扩展（提高单个机器的性能和容量，通常通过增加更多的CPU、内存或存储来实现。关系型数据库如MySQL通常采用纵向扩展。）。</p>
+</li>
+</ul>
+<h3 id="mongodb-查询优化">MongoDB 查询优化</h3>
+<p>MongoDB查询优化策略的<strong>目的</strong>主要包括：</p>
+<ol>
+<li>
+<p><strong>提高查询性能：</strong> 通过索引优化、查询语句优化和投影优化等手段，加速数据库查询，降低响应时间。</p>
+</li>
+<li>
+<p><strong>减少资源消耗：</strong> 通过合理使用索引、投影和分页查询，减少网络传输、内存占用和CPU负载，从而优化资源利用率。</p>
+</li>
+<li>
+<p><strong>优化存储结构：</strong> 通过合理的集合设计、复合索引和覆盖索引，优化存储结构，提高查询效率，减少磁盘空间占用。</p>
+</li>
+<li>
+<p><strong>提高系统稳定性：</strong> 通过监控慢查询并进行优化，确保系统在处理大量数据时依然保持稳定的性能表现。</p>
+</li>
+<li>
+<p><strong>适应业务需求：</strong> 集合设计优化旨在适应特定查询模式，确保数据库结构能够更好地满足业务需求。</p>
+</li>
+</ol>
+<p>MongoDB查询优化的<strong>方式</strong>主要包括：</p>
+<ol>
+<li>
+<p><strong>索引优化：</strong> 确保集合中的字段上建立了适当的索引，以加速查询速度。避免全表扫描，特别是对于经常被查询的字段。</p>
+</li>
+<li>
+<p><strong>查询语句优化：</strong> 确保查询语句是有效的，避免不必要的字段选择，使用合适的查询条件，以减少返回的文档数量。</p>
+</li>
+<li>
+<p><strong>投影优化：</strong> 在查询中使用投影，只返回需要的字段，而不是整个文档。这可以减少网络传输和内存占用。</p>
+</li>
+<li>
+<p><strong>分页查询：</strong> 对于大数据集，使用分页查询来限制每次返回的文档数量，避免一次性返回大量数据。</p>
+</li>
+<li>
+<p><strong>复合索引：</strong> 如果查询涉及多个字段，考虑创建复合索引，以提高这些字段的联合查询性能。</p>
+</li>
+<li>
+<p><strong>使用覆盖索引：</strong> 确保查询的字段都在索引中，这样MongoDB可以通过索引直接满足查询而不需要额外的文档检索。</p>
+</li>
+<li>
+<p><strong>集合设计优化：</strong> 合理设计文档结构，以适应查询模式，避免嵌套过深或字段过多。</p>
+</li>
+<li>
+<p><strong>其他优化：</strong> 使用MongoDB的Profiler来监视慢查询，以便及时发现和优化性能问题。在可能的情况下，优化硬件资源，例如磁盘、内存和CPU，以提高整体性能。</p>
+</li>
+</ol>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>
+                    
+                </span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        
+    </div>
+
+    <div class="post-nav"><a href="/posts/interview-redis/" class="prev" rel="prev" title="Interview Redis"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>Interview Redis</a>
+            <a href="/posts/interview-database/" class="next" rel="next" title="Interview Database">Interview Database<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.121.2">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2022 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://srounge.github.io/" target="_blank">SroUngE</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/css/lightgallery-bundle.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/lightgallery.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/thumbnail/lg-thumbnail.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/zoom/lg-zoom.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"lightgallery":true,"search":{"highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

@@ -4,7 +4,23 @@
         <link>http://example.org/tags/</link>
         <description>Tags - Tag - Rong&#39;s Blog</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>977683159@qq.com (SroUngE)</managingEditor>
-            <webMaster>977683159@qq.com (SroUngE)</webMaster><lastBuildDate>Thu, 25 Jan 2024 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://example.org/tags/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>977683159@qq.com (SroUngE)</webMaster><lastBuildDate>Thu, 01 Feb 2024 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://example.org/tags/" rel="self" type="application/rss+xml" /><item>
+    <title>Database</title>
+    <link>http://example.org/tags/database/</link>
+    <pubDate>Thu, 01 Feb 2024 00:00:00 &#43;0000</pubDate>
+    <author>SroUngE</author>
+    <guid>http://example.org/tags/database/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>MongoDB</title>
+    <link>http://example.org/tags/mongodb/</link>
+    <pubDate>Sun, 28 Jan 2024 00:00:00 &#43;0000</pubDate>
+    <author>SroUngE</author>
+    <guid>http://example.org/tags/mongodb/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
     <title>Redis</title>
     <link>http://example.org/tags/redis/</link>
     <pubDate>Thu, 25 Jan 2024 00:00:00 &#43;0000</pubDate>
@@ -66,14 +82,6 @@
     <pubDate>Sat, 26 Aug 2023 00:00:00 &#43;0000</pubDate>
     <author>SroUngE</author>
     <guid>http://example.org/tags/loveit/</guid>
-    <description><![CDATA[]]></description>
-</item>
-<item>
-    <title>JVM</title>
-    <link>http://example.org/tags/jvm/</link>
-    <pubDate>Sun, 30 Jul 2023 00:00:00 &#43;0000</pubDate>
-    <author>SroUngE</author>
-    <guid>http://example.org/tags/jvm/</guid>
     <description><![CDATA[]]></description>
 </item>
 </channel>

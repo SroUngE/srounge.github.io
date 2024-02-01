@@ -1,0 +1,18 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>MongoDB - Tag - Rong&#39;s Blog</title>
+        <link>http://example.org/tags/mongodb/</link>
+        <description>MongoDB - Tag - Rong&#39;s Blog</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>977683159@qq.com (SroUngE)</managingEditor>
+            <webMaster>977683159@qq.com (SroUngE)</webMaster><lastBuildDate>Sun, 28 Jan 2024 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://example.org/tags/mongodb/" rel="self" type="application/rss+xml" /><item>
+    <title>Interview MongoDB</title>
+    <link>http://example.org/posts/interview-mongodb/</link>
+    <pubDate>Sun, 28 Jan 2024 00:00:00 &#43;0000</pubDate>
+    <author>SroUngE</author>
+    <guid>http://example.org/posts/interview-mongodb/</guid>
+    <description><![CDATA[<div class="featured-image">
+                <img src="https://s2.loli.net/2024/01/23/FdJWU6IpNZGfACv.png" referrerpolicy="no-referrer">
+            </div>MongoDB介绍 MongoDB是一种开源的NoSQL数据库管理系统，它以文档为基础，使用类似JSON的BSON格式来存储数据。MongoD]]></description>
+</item>
+</channel>
+</rss>
