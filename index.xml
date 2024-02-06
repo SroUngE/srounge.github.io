@@ -4,9 +4,17 @@
         <link>http://example.org/</link>
         <description>This is my cool site</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>977683159@qq.com (SroUngE)</managingEditor>
-            <webMaster>977683159@qq.com (SroUngE)</webMaster><lastBuildDate>Thu, 01 Feb 2024 00:00:00 &#43;0000</lastBuildDate>
+            <webMaster>977683159@qq.com (SroUngE)</webMaster><lastBuildDate>Tue, 06 Feb 2024 22:50:17 &#43;0800</lastBuildDate>
             <atom:link href="http://example.org/index.xml" rel="self" type="application/rss+xml" />
         <item>
+    <title>Interview Mysql</title>
+    <link>http://example.org/posts/interview-mysql/</link>
+    <pubDate>Tue, 06 Feb 2024 22:50:17 &#43;0800</pubDate>
+    <author>SroUngE</author>
+    <guid>http://example.org/posts/interview-mysql/</guid>
+    <description><![CDATA[MySQL 的数据类型 MySQL支持多种数据类型，包括但不限于： 整数类型： INT（整数） BIGINT（大整数） TINYINT（小整数） 浮点数类型： FL]]></description>
+</item>
+<item>
     <title>Interview Database</title>
     <link>http://example.org/posts/interview-database/</link>
     <pubDate>Thu, 01 Feb 2024 00:00:00 &#43;0000</pubDate>
@@ -95,16 +103,6 @@
     <description><![CDATA[<div class="featured-image">
                 <img src="https://s2.loli.net/2024/01/23/dNxfvZVi97lMgWz.png" referrerpolicy="no-referrer">
             </div>]]></description>
-</item>
-<item>
-    <title>JVM(三): 类加载与字节码技术</title>
-    <link>http://example.org/posts/jvm3-class/</link>
-    <pubDate>Sun, 30 Jul 2023 00:00:00 &#43;0000</pubDate>
-    <author>SroUngE</author>
-    <guid>http://example.org/posts/jvm3-class/</guid>
-    <description><![CDATA[<div class="featured-image">
-                <img src="https://s2.loli.net/2024/01/23/GE8SiwClZc45BRU.jpg" referrerpolicy="no-referrer">
-            </div>介绍JVM的内存结构，以及一些常用的内存诊断工具。]]></description>
 </item>
 </channel>
 </rss>
