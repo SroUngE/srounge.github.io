@@ -3,11 +3,12 @@
     xmlns:xhtml="http://www.w3.org/1999/xhtml"
     ><url>
             <loc>http://example.org/posts/interview-mysql/</loc><lastmod>2024-02-06T22:50:17&#43;08:00</lastmod></url><url>
+            <loc>http://example.org/tags/mysql/</loc><lastmod>2024-02-06T22:50:17&#43;08:00</lastmod></url><url>
             <loc>http://example.org/posts/</loc><lastmod>2024-02-06T22:50:17&#43;08:00</lastmod></url><url>
             <loc>http://example.org/</loc><lastmod>2024-02-06T22:50:17&#43;08:00</lastmod></url><url>
+            <loc>http://example.org/tags/</loc><lastmod>2024-02-06T22:50:17&#43;08:00</lastmod></url><url>
             <loc>http://example.org/tags/database/</loc><lastmod>2024-02-01T00:00:00&#43;00:00</lastmod></url><url>
             <loc>http://example.org/posts/interview-database/</loc><lastmod>2024-02-01T00:00:00&#43;00:00</lastmod></url><url>
-            <loc>http://example.org/tags/</loc><lastmod>2024-02-01T00:00:00&#43;00:00</lastmod></url><url>
             <loc>http://example.org/posts/interview-mongodb/</loc><lastmod>2024-01-28T00:00:00&#43;00:00</lastmod></url><url>
             <loc>http://example.org/tags/mongodb/</loc><lastmod>2024-01-28T00:00:00&#43;00:00</lastmod></url><url>
             <loc>http://example.org/posts/interview-redis/</loc><lastmod>2024-01-25T00:00:00&#43;00:00</lastmod></url><url>

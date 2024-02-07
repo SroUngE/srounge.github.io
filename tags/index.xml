@@ -4,7 +4,15 @@
         <link>http://example.org/tags/</link>
         <description>Tags - Tag - Rong&#39;s Blog</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>977683159@qq.com (SroUngE)</managingEditor>
-            <webMaster>977683159@qq.com (SroUngE)</webMaster><lastBuildDate>Thu, 01 Feb 2024 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://example.org/tags/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>977683159@qq.com (SroUngE)</webMaster><lastBuildDate>Tue, 06 Feb 2024 22:50:17 &#43;0800</lastBuildDate><atom:link href="http://example.org/tags/" rel="self" type="application/rss+xml" /><item>
+    <title>MySQL</title>
+    <link>http://example.org/tags/mysql/</link>
+    <pubDate>Tue, 06 Feb 2024 22:50:17 &#43;0800</pubDate>
+    <author>SroUngE</author>
+    <guid>http://example.org/tags/mysql/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
     <title>Database</title>
     <link>http://example.org/tags/database/</link>
     <pubDate>Thu, 01 Feb 2024 00:00:00 &#43;0000</pubDate>
@@ -74,14 +82,6 @@
     <pubDate>Sat, 26 Aug 2023 00:00:00 &#43;0000</pubDate>
     <author>SroUngE</author>
     <guid>http://example.org/tags/hugo/</guid>
-    <description><![CDATA[]]></description>
-</item>
-<item>
-    <title>Loveit</title>
-    <link>http://example.org/tags/loveit/</link>
-    <pubDate>Sat, 26 Aug 2023 00:00:00 &#43;0000</pubDate>
-    <author>SroUngE</author>
-    <guid>http://example.org/tags/loveit/</guid>
     <description><![CDATA[]]></description>
 </item>
 </channel>

@@ -1,0 +1,18 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>MySQL - Tag - Rong&#39;s Blog</title>
+        <link>http://example.org/tags/mysql/</link>
+        <description>MySQL - Tag - Rong&#39;s Blog</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>977683159@qq.com (SroUngE)</managingEditor>
+            <webMaster>977683159@qq.com (SroUngE)</webMaster><lastBuildDate>Tue, 06 Feb 2024 22:50:17 &#43;0800</lastBuildDate><atom:link href="http://example.org/tags/mysql/" rel="self" type="application/rss+xml" /><item>
+    <title>Interview MySQL</title>
+    <link>http://example.org/posts/interview-mysql/</link>
+    <pubDate>Tue, 06 Feb 2024 22:50:17 &#43;0800</pubDate>
+    <author>SroUngE</author>
+    <guid>http://example.org/posts/interview-mysql/</guid>
+    <description><![CDATA[<div class="featured-image">
+                <img src="https://s2.loli.net/2024/01/23/FdJWU6IpNZGfACv.png" referrerpolicy="no-referrer">
+            </div>MySQL 的数据类型 MySQL支持多种数据类型，包括但不限于： 整数类型： INT（整数） BIGINT（大整数） TINYINT（小整数） 浮点数类型： FL]]></description>
+</item>
+</channel>
+</rss>
