@@ -27,7 +27,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/example.org\/posts\/interview-mysql\/"
-        },"genre": "posts","keywords": "MySQL","wordcount":  2402 ,
+        },"genre": "posts","keywords": "MySQL","wordcount":  3033 ,
         "url": "http:\/\/example.org\/posts\/interview-mysql\/","datePublished": "2024-02-06T22:50:17+08:00","dateModified": "2024-02-06T22:50:17+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -145,8 +145,8 @@
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Interview MySQL</h1><div class="post-meta">
             <div class="post-meta-line">
                 </div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-02-06">2024-02-06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;2402 words&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;5 minutes&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-02-06">2024-02-06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;3033 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;7 minutes&nbsp;</div>
         </div><div class="featured-image"><img
         class="lazyload"
         src="/svg/loading.min.svg"
@@ -167,6 +167,8 @@
         <li><a href="#mysql的存储引擎">MySQL的存储引擎</a></li>
         <li><a href="#innodb-的事务">InnoDB 的事务</a></li>
         <li><a href="#innodb-的四个实现">InnoDB 的四个实现</a></li>
+        <li><a href="#innodb-为何推荐用自增主键">InnoDB 为何推荐用自增主键</a></li>
+        <li><a href="#innodb-的存储结构">InnoDB 的存储结构</a></li>
       </ul>
     </li>
   </ul>
@@ -346,7 +348,30 @@
 </ul>
 </li>
 </ol>
-<p>这些特性共同确保InnoDB在不同的工作负载下能够提供高性能和数据完整性。插入缓冲是其中之一，专注于优化插入操作的性能。</p>
+<h3 id="innodb-为何推荐用自增主键">InnoDB 为何推荐用自增主键</h3>
+<p>自增主键减小插入操作性能开销的原因主要在于数据库引擎对于索引维护（B+树）的方式。当插入一条新记录时，数据库需要确保索引的有序性，以便提高查询性能。使用自增主键时，新记录的主键值会按照递增的顺序生成，这样新记录会被追加到表的末尾。</p>
+<p>这追加操作的好处在于：</p>
+<ol>
+<li>
+<p><strong>避免页面分裂：</strong> 数据库以页面（page）为单位进行管理，如果插入记录导致某个页面空间不足，就需要进行页面分裂，调整存储结构，这会导致额外的磁盘IO和性能开销。自增主键的顺序插入可以减小页面分裂的可能性。</p>
+</li>
+<li>
+<p><strong>提高顺序写性能：</strong> 追加新记录到表末尾的方式，使得写入操作更有序，从而提高磁盘顺序写入性能。这对于磁盘IO效率和日志记录尤其重要。</p>
+</li>
+</ol>
+<h3 id="innodb-的存储结构">InnoDB 的存储结构</h3>
+<p>InnoDB的存储结构是以页（page）、区（extent）和段（segment）为基础的。这组织层次有助于优化磁盘空间利用和提高访问性能。</p>
+<ol>
+<li>
+<p><strong>页（Page）：</strong> InnoDB以16KB大小的页为基本的存储单元。数据和索引都存储在页中，包括索引、数据行和Undo页等。页是InnoDB管理存储空间的基本单元，也是数据传输的单位。</p>
+</li>
+<li>
+<p><strong>区（Extent）：</strong> 区是由若干连续页组成的一块空间。InnoDB的区大小可以根据配置进行调整，通常为1MB。当InnoDB需要分配多个连续页时，它会以区为单位进行分配，这有助于减小内部碎片，提高存储效率。</p>
+</li>
+<li>
+<p><strong>段（Segment）：</strong> 段是一组区的集合，它是表空间的逻辑单位。每个InnoDB表都至少有一个由表的主键索引组成的段。此外，如果表有二级索引，每个二级索引也对应一个段。段的存在有助于对表的不同部分进行独立管理，例如，可以对不同的段采用不同的压缩策略。</p>
+</li>
+</ol>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
