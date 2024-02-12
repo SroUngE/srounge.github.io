@@ -4,7 +4,17 @@
         <link>http://example.org/posts/</link>
         <description>All Posts | Rong&#39;s Blog</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>977683159@qq.com (SroUngE)</managingEditor>
-            <webMaster>977683159@qq.com (SroUngE)</webMaster><lastBuildDate>Tue, 06 Feb 2024 22:50:17 &#43;0800</lastBuildDate><atom:link href="http://example.org/posts/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>977683159@qq.com (SroUngE)</webMaster><lastBuildDate>Sat, 10 Feb 2024 23:53:56 &#43;0800</lastBuildDate><atom:link href="http://example.org/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>Interview Java Thread</title>
+    <link>http://example.org/posts/interview-java-thread/</link>
+    <pubDate>Sat, 10 Feb 2024 23:53:56 &#43;0800</pubDate>
+    <author>SroUngE</author>
+    <guid>http://example.org/posts/interview-java-thread/</guid>
+    <description><![CDATA[<div class="featured-image">
+                <img src="https://s2.loli.net/2024/01/23/FdJWU6IpNZGfACv.png" referrerpolicy="no-referrer">
+            </div>如何创建线程 1.继承 Thread 类，重写 run() 方法； public class MyThread extends Thread { @Override public void run() { System.out.println(Thread.currentThread().getName()); } public static void main(String[] args) { MyThread mThread1=new MyThread(); MyThread mThread2=new MyThread(); MyThread myThread3=new MyThread(); mThread1.start(); mThread2.start(); myThread3.start(); } } 2.实现 Runnable 接口，重写 run() 方法； public class MyThread implements]]></description>
+</item>
+<item>
     <title>Interview MySQL</title>
     <link>http://example.org/posts/interview-mysql/</link>
     <pubDate>Tue, 06 Feb 2024 22:50:17 &#43;0800</pubDate>
@@ -93,16 +103,6 @@
     <description><![CDATA[<div class="featured-image">
                 <img src="https://s2.loli.net/2023/05/14/vWZJg25R1CVkXc6.png" referrerpolicy="no-referrer">
             </div>简单地自定义Loveit主题的Markdown文章样式。]]></description>
-</item>
-<item>
-    <title>Spring 集成Javax Validation 和 Hibernate Validator</title>
-    <link>http://example.org/posts/spring-validation/</link>
-    <pubDate>Thu, 24 Aug 2023 00:00:00 &#43;0000</pubDate>
-    <author>SroUngE</author>
-    <guid>http://example.org/posts/spring-validation/</guid>
-    <description><![CDATA[<div class="featured-image">
-                <img src="https://s2.loli.net/2024/01/23/dNxfvZVi97lMgWz.png" referrerpolicy="no-referrer">
-            </div>]]></description>
 </item>
 </channel>
 </rss>
