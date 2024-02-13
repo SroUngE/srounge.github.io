@@ -27,7 +27,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/example.org\/posts\/interview-java-thread\/"
-        },"genre": "posts","keywords": "Java","wordcount":  573 ,
+        },"genre": "posts","keywords": "Java","wordcount":  1388 ,
         "url": "http:\/\/example.org\/posts\/interview-java-thread\/","datePublished": "2024-02-10T23:53:56+08:00","dateModified": "2024-02-10T23:53:56+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -145,8 +145,8 @@
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Interview Java Thread</h1><div class="post-meta">
             <div class="post-meta-line">
                 </div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-02-10">2024-02-10</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;573 words&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;2 minutes&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-02-10">2024-02-10</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;1388 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;3 minutes&nbsp;</div>
         </div><div class="featured-image"><img
         class="lazyload"
         src="/svg/loading.min.svg"
@@ -164,6 +164,7 @@
     <li>
       <ul>
         <li><a href="#如何创建线程">如何创建线程</a></li>
+        <li><a href="#线程的状态">线程的状态</a></li>
       </ul>
     </li>
   </ul>
@@ -202,9 +203,22 @@
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
 </span></span></span></code></pre></div><p><strong>实现 <code>Runnable</code> 接口比继承 <code>Thread</code> 类所具有的优势：</strong></p>
 <ol>
-<li>适合多个相同的程序代码的线程去处理同一个资源</li>
-<li>可以避免 java 中的单继承的限制</li>
-<li>增加程序的健壮性，代码可以被多个线程共享，代码和数据独立</li>
+<li>
+<p><strong>多继承问题：</strong> Java的单继承机制限制了直接扩展<code>Thread</code>类的灵活性，而通过实现<code>Runnable</code>接口，你可以轻松地继承其他类。</p>
+</li>
+<li>
+<p><strong>代码组织：</strong> 将任务与线程分离，使得代码更易于组织和维护，也更符合面向对象设计的原则，提高了代码的清晰度。</p>
+</li>
+<li>
+<p><strong>共享资源：</strong> 使用<code>Runnable</code>接口创建线程允许多个线程共享相同的<code>Runnable</code>实例，这在某些情况下比直接使用<code>Thread</code>更有优势，提高了代码的可维护性。</p>
+</li>
+<li>
+<p>当涉及到线程池时，使用<code>Runnable</code>接口的优势更为明显：</p>
+<ul>
+<li><strong>资源管理：</strong> 线程池更好地管理系统资源，通过重复使用线程，减少线程创建和销毁的开销。使用<code>Runnable</code>接口允许将任务提交到线程池执行，而不是创建新线程，提高了资源利用率。</li>
+<li><strong>任务隔离：</strong> 通过将任务表示为<code>Runnable</code>对象，线程池可以更灵活地管理和调度任务。这样，你可以更容易地控制任务的执行方式、优先级等。</li>
+</ul>
+</li>
 </ol>
 <p>3.使用 <code>Executor</code> 工具类来创建线程池；</p>
 <p>通过 <code>Executor</code> 的工具类可以创建三种类型的普通线程池：</p>
@@ -231,15 +245,12 @@
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">Integer</span><span class="w"> </span><span class="nf">call</span><span class="p">()</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">Exception</span><span class="w"> </span><span class="p">{</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="s">&#34;Callable 任务执行完成&#34;</span><span class="p">;</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"> 
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">FutureTask</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">task</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">FutureTask</span><span class="o">&lt;&gt;</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">MyCallable</span><span class="p">());</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">FutureTask</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">task</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">FutureTask</span><span class="o">&lt;&gt;</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">MyCallable</span><span class="p">());</span><span class="err">\</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">Thread</span><span class="w"> </span><span class="n">thread</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Thread</span><span class="p">(</span><span class="n">task</span><span class="p">)</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">thread</span><span class="p">.</span><span class="na">start</span><span class="p">();</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">String</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">result</span><span class="p">.</span><span class="na">get</span><span class="p">();</span><span class="w"> 
 </span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">result</span><span class="p">);</span><span class="w">
@@ -247,7 +258,39 @@
 </span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">e</span><span class="p">.</span><span class="na">printStackTrace</span><span class="p">();</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
-</span></span></span></code></pre></div></div><div class="post-footer" id="post-footer">
+</span></span></span></code></pre></div><h3 id="线程的状态">线程的状态</h3>
+<ol>
+<li>
+<p><strong>新建（New）：</strong> 新创建了一个线程对象。</p>
+</li>
+<li>
+<p><strong>就绪（Runnable）：</strong> 线程对象创建后，其他线程调用了该对象的 start()方法。 该状态的线程位于可运行线程池中，变得可运行，等待获取 CPU 的使用权。</p>
+</li>
+<li>
+<p><strong>运行（Running）：</strong> 就绪状态的线程获取了 CPU，执行程序代码。</p>
+</li>
+<li>
+<p><strong>阻塞（Blocked）：</strong> 阻塞状态是线程因为某种原因放弃 CPU 使用权，暂时停止运行，通常是因为等待某个资源的释放或者被其他线程调用了<code>sleep</code>、<code>wait</code>等方法。阻塞的情况分三种：</p>
+<ul>
+<li>
+<p><strong>等待阻塞：</strong> 运行的线程执行 <code>wait()</code> 方法，JVM 会把该线程放入等待池中。( <code>wait()</code> 会释放持有的锁)</p>
+</li>
+<li>
+<p>**同步阻塞：**运行的线程在获取对象的同步锁时，若该同步锁被别的线程占用， 则 JVM 会把该线程放入锁池中。</p>
+</li>
+<li>
+<p>**等待阻塞：**运行的线程执行 <code>sleep()</code> 或 <code>join()</code> 方法，或者发出了 I/O 请求时，JVM会把该线程置为阻塞状态。当 <code>sleep()</code> 状态超时、<code>join()</code> 等待线程终止或者超时、或者 I/O 处理完毕时，线程重新转入就绪状态。（ <code>sleep()</code> 是不会释放持有的锁）</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>计时等待（Timed Waiting）：</strong> 类似于等待状态，但具有时间限制，线程会在一定时间后自动恢复。</p>
+</li>
+<li>
+<p><strong>终止（Terminated）：</strong> 线程执行完了或者因异常退出了 run()方法，该线程结束生命周期。</p>
+</li>
+</ol>
+</div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
