@@ -27,7 +27,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/example.org\/posts\/interview-java-thread\/"
-        },"genre": "posts","keywords": "Java","wordcount":  1388 ,
+        },"genre": "posts","keywords": "Java","wordcount":  1862 ,
         "url": "http:\/\/example.org\/posts\/interview-java-thread\/","datePublished": "2024-02-10T23:53:56+08:00","dateModified": "2024-02-10T23:53:56+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -145,8 +145,8 @@
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Interview Java Thread</h1><div class="post-meta">
             <div class="post-meta-line">
                 </div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-02-10">2024-02-10</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;1388 words&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;3 minutes&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-02-10">2024-02-10</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;1862 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;4 minutes&nbsp;</div>
         </div><div class="featured-image"><img
         class="lazyload"
         src="/svg/loading.min.svg"
@@ -165,6 +165,8 @@
       <ul>
         <li><a href="#如何创建线程">如何创建线程</a></li>
         <li><a href="#线程的状态">线程的状态</a></li>
+        <li><a href="#sleep-和-wait">sleep() 和 wait()</a></li>
+        <li><a href="#yieldjoinnotifynotifyall">yield()、join()、notify()、notifyAll()</a></li>
       </ul>
     </li>
   </ul>
@@ -261,36 +263,85 @@
 </span></span></span></code></pre></div><h3 id="线程的状态">线程的状态</h3>
 <ol>
 <li>
-<p><strong>新建（New）：</strong> 新创建了一个线程对象。</p>
+<p><strong>新建（New）：</strong> 使用<code>new Thread()</code>创建线程对象。</p>
 </li>
 <li>
-<p><strong>就绪（Runnable）：</strong> 线程对象创建后，其他线程调用了该对象的 start()方法。 该状态的线程位于可运行线程池中，变得可运行，等待获取 CPU 的使用权。</p>
+<p><strong>就绪（Runnable）：</strong> 调用线程对象的<code>start()</code>方法将线程置于就绪状态，等待系统调度执行。</p>
 </li>
 <li>
-<p><strong>运行（Running）：</strong> 就绪状态的线程获取了 CPU，执行程序代码。</p>
+<p><strong>运行（Running）：</strong> 当线程得到调度并执行时，运行相应的<code>run()</code>方法。</p>
 </li>
 <li>
-<p><strong>阻塞（Blocked）：</strong> 阻塞状态是线程因为某种原因放弃 CPU 使用权，暂时停止运行，通常是因为等待某个资源的释放或者被其他线程调用了<code>sleep</code>、<code>wait</code>等方法。阻塞的情况分三种：</p>
-<ul>
-<li>
-<p><strong>等待阻塞：</strong> 运行的线程执行 <code>wait()</code> 方法，JVM 会把该线程放入等待池中。( <code>wait()</code> 会释放持有的锁)</p>
+<p><strong>阻塞（Blocked）：</strong> 调用<code>sleep()</code>、<code>wait()</code>等方法，或者在获取锁失败时会使线程进入阻塞状态。<code>wait()</code> 会释放持有的锁，<code>sleep()</code> 是不会释放持有的锁</p>
 </li>
 <li>
-<p>**同步阻塞：**运行的线程在获取对象的同步锁时，若该同步锁被别的线程占用， 则 JVM 会把该线程放入锁池中。</p>
+<p><strong>等待（Waiting）：</strong> 调用<code>wait()</code>方法将线程置于等待状态，等待其他线程的通知或中断。</p>
 </li>
 <li>
-<p>**等待阻塞：**运行的线程执行 <code>sleep()</code> 或 <code>join()</code> 方法，或者发出了 I/O 请求时，JVM会把该线程置为阻塞状态。当 <code>sleep()</code> 状态超时、<code>join()</code> 等待线程终止或者超时、或者 I/O 处理完毕时，线程重新转入就绪状态。（ <code>sleep()</code> 是不会释放持有的锁）</p>
-</li>
-</ul>
+<p><strong>计时等待（Timed Waiting）：</strong> 调用<code>sleep()</code>、<code>join()</code>等带有时间限制的方法。</p>
 </li>
 <li>
-<p><strong>计时等待（Timed Waiting）：</strong> 类似于等待状态，但具有时间限制，线程会在一定时间后自动恢复。</p>
-</li>
-<li>
-<p><strong>终止（Terminated）：</strong> 线程执行完了或者因异常退出了 run()方法，该线程结束生命周期。</p>
+<p><strong>终止（Terminated）：</strong> 线程执行完毕或因异常而结束，线程对象进入终止状态。</p>
 </li>
 </ol>
-</div><div class="post-footer" id="post-footer">
+<h3 id="sleep-和-wait">sleep() 和 wait()</h3>
+<p><code>wait()</code> 和 <code>sleep()</code> 最大的不同在于 <code>wait()</code> 会释放对象锁，而 <code>sleep()</code> 不会释放对象锁。</p>
+<p><strong><code>sleep</code>：</strong></p>
+<ul>
+<li><code>Thread.sleep()</code> 是一个静态方法，用于使当前线程暂停执行一段指定的时间。</li>
+<li>通常用于在程序中引入时间延迟，不涉及线程同步。</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="k">try</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">Thread</span><span class="p">.</span><span class="na">sleep</span><span class="p">(</span><span class="n">1000</span><span class="p">);</span><span class="w"> </span><span class="c1">// 暂停执行1秒钟</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">InterruptedException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">e</span><span class="p">.</span><span class="na">printStackTrace</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></div><p><strong><code>wait</code>：</strong></p>
+<ul>
+<li><code>wait()</code> 是一个实例方法，通常与对象的锁结合使用，用于在多线程环境中实现线程之间的协作。</li>
+<li>在调用 <code>wait()</code> 时，线程释放对象的锁，进入等待状态，直到其他线程调用相同对象的 <code>notify()</code> 或 <code>notifyAll()</code> 方法唤醒它。</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">synchronized</span><span class="w"> </span><span class="p">(</span><span class="n">someObject</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">someObject</span><span class="p">.</span><span class="na">wait</span><span class="p">();</span><span class="w"> </span><span class="c1">// 当前线程等待，释放锁</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">InterruptedException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">e</span><span class="p">.</span><span class="na">printStackTrace</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></div><h3 id="yieldjoinnotifynotifyall">yield()、join()、notify()、notifyAll()</h3>
+<p>这是几个与线程同步和协作相关的关键字和方法：</p>
+<p><strong><code>yield</code>：</strong></p>
+<ul>
+<li><code>yield</code> 是一个线程控制的关键字，用于提示调度器当前线程愿意放弃当前的执行权，让其他具有相同或更高优先级的线程有机会执行。</li>
+<li>它并不会释放锁，只是让同优先级或更高优先级的其他线程有机会执行。</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">Thread</span><span class="p">.</span><span class="na">yield</span><span class="p">();</span><span class="w"> </span><span class="c1">// 提示调度器当前线程愿意让出执行权</span><span class="w">
+</span></span></span></code></pre></div><p><strong><code>join</code>：</strong></p>
+<ul>
+<li><code>join</code> 是一个线程控制的方法，用于等待调用该方法的线程执行完毕。</li>
+<li>在一个线程中调用另一个线程的 <code>join</code> 方法，当前线程将被阻塞，直到被调用的线程执行完毕。</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">Thread</span><span class="w"> </span><span class="n">thread</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Thread</span><span class="p">(()</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// 线程执行的代码</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">});</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">thread</span><span class="p">.</span><span class="na">start</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">try</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">thread</span><span class="p">.</span><span class="na">join</span><span class="p">();</span><span class="w"> </span><span class="c1">// 等待thread执行完毕</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">InterruptedException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">e</span><span class="p">.</span><span class="na">printStackTrace</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></div><p><strong><code>notify</code> 和 <code>notifyAll</code>：</strong></p>
+<ul>
+<li><code>notify</code> 和 <code>notifyAll</code> 是用于线程间通信的方法，通常与 <code>wait</code> 配合使用。</li>
+<li><code>notify</code> 用于唤醒在对象上等待的一个线程，而 <code>notifyAll</code> 则唤醒所有等待的线程，哪一个线程将会第一个处理取决于操作系统的实现</li>
+<li>这两个方法应该在同步块中调用，通常使用对象的锁来确保线程安全。</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">synchronized</span><span class="w"> </span><span class="p">(</span><span class="n">someObject</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">someObject</span><span class="p">.</span><span class="na">notify</span><span class="p">();</span><span class="w"> </span><span class="c1">// 唤醒一个等待的线程</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// 或</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">someObject</span><span class="p">.</span><span class="na">notifyAll</span><span class="p">();</span><span class="w"> </span><span class="c1">// 唤醒所有等待的线程</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></div></div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
