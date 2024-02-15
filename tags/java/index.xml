@@ -12,7 +12,7 @@
     <guid>http://example.org/posts/interview-java-thread/</guid>
     <description><![CDATA[<div class="featured-image">
                 <img src="https://s2.loli.net/2024/01/23/FdJWU6IpNZGfACv.png" referrerpolicy="no-referrer">
-            </div>如何创建线程 1.继承 Thread 类，重写 run() 方法； public class MyThread extends Thread { @Override public void run() { System.out.println(Thread.currentThread().getName()); } public static void main(String[] args) { MyThread mThread1=new MyThread(); MyThread mThread2=new MyThread(); MyThread myThread3=new MyThread(); mThread1.start(); mThread2.start(); myThread3.start(); } } 2.实现 Runnable 接口，重写 run() 方法； public class MyThread implements]]></description>
+            </div>线程的创建 1.继承 Thread 类，重写 run() 方法； public class MyThread extends Thread { @Override public void run() { System.out.println(Thread.currentThread().getName()); } public static void main(String[] args) { MyThread mThread1=new MyThread(); MyThread mThread2=new MyThread(); MyThread myThread3=new MyThread(); mThread1.start(); mThread2.start(); myThread3.start(); } } 2.实现 Runnable 接口，重写 run() 方法； public class MyThread implements Runnable]]></description>
 </item>
 <item>
     <title>排序：归并排序</title>

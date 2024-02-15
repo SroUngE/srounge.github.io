@@ -5,14 +5,14 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
         <title>Interview Java Thread - Rong&#39;s Blog</title><meta name="Description" content="This is my cool site"><meta property="og:title" content="Interview Java Thread" />
-<meta property="og:description" content="如何创建线程 1.继承 Thread 类，重写 run() 方法； public class MyThread extends Thread { @Override public void run() { System.out.println(Thread.currentThread().getName()); } public static void main(String[] args) { MyThread mThread1=new MyThread(); MyThread mThread2=new MyThread(); MyThread myThread3=new MyThread(); mThread1.start(); mThread2.start(); myThread3.start(); } } 2.实现 Runnable 接口，重写 run() 方法； public class MyThread implements" />
+<meta property="og:description" content="线程的创建 1.继承 Thread 类，重写 run() 方法； public class MyThread extends Thread { @Override public void run() { System.out.println(Thread.currentThread().getName()); } public static void main(String[] args) { MyThread mThread1=new MyThread(); MyThread mThread2=new MyThread(); MyThread myThread3=new MyThread(); mThread1.start(); mThread2.start(); myThread3.start(); } } 2.实现 Runnable 接口，重写 run() 方法； public class MyThread implements Runnable" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://example.org/posts/interview-java-thread/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2024-02-10T23:53:56+08:00" />
 <meta property="article:modified_time" content="2024-02-10T23:53:56+08:00" /><meta property="og:site_name" content="My cool site" />
 
 <meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Interview Java Thread"/>
-<meta name="twitter:description" content="如何创建线程 1.继承 Thread 类，重写 run() 方法； public class MyThread extends Thread { @Override public void run() { System.out.println(Thread.currentThread().getName()); } public static void main(String[] args) { MyThread mThread1=new MyThread(); MyThread mThread2=new MyThread(); MyThread myThread3=new MyThread(); mThread1.start(); mThread2.start(); myThread3.start(); } } 2.实现 Runnable 接口，重写 run() 方法； public class MyThread implements"/>
+<meta name="twitter:description" content="线程的创建 1.继承 Thread 类，重写 run() 方法； public class MyThread extends Thread { @Override public void run() { System.out.println(Thread.currentThread().getName()); } public static void main(String[] args) { MyThread mThread1=new MyThread(); MyThread mThread2=new MyThread(); MyThread myThread3=new MyThread(); mThread1.start(); mThread2.start(); myThread3.start(); } } 2.实现 Runnable 接口，重写 run() 方法； public class MyThread implements Runnable"/>
 <meta name="application-name" content="My cool site">
 <meta name="apple-mobile-web-app-title" content="My cool site"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -27,7 +27,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/example.org\/posts\/interview-java-thread\/"
-        },"genre": "posts","keywords": "Java","wordcount":  1862 ,
+        },"genre": "posts","keywords": "Java","wordcount":  3007 ,
         "url": "http:\/\/example.org\/posts\/interview-java-thread\/","datePublished": "2024-02-10T23:53:56+08:00","dateModified": "2024-02-10T23:53:56+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -145,8 +145,8 @@
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Interview Java Thread</h1><div class="post-meta">
             <div class="post-meta-line">
                 </div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-02-10">2024-02-10</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;1862 words&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;4 minutes&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-02-10">2024-02-10</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;3007 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;7 minutes&nbsp;</div>
         </div><div class="featured-image"><img
         class="lazyload"
         src="/svg/loading.min.svg"
@@ -163,15 +163,15 @@
   <ul>
     <li>
       <ul>
-        <li><a href="#如何创建线程">如何创建线程</a></li>
+        <li><a href="#线程的创建">线程的创建</a></li>
         <li><a href="#线程的状态">线程的状态</a></li>
-        <li><a href="#sleep-和-wait">sleep() 和 wait()</a></li>
-        <li><a href="#yieldjoinnotifynotifyall">yield()、join()、notify()、notifyAll()</a></li>
+        <li><a href="#常见的线程方法">常见的线程方法</a></li>
+        <li><a href="#锁">锁</a></li>
       </ul>
     </li>
   </ul>
 </nav></div>
-            </div><div class="content" id="content"><h3 id="如何创建线程">如何创建线程</h3>
+            </div><div class="content" id="content"><h3 id="线程的创建">线程的创建</h3>
 <p>1.继承 <code>Thread</code> 类，重写 <code>run()</code> 方法；</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">MyThread</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">Thread</span><span class="w"> </span><span class="p">{</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@Override</span><span class="w">
@@ -284,12 +284,12 @@
 <p><strong>终止（Terminated）：</strong> 线程执行完毕或因异常而结束，线程对象进入终止状态。</p>
 </li>
 </ol>
-<h3 id="sleep-和-wait">sleep() 和 wait()</h3>
-<p><code>wait()</code> 和 <code>sleep()</code> 最大的不同在于 <code>wait()</code> 会释放对象锁，而 <code>sleep()</code> 不会释放对象锁。</p>
+<h3 id="常见的线程方法">常见的线程方法</h3>
 <p><strong><code>sleep</code>：</strong></p>
 <ul>
-<li><code>Thread.sleep()</code> 是一个静态方法，用于使当前线程暂停执行一段指定的时间。</li>
+<li><code>sleep()</code> 是一个静态方法，用于使当前线程暂停执行一段指定的时间。</li>
 <li>通常用于在程序中引入时间延迟，不涉及线程同步。</li>
+<li>释放CPU，<strong>不释放对象锁</strong></li>
 </ul>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="k">try</span><span class="w"> </span><span class="p">{</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">Thread</span><span class="p">.</span><span class="na">sleep</span><span class="p">(</span><span class="n">1000</span><span class="p">);</span><span class="w"> </span><span class="c1">// 暂停执行1秒钟</span><span class="w">
@@ -300,6 +300,7 @@
 <ul>
 <li><code>wait()</code> 是一个实例方法，通常与对象的锁结合使用，用于在多线程环境中实现线程之间的协作。</li>
 <li>在调用 <code>wait()</code> 时，线程释放对象的锁，进入等待状态，直到其他线程调用相同对象的 <code>notify()</code> 或 <code>notifyAll()</code> 方法唤醒它。</li>
+<li>释放CPU，<strong>释放对象锁</strong></li>
 </ul>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">synchronized</span><span class="w"> </span><span class="p">(</span><span class="n">someObject</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -308,9 +309,7 @@
 </span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">e</span><span class="p">.</span><span class="na">printStackTrace</span><span class="p">();</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
-</span></span></span></code></pre></div><h3 id="yieldjoinnotifynotifyall">yield()、join()、notify()、notifyAll()</h3>
-<p>这是几个与线程同步和协作相关的关键字和方法：</p>
-<p><strong><code>yield</code>：</strong></p>
+</span></span></span></code></pre></div><p><strong><code>yield</code>：</strong></p>
 <ul>
 <li><code>yield</code> 是一个线程控制的关键字，用于提示调度器当前线程愿意放弃当前的执行权，让其他具有相同或更高优先级的线程有机会执行。</li>
 <li>它并不会释放锁，只是让同优先级或更高优先级的其他线程有机会执行。</li>
@@ -341,7 +340,43 @@
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// 或</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">someObject</span><span class="p">.</span><span class="na">notifyAll</span><span class="p">();</span><span class="w"> </span><span class="c1">// 唤醒所有等待的线程</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
-</span></span></span></code></pre></div></div><div class="post-footer" id="post-footer">
+</span></span></span></code></pre></div><h3 id="锁">锁</h3>
+<p>锁（Lock）是一种同步机制，用于控制对共享资源的访问。锁的目的是确保在任何给定的时刻，只有一个线程或进程能够访问共享资源，以防止并发访问导致数据不一致或竞争条件等问题。</p>
+<p><strong>锁的种类</strong></p>
+<p>下面是一些常见的锁的种类，按照不同的属性和特性进行分类：</p>
+<ol>
+<li><strong>公平锁（Fair Lock）：</strong> 所有线程按照请求锁的顺序获得锁，避免线程饥饿。如 <code>ReentrantLock</code></li>
+<li><strong>非公平锁（Unfair Lock）：</strong> 不考虑线程请求锁的顺序，允许新来的线程插队成功获取锁。如 <code>synchronized</code></li>
+<li><strong>可重入锁（Reentrant Lock）：</strong> 允许同一线程在持有锁的情况下再次获取锁，避免死锁。如 <code>ReentrantLock</code>、<code>synchronized</code></li>
+<li><strong>不可重入锁（Non-reentrant Lock）：</strong> 不允许同一线程在持有锁的情况下再次获取锁，避免重复获取。如 <code>NonReentrantLock</code></li>
+<li><strong>乐观锁（Optimistic Locking）：</strong> 假设多线程操作不会产生冲突，直接执行操作，如果发现冲突则回退或重试。如 <code>Atomic</code></li>
+<li><strong>悲观锁（Pessimistic Locking）：</strong> 假设多线程操作会产生冲突，先获取锁再执行操作，防止冲突。如 <code>ReentrantLock</code></li>
+<li><strong>独享锁（Exclusive Lock）：</strong> 一次只允许一个线程或进程持有锁。如 <code>ReentrantLock</code></li>
+<li><strong>共享锁（Shared Lock）：</strong> 多个线程或进程可以同时持有锁，用于读取操作。如 <code>ReentrantReadWriteLock</code></li>
+<li><strong>自旋锁（Spin Lock）：</strong> 线程在获取锁时不会立即阻塞，而是通过自旋等待锁的释放，避免上下文切换的开销。如 <code>Atomic</code></li>
+<li><strong>偏向锁（Biased Locking）：</strong> 当只有一个线程访问同步块时，为该线程获取锁而不涉及竞争。如 <code>synchronized</code></li>
+<li><strong>轻量级锁（Lightweight Lock）：</strong> 针对多线程竞争不激烈的场景，通过CAS（比较并交换）来减小锁的开销。如 <code>synchronized</code></li>
+<li><strong>重量级锁（Heavyweight Lock）：</strong> 针对多线程竞争激烈的场景，采用传统的互斥方式，可能涉及线程的阻塞和唤醒。如 <code>synchronized</code></li>
+</ol>
+<p>锁的开销相对较大，而CAS（比较并交换）的开销相对较小的主要原因是它们在实现同步时采用了不同的策略。</p>
+<ol>
+<li>
+<p><strong>锁的开销大：</strong></p>
+<ul>
+<li><strong>阻塞和唤醒开销：</strong> 当使用传统的互斥锁（如重量级锁）时，如果一个线程获取了锁，而另一个线程尝试获取同一把锁时，后者会被阻塞，直到前者释放锁。这种阻塞和唤醒的机制涉及操作系统的系统调用，开销较大。</li>
+<li><strong>上下文切换开销：</strong> 当线程被阻塞时，操作系统需要进行上下文切换，从当前线程切换到另一个等待的线程，这也会导致开销增加。</li>
+</ul>
+</li>
+<li>
+<p><strong>CAS的开销小：</strong></p>
+<ul>
+<li><strong>原子性操作：</strong> CAS是一种原子性操作，不需要阻塞线程。它使用硬件级别的原子性指令，比如 <code>compareAndSet</code> 操作。因为它是原子性的，所以不需要阻塞其他线程，避免了大部分阻塞和唤醒的开销。</li>
+<li><strong>无锁操作：</strong> 在一些情况下，CAS可以实现无锁算法。无锁算法允许多个线程并发地进行操作，而不会阻塞其他线程。这在低争用情况下能够提高性能。</li>
+</ul>
+</li>
+</ol>
+<p>总体而言，CAS的开销较小是因为它不涉及线程的阻塞和唤醒，而是通过硬件级别的原子性操作来实现。然而，在高争用的情况下，CAS也可能存在自旋等待的开销，因此在不同的情境下需要权衡选择适当的同步机制。</p>
+</div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
