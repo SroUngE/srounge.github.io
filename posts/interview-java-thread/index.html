@@ -27,7 +27,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/example.org\/posts\/interview-java-thread\/"
-        },"genre": "posts","keywords": "Java","wordcount":  5147 ,
+        },"genre": "posts","keywords": "Java","wordcount":  5880 ,
         "url": "http:\/\/example.org\/posts\/interview-java-thread\/","datePublished": "2024-02-10T23:53:56+08:00","dateModified": "2024-02-10T23:53:56+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -145,8 +145,8 @@
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Interview Java Thread</h1><div class="post-meta">
             <div class="post-meta-line">
                 </div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-02-10">2024-02-10</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;5147 words&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;11 minutes&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-02-10">2024-02-10</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;5880 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;12 minutes&nbsp;</div>
         </div><div class="featured-image"><img
         class="lazyload"
         src="/svg/loading.min.svg"
@@ -171,6 +171,7 @@
         <li><a href="#锁">锁</a></li>
         <li><a href="#synchronized">synchronized</a></li>
         <li><a href="#reentrantlock">ReentrantLock</a></li>
+        <li><a href="#volatile"><strong>volatile</strong></a></li>
       </ul>
     </li>
   </ul>
@@ -559,6 +560,61 @@
 <li>
 <p><strong>Condition：</strong> 提供了类似 <code>Object.wait()</code> 和 <code>Object.notify()</code> 的条件变量，允许线程精确地等待或唤醒。</p>
 </li>
+</ol>
+<h3 id="volatile"><strong>volatile</strong></h3>
+<p><code>volatile</code> 是 Java 的一个关键字，用来确保将变量的更新操作通知到其他线程。在访问 <code>volatile</code> 变量时不会执行加锁操作，因此也就不会使执行线程阻塞，因此 <code>volatile</code> 变量是一种比 <code>synchronized</code>  关键字更轻量级的同步机制。</p>
+<p><strong>特性：</strong></p>
+<ol>
+<li>
+<p><strong>可见性：</strong> 当一个线程修改了 <code>volatile</code> 变量的值，其他线程能够立即看到这个变化。</p>
+</li>
+<li>
+<p><strong>禁止指令重排：</strong> <code>volatile</code> 修饰的变量的读写操作不能被重排序，保证了操作的原子性。</p>
+</li>
+</ol>
+<p><strong>原理：</strong></p>
+<p><code>volatile</code> 的原理涉及到主内存与工作内存之间的交互。在Java中，每个线程都有自己的工作内存，线程对变量的操作首先在工作内存中进行，然后通过主内存来实现可见性和禁止指令重排序。</p>
+<ol>
+<li>
+<p><strong>可见性：</strong> 当一个线程写入一个 <code>volatile</code> 变量时，它会将该变量的值刷新到主内存。其他线程读取这个变量时，会从主内存中获取最新的值，而不是使用自己的工作内存中的缓存。这确保了对 <code>volatile</code> 变量的写操作对其他线程是可见的。</p>
+</li>
+<li>
+<p><strong>禁止指令重排：</strong> <code>volatile</code> 通过禁止特定类型的指令重排序来确保一些操作的执行顺序。在读取和写入 <code>volatile</code> 变量的操作前后，会插入内存屏障，防止指令重排序。</p>
+</li>
+</ol>
+<p><strong>使用场景：</strong></p>
+<ol>
+<li>
+<p><strong>状态标志：</strong> 多线程协同工作时，通过改变一个变量的状态来通知其他线程，<code>volatile</code> 可以确保状态的及时可见性。</p>
+</li>
+<li>
+<p><strong>双重检查锁定：</strong> 在单例模式中，使用 <code>volatile</code> 可以确保在多线程环境中正确地初始化单例对象。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Singleton</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// volatile 确保了在 instance 被初始化时，其他线程能够立即看到这个变化。</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kd">volatile</span><span class="w"> </span><span class="n">Singleton</span><span class="w"> </span><span class="n">instance</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="nf">Singleton</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c1">// 私有构造函数，防止外部实例化</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="n">Singleton</span><span class="w"> </span><span class="nf">getInstance</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">instance</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="kd">synchronized</span><span class="w"> </span><span class="p">(</span><span class="n">Singleton</span><span class="p">.</span><span class="na">class</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="c1">// 再次检查，确保在同步块内对象仍未被初始化</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">instance</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                    </span><span class="n">instance</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Singleton</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">instance</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></div></li>
+</ol>
+<p>使用 <code>volatile</code> 必须同时满足下面两个条件才能保证在并发环境的线程安全：</p>
+<ol>
+<li><strong>对变量的写操作不依赖于当前值</strong>（比如 <code>i++</code>），或者说是单纯的变量赋值（<code>boolean flag = true</code>）。</li>
+<li>不同的 <code>volatile</code> 变量之间不能互相依赖。只有在状态真正独立于程序内其他内容时才能使用 <code>volatile</code>。</li>
 </ol>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
