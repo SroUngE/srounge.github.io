@@ -27,7 +27,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/example.org\/posts\/interview-java-thread\/"
-        },"genre": "posts","keywords": "Java","wordcount":  8079 ,
+        },"genre": "posts","keywords": "Java","wordcount":  9965 ,
         "url": "http:\/\/example.org\/posts\/interview-java-thread\/","datePublished": "2024-02-10T23:53:56+08:00","dateModified": "2024-02-10T23:53:56+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -145,8 +145,8 @@
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Interview Java Thread</h1><div class="post-meta">
             <div class="post-meta-line">
                 </div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-02-10">2024-02-10</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;8079 words&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;17 minutes&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-02-10">2024-02-10</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;9965 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;20 minutes&nbsp;</div>
         </div><div class="featured-image"><img
         class="lazyload"
         src="/svg/loading.min.svg"
@@ -176,6 +176,9 @@
         <li><a href="#countdownlatch">CountDownLatch</a></li>
         <li><a href="#cyclicbarrier">CyclicBarrier</a></li>
         <li><a href="#semaphore">Semaphore</a></li>
+        <li><a href="#线程池">线程池</a></li>
+        <li><a href="#阻塞队列">阻塞队列</a></li>
+        <li><a href="#拒绝策略">拒绝策略</a></li>
       </ul>
     </li>
   </ul>
@@ -835,6 +838,101 @@
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
 </span></span></span></code></pre></div><p>在这个例子中，主线程创建了多个子线程，并传递了一个 <code>Semaphore</code>，每个子线程在执行任务前会先尝试获取许可证，如果许可证不足则会被阻塞。线程执行完任务后释放许可证，其他等待的线程就有机会获取许可证，从而实现并发访问的控制。</p>
+<h3 id="线程池">线程池</h3>
+<p>Java中的线程池是一种用于管理和复用线程的机制。它的主要特点为：<strong>线程复用，控制线程并发数，管理线程</strong></p>
+<p><strong>原理：</strong>
+每一个 <code>Thread</code> 的类都有一个 <code>start()</code> 方法。我们可以继承重写 <code>Thread</code> 类，在其 <code>start()</code> 方法中不断循环调用传递过来的<code>Runnable</code>对象来实现线程的复用。 这就是线程池的实现原理。循环方法中不断获取 <code>Runnable</code> 是用 <code>Queue</code> 实现的，在获取下一个 <code>Runnable</code> 之前可以是阻塞的。</p>
+<p><strong>组成：</strong></p>
+<p>一个典型的线程池通常包含以下四个主要组成部分：</p>
+<ol>
+<li>
+<p><strong>任务队列（Task Queue）：</strong> 用于存储等待执行的任务。任务可以在队列中等待，直到线程池中的线程准备好执行它们。</p>
+</li>
+<li>
+<p><strong>线程池管理器（Thread Pool Manager）：</strong> 负责线程的创建、销毁和管理。它维护核心线程池和最大线程池的大小，根据需要动态地调整线程数量。</p>
+</li>
+<li>
+<p><strong>工作线程（Worker Threads）：</strong> 线程池中的线程。这些线程从任务队列中获取任务，并执行任务的run方法。线程池中的线程可以是核心线程（保持活动状态，即使没有任务执行）或非核心线程（在需要时创建，但在空闲时可能会被回收）。</p>
+</li>
+<li>
+<p><strong>任务（Tasks）：</strong> 需要执行的工作单元。可以通过实现Runnable接口或Callable接口来表示任务。线程池负责执行这些任务。</p>
+</li>
+</ol>
+<p><strong>实现：</strong></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://s2.loli.net/2024/02/24/TfzK1E7M25yG3th.png"
+        data-srcset="https://s2.loli.net/2024/02/24/TfzK1E7M25yG3th.png, https://s2.loli.net/2024/02/24/TfzK1E7M25yG3th.png 1.5x, https://s2.loli.net/2024/02/24/TfzK1E7M25yG3th.png 2x"
+        data-sizes="auto"
+        alt="https://s2.loli.net/2024/02/24/TfzK1E7M25yG3th.png"
+        title="https://s2.loli.net/2024/02/24/TfzK1E7M25yG3th.png" /></p>
+<p><code>ThreadPoolExecutor</code> 的构造方法如下：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="nf">ThreadPoolExecutor</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">corePoolSize</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                          </span><span class="kt">int</span><span class="w"> </span><span class="n">maximumPoolSize</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                          </span><span class="kt">long</span><span class="w"> </span><span class="n">keepAliveTime</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                          </span><span class="n">TimeUnit</span><span class="w"> </span><span class="n">unit</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                          </span><span class="n">BlockingQueue</span><span class="o">&lt;</span><span class="n">Runnable</span><span class="o">&gt;</span><span class="w"> </span><span class="n">workQueue</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                          </span><span class="n">ThreadFactory</span><span class="w"> </span><span class="n">threadFactory</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                          </span><span class="n">RejectedExecutionHandler</span><span class="w"> </span><span class="n">handler</span><span class="p">)</span><span class="w">
+</span></span></span></code></pre></div><ol>
+<li><strong>核心线程数 (<code>corePoolSize</code>)：</strong> 保持活动的线程数量。</li>
+<li><strong>最大线程数 (<code>maximumPoolSize</code>)：</strong> 允许的最大线程数量。</li>
+<li><strong>线程的闲置超时时间 (<code>keepAliveTime</code>)：</strong> 当线程数量超过核心线程数时，多余的空闲线程等待新任务的最长时间。</li>
+<li><strong>时间单位 (<code>unit</code>)：</strong> 用于指定超时时间的单位。</li>
+<li><strong>任务队列 (<code>workQueue</code>)：</strong> 存储等待执行的任务的队列。</li>
+<li><strong>线程工厂 (<code>threadFactory</code>)：</strong> 创建新线程的工厂。一般用默认的就行。</li>
+<li><strong>拒绝策略 (<code>handler</code>)：</strong> 当线程池饱和且无法处理新任务时的处理方式。</li>
+</ol>
+<p><strong>工作流程：</strong></p>
+<ol>
+<li>
+<p><strong>任务提交：</strong> 客户端提交任务给线程池。</p>
+</li>
+<li>
+<p><strong>核心线程处理：</strong> 尝试使用核心线程处理任务。</p>
+</li>
+<li>
+<p><strong>任务队列：</strong> 若核心线程忙碌或已满，任务进入队列等待。</p>
+</li>
+<li>
+<p><strong>非核心线程处理：</strong> 若队列已满，创建非核心线程处理任务。</p>
+</li>
+<li>
+<p><strong>拒绝策略：</strong> 若线程达到最大数且队列满，按照设定的拒绝策略处理。</p>
+</li>
+<li>
+<p><strong>任务执行：</strong> 被选中的线程从队列中取任务执行，执行完可能返回池等待下个任务或被销毁。</p>
+</li>
+<li>
+<p>**线程超时处理：**针对非核心线程，当它们闲置超过设定的时间，线程会被终止。</p>
+</li>
+</ol>
+<h3 id="阻塞队列">阻塞队列</h3>
+<p>Java中有几种常见的阻塞队列，它们适用于不同的场景。以下是一些常见的阻塞队列及其特点：</p>
+<ol>
+<li><strong>LinkedBlockingQueue：</strong> 基于链表实现的阻塞队列，容量可以是有界的或无界的。 <code>LinkedBlockingQueue</code> 对于生产者端和消费者端分别<strong>采用了独立的锁来控制数据同步</strong>，这也意味着在高并发的情况下生产者和消费者可以并行地操作队列中的数据，以此来提高整个队列的并发性能。</li>
+<li><strong>ArrayBlockingQueue：</strong> 基于数组实现的有界阻塞队列。适用于<strong>固定大小</strong>的线程池，可以控制线程数和任务的并发度。</li>
+<li><strong>PriorityBlockingQueue：</strong> 是一个<strong>支持优先级</strong>的无界阻塞队列。元素根据它们的自然顺序或者被提供的比较器顺序被插入队列。适用于需要按照优先级顺序处理任务的场景。需要注意的是不能保证同优先级元素的顺序。</li>
+<li><strong>DelayQueue：</strong> 是一个支持延迟获取的无界阻塞队列。队列中的元素必须实现 <code>Delayed</code> 接口，在创建元素时可以指定多久才能从队列中获取当前元素。只有在延迟期满时才能从队列中提取元素。适用于按照延迟时间执行任务的场景，比如缓存失效，定时任务调度。</li>
+<li><strong>SynchronousQueue：</strong> 一个<strong>没有存储元素</strong>的阻塞队列。每一个 put 操作必须等待一个 take 操作，否则不能继续添加元素。适用于直接传递任务的场景。</li>
+</ol>
+<h3 id="拒绝策略">拒绝策略</h3>
+<p>拒绝策略是在线程池饱和且无法处理新任务时，决定如何拒绝新任务的一种策略。Java中的<code>ThreadPoolExecutor</code>提供了几种内置的拒绝策略，也支持自定义拒绝策略。以下是一些常见的拒绝策略及其适用场景：</p>
+<ol>
+<li>
+<p><strong>AbortPolicy（默认）：</strong> 抛出<code>RejectedExecutionException</code>异常。适用于希望立即知道线程池无法处理新任务的场景，通常是在任务队列已满且线程已达到最大数量时。</p>
+</li>
+<li>
+<p><strong>CallerRunsPolicy：</strong> 由提交任务的线程执行该任务。适用于希望任务直接由调用者线程执行而不是放入队列的场景，可以减缓任务提交速度。</p>
+</li>
+<li>
+<p><strong>DiscardOldestPolicy：</strong> 丢弃队列中等待时间最长的任务，然后尝试重新提交新任务。适用于希望保留最新任务而丢弃旧任务的场景。</p>
+</li>
+<li>
+<p><strong>DiscardPolicy：</strong> 直接丢弃无法处理的新任务，不抛出异常。适用于希望简单丢弃无法处理的任务而不抛出异常的场景。</p>
+</li>
+</ol>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
