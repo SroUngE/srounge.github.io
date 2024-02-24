@@ -4,12 +4,22 @@
         <link>http://example.org/tags/algorithm/</link>
         <description>Algorithm - Tag - Rong&#39;s Blog</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>977683159@qq.com (SroUngE)</managingEditor>
-            <webMaster>977683159@qq.com (SroUngE)</webMaster><lastBuildDate>Fri, 12 Jan 2024 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://example.org/tags/algorithm/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>977683159@qq.com (SroUngE)</webMaster><lastBuildDate>Sat, 24 Feb 2024 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://example.org/tags/algorithm/" rel="self" type="application/rss+xml" /><item>
+    <title>排序：快速排序</title>
+    <link>http://example.org/posts/sort-quick-sort/</link>
+    <pubDate>Sat, 24 Feb 2024 00:00:00 &#43;0000</pubDate>
+    <author>SroUngE</author>
+    <guid>http://example.org/posts/sort-quick-sort/</guid>
+    <description><![CDATA[<div class="featured-image">
+                <img src="https://s2.loli.net/2024/01/23/3qPWMLs9UBogi7A.png" referrerpolicy="no-referrer">
+            </div>思路 快速排序是一种 分治 的排序算法。它将一个数组分成两个子数组，将两部分独立地排序。 快速排序与归并排序是互补的：归并排序将数组分成两个子数组分]]></description>
+</item>
+<item>
     <title>排序：归并排序</title>
-    <link>http://example.org/posts/java-sort-merge-sort/</link>
+    <link>http://example.org/posts/sort-merge-sort/</link>
     <pubDate>Fri, 12 Jan 2024 00:00:00 &#43;0000</pubDate>
     <author>SroUngE</author>
-    <guid>http://example.org/posts/java-sort-merge-sort/</guid>
+    <guid>http://example.org/posts/sort-merge-sort/</guid>
     <description><![CDATA[<div class="featured-image">
                 <img src="https://s2.loli.net/2024/01/23/3qPWMLs9UBogi7A.png" referrerpolicy="no-referrer">
             </div>归并排序的算法实现，基于《算法》的java版本，包括自顶向下和自底向上的两种。]]></description>

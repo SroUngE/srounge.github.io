@@ -4,9 +4,19 @@
         <link>http://example.org/</link>
         <description>This is my cool site</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>977683159@qq.com (SroUngE)</managingEditor>
-            <webMaster>977683159@qq.com (SroUngE)</webMaster><lastBuildDate>Sat, 10 Feb 2024 23:53:56 &#43;0800</lastBuildDate>
+            <webMaster>977683159@qq.com (SroUngE)</webMaster><lastBuildDate>Sat, 24 Feb 2024 00:00:00 &#43;0000</lastBuildDate>
             <atom:link href="http://example.org/index.xml" rel="self" type="application/rss+xml" />
         <item>
+    <title>排序：快速排序</title>
+    <link>http://example.org/posts/sort-quick-sort/</link>
+    <pubDate>Sat, 24 Feb 2024 00:00:00 &#43;0000</pubDate>
+    <author>SroUngE</author>
+    <guid>http://example.org/posts/sort-quick-sort/</guid>
+    <description><![CDATA[<div class="featured-image">
+                <img src="https://s2.loli.net/2024/01/23/3qPWMLs9UBogi7A.png" referrerpolicy="no-referrer">
+            </div>思路 快速排序是一种 分治 的排序算法。它将一个数组分成两个子数组，将两部分独立地排序。 快速排序与归并排序是互补的：归并排序将数组分成两个子数组分]]></description>
+</item>
+<item>
     <title>Interview Java Thread</title>
     <link>http://example.org/posts/interview-java-thread/</link>
     <pubDate>Sat, 10 Feb 2024 23:53:56 &#43;0800</pubDate>
@@ -58,10 +68,10 @@
 </item>
 <item>
     <title>排序：归并排序</title>
-    <link>http://example.org/posts/java-sort-merge-sort/</link>
+    <link>http://example.org/posts/sort-merge-sort/</link>
     <pubDate>Fri, 12 Jan 2024 00:00:00 &#43;0000</pubDate>
     <author>SroUngE</author>
-    <guid>http://example.org/posts/java-sort-merge-sort/</guid>
+    <guid>http://example.org/posts/sort-merge-sort/</guid>
     <description><![CDATA[<div class="featured-image">
                 <img src="https://s2.loli.net/2024/01/23/3qPWMLs9UBogi7A.png" referrerpolicy="no-referrer">
             </div>归并排序的算法实现，基于《算法》的java版本，包括自顶向下和自底向上的两种。]]></description>
@@ -95,16 +105,6 @@
     <description><![CDATA[<div class="featured-image">
                 <img src="https://s2.loli.net/2024/01/23/FdJWU6IpNZGfACv.png" referrerpolicy="no-referrer">
             </div>一个关于Java泛型的简短的研究调查和思考，依据官方的参考资料，试图理解泛型存在的意义，以及它的最佳实践。]]></description>
-</item>
-<item>
-    <title>个人博客(三): Hugo Loveit 自定义Markdown文章样式</title>
-    <link>http://example.org/posts/hugo-loveit-markdown/</link>
-    <pubDate>Sat, 26 Aug 2023 00:00:00 &#43;0000</pubDate>
-    <author>SroUngE</author>
-    <guid>http://example.org/posts/hugo-loveit-markdown/</guid>
-    <description><![CDATA[<div class="featured-image">
-                <img src="https://s2.loli.net/2023/05/14/vWZJg25R1CVkXc6.png" referrerpolicy="no-referrer">
-            </div>简单地自定义Loveit主题的Markdown文章样式。]]></description>
 </item>
 </channel>
 </rss>
