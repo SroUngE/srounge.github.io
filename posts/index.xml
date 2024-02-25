@@ -4,7 +4,17 @@
         <link>http://example.org/posts/</link>
         <description>All Posts | Rong&#39;s Blog</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>977683159@qq.com (SroUngE)</managingEditor>
-            <webMaster>977683159@qq.com (SroUngE)</webMaster><lastBuildDate>Sat, 24 Feb 2024 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://example.org/posts/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>977683159@qq.com (SroUngE)</webMaster><lastBuildDate>Sun, 25 Feb 2024 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://example.org/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>排序：堆排序</title>
+    <link>http://example.org/posts/sort-heap-sort/</link>
+    <pubDate>Sun, 25 Feb 2024 00:00:00 &#43;0000</pubDate>
+    <author>SroUngE</author>
+    <guid>http://example.org/posts/sort-heap-sort/</guid>
+    <description><![CDATA[<div class="featured-image">
+                <img src="https://s2.loli.net/2024/01/23/3qPWMLs9UBogi7A.png" referrerpolicy="no-referrer">
+            </div>代码 public int[] sortArray(int[] arr) { int len = arr.length; buildHeap(arr, len); for (int i = len - 1; i &gt; 0; i--) { swap(arr, 0, i); len--; heapify(arr, 0, len); } return arr; } private void buildHeap(int[] arr, int len) { for (int i = (len / 2 - 1); i &gt;= 0; i--) { heapify(arr, i, len); } } private void heapify(int[] arr, int i, int len)]]></description>
+</item>
+<item>
     <title>排序：快速排序</title>
     <link>http://example.org/posts/sort-quick-sort/</link>
     <pubDate>Sat, 24 Feb 2024 00:00:00 &#43;0000</pubDate>
@@ -93,16 +103,6 @@
     <description><![CDATA[<div class="featured-image">
                 <img src="https://s2.loli.net/2024/01/23/FdJWU6IpNZGfACv.png" referrerpolicy="no-referrer">
             </div>翻译《Java Generics and Collections》这本书的第8章节Effective Generics，其中介绍了一些关于如何在代码实践中有效使用泛型的建议。]]></description>
-</item>
-<item>
-    <title>Java 泛型的深入思考：从历史起源到最佳实践</title>
-    <link>http://example.org/posts/java-generic/</link>
-    <pubDate>Wed, 01 Nov 2023 00:00:00 &#43;0000</pubDate>
-    <author>SroUngE</author>
-    <guid>http://example.org/posts/java-generic/</guid>
-    <description><![CDATA[<div class="featured-image">
-                <img src="https://s2.loli.net/2024/01/23/FdJWU6IpNZGfACv.png" referrerpolicy="no-referrer">
-            </div>一个关于Java泛型的简短的研究调查和思考，依据官方的参考资料，试图理解泛型存在的意义，以及它的最佳实践。]]></description>
 </item>
 </channel>
 </rss>
