@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>Interview Spring - Rong&#39;s Blog</title><meta name="Description" content="This is my cool site"><meta property="og:title" content="Interview Spring" />
+<meta property="og:description" content="Spring Spring框架是一个开源的Java应用程序框架，旨在简化企业级应用的开发。它提供了全面的基础设施支持，包括依赖注入、面向切面编程、事务管" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://example.org/posts/interview-spring/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2024-02-28T00:00:00+00:00" />
+<meta property="article:modified_time" content="2024-02-28T00:00:00+00:00" /><meta property="og:site_name" content="My cool site" />
+
+<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Interview Spring"/>
+<meta name="twitter:description" content="Spring Spring框架是一个开源的Java应用程序框架，旨在简化企业级应用的开发。它提供了全面的基础设施支持，包括依赖注入、面向切面编程、事务管"/>
+<meta name="application-name" content="My cool site">
+<meta name="apple-mobile-web-app-title" content="My cool site"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://example.org/posts/interview-spring/" /><link rel="prev" href="http://example.org/posts/sort-heap-sort/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Interview Spring",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/example.org\/posts\/interview-spring\/"
+        },"genre": "posts","wordcount":  1769 ,
+        "url": "http:\/\/example.org\/posts\/interview-spring\/","datePublished": "2024-02-28T00:00:00+00:00","dateModified": "2024-02-28T00:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "SroUngE"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Rong&#39;s Blog">Rong&#39;s Blog</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/" title="Posts"><i class="fa-solid fa-book" style="color: #2f4154;"></i> Posts </a><a class="menu-item" href="/categories/" title="Categories"><i class="fa-solid fa-folder" style="color: #2f4154;"></i> Categories </a><a class="menu-item" href="/about/" title="About"><i class="fa-solid fa-user" style="color: #2f4154;"></i> About </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Rong&#39;s Blog">Rong&#39;s Blog</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="Posts"><i class="fa-solid fa-book" style="color: #2f4154;"></i>Posts</a><a class="menu-item" href="/categories/" title="Categories"><i class="fa-solid fa-folder" style="color: #2f4154;"></i>Categories</a><a class="menu-item" href="/about/" title="About"><i class="fa-solid fa-user" style="color: #2f4154;"></i>About</a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><head>
+    <style>
+        .banner {
+            position: relative;
+            overflow: hidden;
+            height: 60vh;
+            width: 100%;
+            background-image: linear-gradient(rgb(75, 0, 155), #f8f8f8);
+        
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            line-height: 0.9;
+        }
+
+        .title {
+            margin: 0 auto;
+            padding: 0 2rem;
+            text-align: center;
+            letter-spacing: -0.01em;
+            color: rgb(255, 255, 255);
+            font-weight: 800;
+            font-size: 2.75rem;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI";
+            opacity: .9;
+
+            @media screen and (min-width:480px) {
+                font-size: 3.25rem;
+            }
+
+            @media screen and (min-width:760px) {
+                font-size: 4.25rem;
+            }
+
+            @media screen and (min-width: 1440px) {
+                font-size: 5.375rem;
+            } 
+   
+        }
+    </style>
+</head>
+<div class="banner"> 
+    <div class="title">
+        One is not born, but rather becomes, a woman.
+    </div>
+</div>
+<main class="main">                             
+                <div class="container"><div class="toc animate__animated animate__fadeInRight" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Interview Spring</h1><div class="post-meta">
+            <div class="post-meta-line">
+                </div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-02-28">2024-02-28</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;1769 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;4 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#spring">Spring</a></li>
+        <li><a href="#依赖注入di控制反转ioc">依赖注入（DI）、控制反转（IoC）</a></li>
+        <li><a href="#spring的依赖注入">Spring的依赖注入</a></li>
+        <li><a href="#spring的ioc容器">Spring的IoC容器</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h3 id="spring">Spring</h3>
+<p>Spring框架是一个开源的Java应用程序框架，旨在简化企业级应用的开发。它提供了全面的基础设施支持，包括依赖注入、面向切面编程、事务管理等功能，有助于提高应用程序的可维护性、可扩展性和灵活性。</p>
+<p>使用Spring框架带来以下好处：</p>
+<ol>
+<li><strong>简化开发：</strong> Spring提供了丰富的功能和组件，可以减少样板代码，简化企业级应用的开发过程。</li>
+<li><strong>依赖注入：</strong> Spring支持依赖注入，通过IOC容器管理对象之间的依赖关系，降低了组件之间的耦合性。</li>
+<li><strong>面向切面编程（AOP）：</strong> 允许将横切关注点（如日志记录、事务管理）从业务逻辑中分离出来，提高代码的模块化和可维护性。</li>
+<li><strong>事务管理：</strong> 提供声明式事务管理，简化了处理数据库事务的复杂性，确保数据一致性。</li>
+<li><strong>模块化开发：</strong> 使用Spring可以构建模块化的应用，使得每个模块更易于测试、维护和替换。</li>
+<li><strong>集成支持：</strong> 提供对各种数据源、消息队列、缓存等的集成支持，使得整合外部服务变得更加容易。</li>
+<li><strong>测试支持：</strong> Spring框架鼓励编写可测试的代码，提供了对单元测试和集成测试的支持。</li>
+</ol>
+<h3 id="依赖注入di控制反转ioc">依赖注入（DI）、控制反转（IoC）</h3>
+<p>依赖注入（Dependency Injection，DI）是一种设计模式，它的目标是减少组件之间的耦合度。在依赖注入中，一个对象并不负责获取或创建它依赖的对象，而是由外部容器负责将依赖的对象注入（传递）给客户端。这样，对象之间的关系由外部容器管理，而不是在对象内部直接硬编码。</p>
+<p>控制反转（Inversion of Control，IoC）是一种更广泛的概念，依赖注入是IoC的一种具体实现方式。在IoC中，对象的控制权发生了反转，不再由对象自身负责管理其依赖和执行流程，而是由外部容器（通常是框架）来控制。这种反转让应用的架构更加灵活、可扩展，同时降低了组件之间的紧耦合。</p>
+<blockquote>
+<p>除了依赖注入，IoC 还有另外一种主要的实现方式，即服务定位（Service Locator）。在服务定位中，对象通过向服务定位器（Service Locator）请求所需的服务或依赖，而不是直接持有对这些服务或依赖的引用。服务定位器充当中介，负责定位和提供所需的服务。这种方式在某些情况下可以实现控制反转，但相对于依赖注入，它通常更容易导致代码紧密耦合，难以进行单元测试，以及难以理解和维护。</p>
+</blockquote>
+<h3 id="spring的依赖注入">Spring的依赖注入</h3>
+<p>Spring框架实现依赖注入主要通过以下方式：</p>
+<ol>
+<li><strong>构造器注入：</strong> Spring通过构造函数将依赖注入到目标对象。在目标类的构造函数中声明需要的依赖，Spring容器会负责在实例化目标对象时提供这些依赖。</li>
+<li><strong>Setter注入：</strong> 通过setter方法将依赖注入到目标对象。Spring容器在实例化对象后，调用相应的setter方法为对象设置依赖。</li>
+<li><strong>接口注入：</strong> 通过实现接口并在接口中定义注入方法，Spring容器调用这个方法进行依赖注入。</li>
+</ol>
+<h3 id="spring的ioc容器">Spring的IoC容器</h3>
+<p>Spring的IoC容器实现了通过IoC容器管理对象的生命周期和依赖关系，将对象的创建、初始化、销毁等控制权交给容器，使得开发者能够更专注于业务逻辑，而不必过多关注对象的创建和管理。IoC容器根据配置信息，实例化和管理bean，同时负责注入依赖关系，从而实现了控制反转。</p>
+<ol>
+<li><strong><code>org.springframework.beans</code> 包：</strong> 这个包提供了关于bean的基本功能，包括<code>BeanWrapper</code>（用于包装bean实例）、<code>PropertyValue</code>（用于封装属性值）等用于 bean 处理的基础工具类。</li>
+<li><strong><code>org.springframework.beans.factory</code> 包：</strong> 在Spring框架中，这个包扩展了<code>org.springframework.beans</code> 包，提供了关于bean工厂的更多功能。核心接口是 <code>BeanFactory</code>，定义了IoC容器的基本功能，包括获取bean、检查bean是否存在等。</li>
+<li><strong><code>org.springframework.beans.factory.config</code> 包：</strong> 这个包包含了与 bean 定义和配置相关的核心功能。主要的接口是 <code>BeanDefinition</code>，它描述了 bean 的定义，包括类名、作用域、属性值等。其他与 bean 配置和定义相关的接口和类也位于这个包中，如 <code>ConfigurableBeanFactory</code>、<code>BeanPostProcessor</code> 等。</li>
+<li><strong><code>org.springframework.context</code> 包：</strong> 这个包提供了应用程序级别的上下文支持，包括应用程序事件、国际化、资源加载等。<code>ApplicationContext</code> 接口是这个包的核心，它扩展了 <code>BeanFactory</code> 接口，并提供了更多的功能，如AOP集成、事件传播、国际化等。<code>WebApplicationContext</code> 是 <code>ApplicationContext</code> 的子接口，专门用于Web应用程序。</li>
+</ol>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>
+                    
+                </span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        
+    </div>
+
+    <div class="post-nav"><a href="/posts/sort-heap-sort/" class="prev" rel="prev" title="排序：堆排序"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>排序：堆排序</a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.122.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2022 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://srounge.github.io/" target="_blank">SroUngE</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/css/lightgallery-bundle.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/lightgallery.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/thumbnail/lg-thumbnail.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/zoom/lg-zoom.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"lightgallery":true,"search":{"highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

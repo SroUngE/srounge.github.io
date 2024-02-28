@@ -4,7 +4,15 @@
         <link>http://example.org/posts/</link>
         <description>All Posts | Rong&#39;s Blog</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>977683159@qq.com (SroUngE)</managingEditor>
-            <webMaster>977683159@qq.com (SroUngE)</webMaster><lastBuildDate>Sun, 25 Feb 2024 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://example.org/posts/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>977683159@qq.com (SroUngE)</webMaster><lastBuildDate>Wed, 28 Feb 2024 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://example.org/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>Interview Spring</title>
+    <link>http://example.org/posts/interview-spring/</link>
+    <pubDate>Wed, 28 Feb 2024 00:00:00 &#43;0000</pubDate>
+    <author>SroUngE</author>
+    <guid>http://example.org/posts/interview-spring/</guid>
+    <description><![CDATA[Spring Spring框架是一个开源的Java应用程序框架，旨在简化企业级应用的开发。它提供了全面的基础设施支持，包括依赖注入、面向切面编程、事务管]]></description>
+</item>
+<item>
     <title>排序：堆排序</title>
     <link>http://example.org/posts/sort-heap-sort/</link>
     <pubDate>Sun, 25 Feb 2024 00:00:00 &#43;0000</pubDate>
@@ -93,16 +101,6 @@
     <description><![CDATA[<div class="featured-image">
                 <img src="https://s2.loli.net/2023/12/10/HA5NOofS8BcRxI7.png" referrerpolicy="no-referrer">
             </div>把React项目整合到Springboot项目里，使得最终只有一个jar包，包含前端和后端的所有构建]]></description>
-</item>
-<item>
-    <title>[翻译]Java高效泛型——Effective Generics</title>
-    <link>http://example.org/posts/java-effective-generics-chinese/</link>
-    <pubDate>Sun, 26 Nov 2023 00:00:00 &#43;0000</pubDate>
-    <author>SroUngE</author>
-    <guid>http://example.org/posts/java-effective-generics-chinese/</guid>
-    <description><![CDATA[<div class="featured-image">
-                <img src="https://s2.loli.net/2024/01/23/FdJWU6IpNZGfACv.png" referrerpolicy="no-referrer">
-            </div>翻译《Java Generics and Collections》这本书的第8章节Effective Generics，其中介绍了一些关于如何在代码实践中有效使用泛型的建议。]]></description>
 </item>
 </channel>
 </rss>
