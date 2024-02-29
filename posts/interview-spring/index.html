@@ -27,7 +27,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/example.org\/posts\/interview-spring\/"
-        },"genre": "posts","wordcount":  1769 ,
+        },"genre": "posts","wordcount":  2342 ,
         "url": "http:\/\/example.org\/posts\/interview-spring\/","datePublished": "2024-02-28T00:00:00+00:00","dateModified": "2024-02-28T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -145,8 +145,8 @@
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Interview Spring</h1><div class="post-meta">
             <div class="post-meta-line">
                 </div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-02-28">2024-02-28</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;1769 words&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;4 minutes&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-02-28">2024-02-28</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;2342 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;5 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -160,6 +160,7 @@
         <li><a href="#依赖注入di控制反转ioc">依赖注入（DI）、控制反转（IoC）</a></li>
         <li><a href="#spring的依赖注入">Spring的依赖注入</a></li>
         <li><a href="#spring的ioc容器">Spring的IoC容器</a></li>
+        <li><a href="#beanfactory-和-applicationcontext">BeanFactory 和 ApplicationContext</a></li>
       </ul>
     </li>
   </ul>
@@ -196,6 +197,49 @@
 <li><strong><code>org.springframework.beans.factory</code> 包：</strong> 在Spring框架中，这个包扩展了<code>org.springframework.beans</code> 包，提供了关于bean工厂的更多功能。核心接口是 <code>BeanFactory</code>，定义了IoC容器的基本功能，包括获取bean、检查bean是否存在等。</li>
 <li><strong><code>org.springframework.beans.factory.config</code> 包：</strong> 这个包包含了与 bean 定义和配置相关的核心功能。主要的接口是 <code>BeanDefinition</code>，它描述了 bean 的定义，包括类名、作用域、属性值等。其他与 bean 配置和定义相关的接口和类也位于这个包中，如 <code>ConfigurableBeanFactory</code>、<code>BeanPostProcessor</code> 等。</li>
 <li><strong><code>org.springframework.context</code> 包：</strong> 这个包提供了应用程序级别的上下文支持，包括应用程序事件、国际化、资源加载等。<code>ApplicationContext</code> 接口是这个包的核心，它扩展了 <code>BeanFactory</code> 接口，并提供了更多的功能，如AOP集成、事件传播、国际化等。<code>WebApplicationContext</code> 是 <code>ApplicationContext</code> 的子接口，专门用于Web应用程序。</li>
+</ol>
+<h3 id="beanfactory-和-applicationcontext">BeanFactory 和 ApplicationContext</h3>
+<p><code>BeanFactory</code> 和 <code>ApplicationContext</code> 都是在Spring框架中用于管理和组织Bean（对象）的容器。<code>BeanFactory</code> 是 Spring 框架的基础设施，面向 Spring 本身；<code>ApplicationContext</code> 面向使用Spring 框架的开发者，几乎所有的应用场合我们都直接使用 <code>ApplicationContext</code> 而非底层的 <code>BeanFactory</code>。</p>
+<p>主要区别在于功能和特性：</p>
+<ol>
+<li>
+<p><strong>加载时机：</strong></p>
+<ul>
+<li><code>BeanFactory</code>是延迟加载的，只有在获取Bean时才会进行实例化。</li>
+<li><code>ApplicationContext</code>在容器启动时就进行了实例化和初始化，提前检测和解析Bean。</li>
+</ul>
+</li>
+<li>
+<p><strong>性能：</strong></p>
+<ul>
+<li><code>BeanFactory</code>相对较轻量，适用于资源受限的环境。</li>
+<li><code>ApplicationContext</code>提供了更多的企业级功能，但相对而言更重量级。</li>
+</ul>
+</li>
+<li>
+<p><strong>自动装配：</strong></p>
+<ul>
+<li><code>ApplicationContext</code>具有自动装配的特性，能够更方便地实现依赖注入。</li>
+<li><code>BeanFactory</code>需要手动配置依赖关系。</li>
+</ul>
+</li>
+</ol>
+<p>以下是几种较常见的 <code>ApplicationContext</code> 实现方式：</p>
+<ol>
+<li>
+<p><code>ClassPathXmlApplicationContext</code> ：从 classpath 的 XML 配置文件中读取上下文，并生成上下文定义。应用程序上下文从程序环境变量中</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">ApplicationContext</span><span class="w"> </span><span class="n">context</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ClassPathXmlApplicationContext</span><span class="p">(</span><span class="err">“</span><span class="n">bean</span><span class="p">.</span><span class="na">xml</span><span class="err">”</span><span class="p">);</span><span class="w"> 
+</span></span></span></code></pre></div></li>
+<li>
+<p><code>FileSystemXmlApplicationContext</code> ：由文件系统中的 XML 配置文件读取上下文。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">ApplicationContext</span><span class="w"> </span><span class="n">context</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">FileSystemXmlApplicationContext</span><span class="p">(</span><span class="err">“</span><span class="n">bean</span><span class="p">.</span><span class="na">xml</span><span class="err">”</span><span class="p">);</span><span class="w">
+</span></span></span></code></pre></div></li>
+<li>
+<p><code>XmlWebApplicationContext</code> ：由 Web 应用的 XML 文件读取上下文。</p>
+</li>
+<li>
+<p><code>AnnotationConfigApplicationContext</code> ：(基于 Java 配置启动容器)</p>
+</li>
 </ol>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
