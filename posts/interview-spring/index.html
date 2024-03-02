@@ -27,7 +27,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/example.org\/posts\/interview-spring\/"
-        },"genre": "posts","wordcount":  2342 ,
+        },"genre": "posts","wordcount":  3507 ,
         "url": "http:\/\/example.org\/posts\/interview-spring\/","datePublished": "2024-02-28T00:00:00+00:00","dateModified": "2024-02-28T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -145,8 +145,8 @@
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Interview Spring</h1><div class="post-meta">
             <div class="post-meta-line">
                 </div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-02-28">2024-02-28</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;2342 words&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;5 minutes&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-02-28">2024-02-28</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;3507 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;7 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -161,6 +161,7 @@
         <li><a href="#spring的依赖注入">Spring的依赖注入</a></li>
         <li><a href="#spring的ioc容器">Spring的IoC容器</a></li>
         <li><a href="#beanfactory-和-applicationcontext">BeanFactory 和 ApplicationContext</a></li>
+        <li><a href="#beanpostprocessor-和-beanfactorypostprocessor">BeanPostProcessor 和 BeanFactoryPostProcessor</a></li>
       </ul>
     </li>
   </ul>
@@ -193,52 +194,54 @@
 <h3 id="spring的ioc容器">Spring的IoC容器</h3>
 <p>Spring的IoC容器实现了通过IoC容器管理对象的生命周期和依赖关系，将对象的创建、初始化、销毁等控制权交给容器，使得开发者能够更专注于业务逻辑，而不必过多关注对象的创建和管理。IoC容器根据配置信息，实例化和管理bean，同时负责注入依赖关系，从而实现了控制反转。</p>
 <ol>
-<li><strong><code>org.springframework.beans</code> 包：</strong> 这个包提供了关于bean的基本功能，包括<code>BeanWrapper</code>（用于包装bean实例）、<code>PropertyValue</code>（用于封装属性值）等用于 bean 处理的基础工具类。</li>
-<li><strong><code>org.springframework.beans.factory</code> 包：</strong> 在Spring框架中，这个包扩展了<code>org.springframework.beans</code> 包，提供了关于bean工厂的更多功能。核心接口是 <code>BeanFactory</code>，定义了IoC容器的基本功能，包括获取bean、检查bean是否存在等。</li>
-<li><strong><code>org.springframework.beans.factory.config</code> 包：</strong> 这个包包含了与 bean 定义和配置相关的核心功能。主要的接口是 <code>BeanDefinition</code>，它描述了 bean 的定义，包括类名、作用域、属性值等。其他与 bean 配置和定义相关的接口和类也位于这个包中，如 <code>ConfigurableBeanFactory</code>、<code>BeanPostProcessor</code> 等。</li>
-<li><strong><code>org.springframework.context</code> 包：</strong> 这个包提供了应用程序级别的上下文支持，包括应用程序事件、国际化、资源加载等。<code>ApplicationContext</code> 接口是这个包的核心，它扩展了 <code>BeanFactory</code> 接口，并提供了更多的功能，如AOP集成、事件传播、国际化等。<code>WebApplicationContext</code> 是 <code>ApplicationContext</code> 的子接口，专门用于Web应用程序。</li>
+<li><strong>org.springframework.beans 包：</strong> 这个包提供了关于bean的基本功能，包括<code>BeanWrapper</code>（用于包装bean实例）、<code>PropertyValue</code>（用于封装属性值）等用于 bean 处理的基础工具类。</li>
+<li><strong>org.springframework.beans.factory 包：</strong> 在Spring框架中，这个包扩展了<code>org.springframework.beans</code> 包，提供了关于bean工厂的更多功能。核心接口是 <code>BeanFactory</code>，定义了IoC容器的基本功能，包括获取bean、检查bean是否存在等。</li>
+<li><strong>org.springframework.beans.factory.config 包：</strong> 这个包包含了与 bean 定义和配置相关的核心功能。主要的接口是 <code>BeanDefinition</code>，它描述了 bean 的定义，包括类名、作用域、属性值等。其他与 bean 配置和定义相关的接口和类也位于这个包中，如 <code>ConfigurableBeanFactory</code>、<code>BeanPostProcessor</code> 等。</li>
+<li><strong>org.springframework.context 包：</strong> 这个包提供了应用程序级别的上下文支持，包括应用程序事件、国际化、资源加载等。<code>ApplicationContext</code> 接口是这个包的核心，它扩展了 <code>BeanFactory</code> 接口，并提供了更多的功能，如AOP集成、事件传播、国际化等。<code>WebApplicationContext</code> 是 <code>ApplicationContext</code> 的子接口，专门用于Web应用程序。</li>
 </ol>
 <h3 id="beanfactory-和-applicationcontext">BeanFactory 和 ApplicationContext</h3>
-<p><code>BeanFactory</code> 和 <code>ApplicationContext</code> 都是在Spring框架中用于管理和组织Bean（对象）的容器。<code>BeanFactory</code> 是 Spring 框架的基础设施，面向 Spring 本身；<code>ApplicationContext</code> 面向使用Spring 框架的开发者，几乎所有的应用场合我们都直接使用 <code>ApplicationContext</code> 而非底层的 <code>BeanFactory</code>。</p>
+<p><code>BeanFactory</code> 和 <code>ApplicationContext</code> 都是在Spring框架中用于管理和组织Bean（对象）的容器。BeanFactory 是 Spring 框架的基础设施，面向 Spring 本身；ApplicationContext 面向使用Spring 框架的开发者，几乎所有的应用场合我们都直接使用 ApplicationContext 而非底层的 BeanFactory。</p>
 <p>主要区别在于功能和特性：</p>
 <ol>
 <li>
-<p><strong>加载时机：</strong></p>
-<ul>
-<li><code>BeanFactory</code>是延迟加载的，只有在获取Bean时才会进行实例化。</li>
-<li><code>ApplicationContext</code>在容器启动时就进行了实例化和初始化，提前检测和解析Bean。</li>
-</ul>
+<p>**加载时机：**BeanFactory 是延迟加载的，只有在获取Bean时才会进行实例化，节省内存。而ApplicationContext 在容器启动时就进行了实例化和初始化，提前检测和解析Bean。</p>
 </li>
 <li>
-<p><strong>性能：</strong></p>
-<ul>
-<li><code>BeanFactory</code>相对较轻量，适用于资源受限的环境。</li>
-<li><code>ApplicationContext</code>提供了更多的企业级功能，但相对而言更重量级。</li>
-</ul>
+<p><strong>功能差异</strong>：ApplicationContext 是 BeanFactory 的子接口，因此它继承了 BeanFactory 的所有功能，包括Bean的获取、类型判断等。但除此之外，ApplicationContext 还提供了许多 BeanFactory 没有的功能，如国际化支持、资源访问、事件传播等。这使得 ApplicationContext 更适合用于开发者的日常开发，因为它提供了更完整的框架功能。</p>
 </li>
 <li>
-<p><strong>自动装配：</strong></p>
-<ul>
-<li><code>ApplicationContext</code>具有自动装配的特性，能够更方便地实现依赖注入。</li>
-<li><code>BeanFactory</code>需要手动配置依赖关系。</li>
-</ul>
+<p>**自动装配：**ApplicationContext 具有自动装配的特性，能够更方便地实现依赖注入。BeanFactory 需要手动配置依赖关系。</p>
 </li>
 </ol>
-<p>以下是几种较常见的 <code>ApplicationContext</code> 实现方式：</p>
+<p>以下是几种较常见的 ApplicationContext 实现方式：</p>
 <ol>
 <li>
-<p><code>ClassPathXmlApplicationContext</code> ：从 classpath 的 XML 配置文件中读取上下文，并生成上下文定义。应用程序上下文从程序环境变量中</p>
+<p>**ClassPathXmlApplicationContext：**从 类路径（classpath）中加载XML配置文件，并创建相应的ApplicationContext 实例。类路径通常指的是包含项目类文件的目录，如<code>src/main/resources</code>目录下的文件。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">ApplicationContext</span><span class="w"> </span><span class="n">context</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ClassPathXmlApplicationContext</span><span class="p">(</span><span class="err">“</span><span class="n">bean</span><span class="p">.</span><span class="na">xml</span><span class="err">”</span><span class="p">);</span><span class="w"> 
 </span></span></span></code></pre></div></li>
 <li>
-<p><code>FileSystemXmlApplicationContext</code> ：由文件系统中的 XML 配置文件读取上下文。</p>
+<p>**FileSystemXmlApplicationContext：**由文件系统中的 XML 配置文件读取上下文。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">ApplicationContext</span><span class="w"> </span><span class="n">context</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">FileSystemXmlApplicationContext</span><span class="p">(</span><span class="err">“</span><span class="n">bean</span><span class="p">.</span><span class="na">xml</span><span class="err">”</span><span class="p">);</span><span class="w">
 </span></span></span></code></pre></div></li>
 <li>
-<p><code>XmlWebApplicationContext</code> ：由 Web 应用的 XML 文件读取上下文。</p>
+<p>**XmlWebApplicationContext：**用于加载Web应用程序的上下文配置文件。在Web应用中，<code>XmlWebApplicationContext</code> 通常被配置为ServletContext监听器，在Web应用启动时自动加载上下文配置文件。配置文件通常位于Web应用的<code>/WEB-INF</code>目录下。</p>
 </li>
 <li>
-<p><code>AnnotationConfigApplicationContext</code> ：(基于 Java 配置启动容器)</p>
+<p>**AnnotationConfigApplicationContext：**用于加载基于Java注解的配置，通常包含了一个或多个<code>@Configuration</code>注解的类，并且可能还包含<code>@Bean</code>、<code>@ComponentScan</code>、<code>@PropertySource</code>等其他注解来进一步配置Spring容器。</p>
+</li>
+</ol>
+<h3 id="beanpostprocessor-和-beanfactorypostprocessor">BeanPostProcessor 和 BeanFactoryPostProcessor</h3>
+<p>在Spring框架中，<code>BeanPostProcessor</code>和<code>BeanFactoryPostProcessor</code>是两个重要的接口，它们用于在Spring容器创建和初始化bean的过程中执行一些自定义的逻辑。这两个接口的主要区别在于它们处理bean的时机。</p>
+<ol>
+<li>
+<p><strong>BeanPostProcessor</strong>：
+<code>BeanPostProcessor</code>接口中的方法允许你在bean的初始化前后进行定制处理。<code>postProcessBeforeInitialization</code>方法在bean的属性设置完成之后、但在bean的自定义初始化方法（如果有的话）之前被调用。<code>postProcessAfterInitialization</code>方法则在bean的自定义初始化方法之后被调用。</p>
+<p>你可以实现这个接口来修改bean的属性、返回代理对象等。例如，Spring AOP就是通过<code>BeanPostProcessor</code>实现的，它在bean初始化后为其添加切面逻辑。</p>
+</li>
+<li>
+<p><strong>BeanFactoryPostProcessor</strong>：
+<code>BeanFactoryPostProcessor</code>接口允许你在Spring容器中的所有bean定义加载完成，但bean实例还未创建之前进行后处理。它的<code>postProcessBeanFactory</code>方法会在这个阶段被调用。</p>
+<p>通常，<code>BeanFactoryPostProcessor</code>用于修改或添加bean定义，或者在bean定义加载之后执行一些初始化逻辑。例如，<code>PropertyPlaceholderConfigurer</code>就是一个<code>BeanFactoryPostProcessor</code>实现类，用于解析bean定义中的占位符。</p>
 </li>
 </ol>
 </div><div class="post-footer" id="post-footer">
