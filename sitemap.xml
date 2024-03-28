@@ -2,23 +2,13 @@
     xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
     xmlns:xhtml="http://www.w3.org/1999/xhtml"
     ><url>
-            <loc>http://example.org/posts/interview-spring/</loc><lastmod>2024-02-28T00:00:00&#43;00:00</lastmod></url><url>
-            <loc>http://example.org/posts/</loc><lastmod>2024-02-28T00:00:00&#43;00:00</lastmod></url><url>
-            <loc>http://example.org/</loc><lastmod>2024-02-28T00:00:00&#43;00:00</lastmod></url><url>
             <loc>http://example.org/tags/algorithm/</loc><lastmod>2024-02-25T00:00:00&#43;00:00</lastmod></url><url>
             <loc>http://example.org/tags/java/</loc><lastmod>2024-02-25T00:00:00&#43;00:00</lastmod></url><url>
+            <loc>http://example.org/posts/</loc><lastmod>2024-02-25T00:00:00&#43;00:00</lastmod></url><url>
+            <loc>http://example.org/</loc><lastmod>2024-02-25T00:00:00&#43;00:00</lastmod></url><url>
             <loc>http://example.org/tags/</loc><lastmod>2024-02-25T00:00:00&#43;00:00</lastmod></url><url>
             <loc>http://example.org/posts/sort-heap-sort/</loc><lastmod>2024-02-25T00:00:00&#43;00:00</lastmod></url><url>
             <loc>http://example.org/posts/sort-quick-sort/</loc><lastmod>2024-02-24T00:00:00&#43;00:00</lastmod></url><url>
-            <loc>http://example.org/posts/interview-java-thread/</loc><lastmod>2024-02-10T23:53:56&#43;08:00</lastmod></url><url>
-            <loc>http://example.org/posts/interview-mysql/</loc><lastmod>2024-02-06T22:50:17&#43;08:00</lastmod></url><url>
-            <loc>http://example.org/tags/mysql/</loc><lastmod>2024-02-06T22:50:17&#43;08:00</lastmod></url><url>
-            <loc>http://example.org/tags/database/</loc><lastmod>2024-02-01T00:00:00&#43;00:00</lastmod></url><url>
-            <loc>http://example.org/posts/interview-database/</loc><lastmod>2024-02-01T00:00:00&#43;00:00</lastmod></url><url>
-            <loc>http://example.org/posts/interview-mongodb/</loc><lastmod>2024-01-28T00:00:00&#43;00:00</lastmod></url><url>
-            <loc>http://example.org/tags/mongodb/</loc><lastmod>2024-01-28T00:00:00&#43;00:00</lastmod></url><url>
-            <loc>http://example.org/posts/interview-redis/</loc><lastmod>2024-01-25T00:00:00&#43;00:00</lastmod></url><url>
-            <loc>http://example.org/tags/redis/</loc><lastmod>2024-01-25T00:00:00&#43;00:00</lastmod></url><url>
             <loc>http://example.org/posts/sort-merge-sort/</loc><lastmod>2024-01-12T00:00:00&#43;00:00</lastmod></url><url>
             <loc>http://example.org/tags/react/</loc><lastmod>2023-12-10T00:00:00&#43;00:00</lastmod></url><url>
             <loc>http://example.org/tags/spring/</loc><lastmod>2023-12-10T00:00:00&#43;00:00</lastmod></url><url>

@@ -25,16 +25,6 @@
             </div>思路 快速排序是一种 分治 的排序算法。它将一个数组分成两个子数组，将两部分独立地排序。 快速排序与归并排序是互补的：归并排序将数组分成两个子数组分]]></description>
 </item>
 <item>
-    <title>Interview Java Thread</title>
-    <link>http://example.org/posts/interview-java-thread/</link>
-    <pubDate>Sat, 10 Feb 2024 23:53:56 &#43;0800</pubDate>
-    <author>SroUngE</author>
-    <guid>http://example.org/posts/interview-java-thread/</guid>
-    <description><![CDATA[<div class="featured-image">
-                <img src="https://s2.loli.net/2024/01/23/FdJWU6IpNZGfACv.png" referrerpolicy="no-referrer">
-            </div>多线程 多线程的好处： 提高程序性能： 充分利用多核处理器，同时执行多个线程，加速任务完成速度，提高程序整体性能。 提高系统吞吐量： 多线程可以使系统]]></description>
-</item>
-<item>
     <title>排序：归并排序</title>
     <link>http://example.org/posts/sort-merge-sort/</link>
     <pubDate>Fri, 12 Jan 2024 00:00:00 &#43;0000</pubDate>
