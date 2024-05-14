@@ -27,7 +27,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/example.org\/posts\/jvm2-gc\/"
-        },"genre": "posts","keywords": "JVM","wordcount":  1302 ,
+        },"genre": "posts","keywords": "JVM","wordcount":  3078 ,
         "url": "http:\/\/example.org\/posts\/jvm2-gc\/","datePublished": "2023-06-07T00:00:00+00:00","dateModified": "2023-06-07T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -145,8 +145,8 @@
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">JVM(二): 垃圾回收</h1><div class="post-meta">
             <div class="post-meta-line">
                 </div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-06-07">2023-06-07</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;1302 words&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;3 minutes&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-06-07">2023-06-07</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;3078 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;7 minutes&nbsp;</div>
         </div><div class="featured-image"><img
         class="lazyload"
         src="/svg/loading.min.svg"
@@ -172,9 +172,23 @@
         <li><a href="#21-标记清除">2.1 标记清除</a></li>
         <li><a href="#22-标记整理">2.2 标记整理</a></li>
         <li><a href="#23-标记复制">2.3 标记复制</a></li>
-        <li><a href="#24-分代gc">2.4 分代GC</a></li>
-        <li><a href="#25-实例展示">2.5 实例展示</a></li>
-        <li><a href="#26-常见面试问题">2.6 常见面试问题</a></li>
+      </ul>
+    </li>
+    <li><a href="#3-分代gc">3. 分代GC</a>
+      <ul>
+        <li><a href="#31-垃圾回收过程">3.1 垃圾回收过程</a></li>
+        <li><a href="#3-2-实例展示">3. 2 实例展示</a></li>
+        <li><a href="#33-常见面试问题">3.3 常见面试问题</a></li>
+      </ul>
+    </li>
+    <li><a href="#4-垃圾回收器">4. 垃圾回收器</a>
+      <ul>
+        <li><a href="#41-serial-gc-串行垃圾回收器">4.1 Serial GC (串行垃圾回收器)</a></li>
+        <li><a href="#42-parallel-gc-并行垃圾回收器">4.2 Parallel GC (并行垃圾回收器)</a></li>
+        <li><a href="#43-cms-gc-并发标记-清除垃圾回收器">4.3 CMS GC (并发标记-清除垃圾回收器)</a></li>
+        <li><a href="#44-g1-gc-garbage-first垃圾回收器">4.4 G1 GC (Garbage-First垃圾回收器)</a></li>
+        <li><a href="#45-zgc-z垃圾回收器">4.5 ZGC (Z垃圾回收器)</a></li>
+        <li><a href="#46-常见面试问题">4.6. 常见面试问题</a></li>
       </ul>
     </li>
   </ul>
@@ -234,7 +248,8 @@
         alt="https://s2.loli.net/2023/06/07/jGpMPLZ4t2aFfsH.png"
         title="https://s2.loli.net/2023/06/07/jGpMPLZ4t2aFfsH.png" /></li>
 </ul>
-<h3 id="24-分代gc">2.4 分代GC</h3>
+<h2 id="3-分代gc">3. 分代GC</h2>
+<h3 id="31-垃圾回收过程">3.1 垃圾回收过程</h3>
 <p><img
         class="lazyload"
         src="/svg/loading.min.svg"
@@ -253,7 +268,7 @@
 <li>当对象寿命超过阈值时，会晋升至老年代，最大寿命是15（4bit） 。</li>
 <li>经过minor gc之后又有一部分存活的对象会进入老年代，当老年代空间不足时，会触发老年代上的垃圾回收major gc。</li>
 </ul>
-<h3 id="25-实例展示">2.5 实例展示</h3>
+<h3 id="3-2-实例展示">3. 2 实例展示</h3>
 <p><img
         class="lazyload"
         src="/svg/loading.min.svg"
@@ -307,9 +322,94 @@
         alt="https://s2.loli.net/2023/06/07/WZc3LrOYtUfFz8T.png"
         title="https://s2.loli.net/2023/06/07/WZc3LrOYtUfFz8T.png" /><br>
 触发Full GC，新生代垃圾回收发现内存不够，触发老年代垃圾回收，内存也不够，则会抛出OutOfMemoryError:Java heap space</p>
-<h3 id="26-常见面试问题">2.6 常见面试问题</h3>
-<p>为什么GC的时候要stop the world？/GC的时候不stop the world 会发生什么？
-因为GC的时候有采用复制算法，即会对对象的地址进行复制，如果这个时候不暂停其他户的线程，可能会引发混乱。</p></div><div class="post-footer" id="post-footer">
+<h3 id="33-常见面试问题">3.3 常见面试问题</h3>
+<p><strong>问：为什么GC的时候要stop the world？/GC的时候不stop the world 会发生什么？</strong>
+答：因为GC的时候有采用复制算法，即会对对象的地址进行复制，如果这个时候不暂停其他户的线程，可能会引发混乱。</p>
+<h2 id="4-垃圾回收器">4. 垃圾回收器</h2>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://s2.loli.net/2024/05/14/mi8Mw5oSPLHZWnp.png"
+        data-srcset="https://s2.loli.net/2024/05/14/mi8Mw5oSPLHZWnp.png, https://s2.loli.net/2024/05/14/mi8Mw5oSPLHZWnp.png 1.5x, https://s2.loli.net/2024/05/14/mi8Mw5oSPLHZWnp.png 2x"
+        data-sizes="auto"
+        alt="https://s2.loli.net/2024/05/14/mi8Mw5oSPLHZWnp.png"
+        title="image-20240514122612066" /></p>
+<ul>
+<li>串行垃圾回收器：Serial、Serial Old</li>
+<li>并行垃圾回收器：ParNew、Parallel Scavenge、Parallel Old</li>
+<li>新生代可以使用的垃圾回收器：Serial、ParNew、Parallel Scavenge</li>
+<li>老年代可以适用的垃圾回收器：CMS、Serial Old、Parallel Old</li>
+<li>G1回收器适用于新生代和老年代</li>
+<li>相互之间有连线的表示可以配合使用</li>
+</ul>
+<h3 id="41-serial-gc-串行垃圾回收器">4.1 Serial GC (串行垃圾回收器)</h3>
+<ul>
+<li>单线程垃圾回收器，适用于单处理器环境。</li>
+<li>在垃圾回收时会暂停所有应用线程（STW，即Stop-The-World）。</li>
+<li>在新生代使用&quot;标记-复制&quot;算法，在老年代使用&quot;标记-整理&quot;算法。</li>
+<li>适合小型应用程序和内存占用较少的环境，Client 模式的虚拟机的首选。</li>
+</ul>
+<h3 id="42-parallel-gc-并行垃圾回收器">4.2 Parallel GC (并行垃圾回收器)</h3>
+<ul>
+<li>多线程垃圾回收器，适用于多处理器环境。</li>
+<li>同时回收多个垃圾，减少垃圾回收时间。</li>
+<li>在新生代使用&quot;标记-复制&quot;算法，在老年代使用&quot;标记-整理&quot;算法。</li>
+<li>适用于需要较高吞吐量的应用。</li>
+</ul>
+<h3 id="43-cms-gc-并发标记-清除垃圾回收器">4.3 CMS GC (并发标记-清除垃圾回收器)</h3>
+<ul>
+<li>Concurrent Mark-Sweep GC，通过并发的方式减少STW时间。</li>
+<li>在垃圾回收的标记阶段与应用线程并发运行，减少暂停时间。</li>
+<li>采用“标记-清除”算法，主要用于老年代的垃圾收集。</li>
+<li>适用于低停顿时间要求的应用，但会增加CPU使用率。</li>
+</ul>
+<p><strong>步骤：</strong></p>
+<ol>
+<li>
+<p>初始标记(Stop The World)：标记 GC Root 可以直接关联的对象，速度很快</p>
+</li>
+<li>
+<p>并发标记(和用户线程一起)：主要标记过程，标记全部对象</p>
+</li>
+<li>
+<p>重新标记(Stop The World)：为了修正在并发标记期间，因用户程序继续运行而导致标记产生变动的那一部分对象的标记记录，停顿时间略长于初始标记，但远远短于并发标记的时间；</p>
+</li>
+<li>
+<p>并发清除(和用户线程一起)：基于标记结果，直接清除对象</p>
+</li>
+</ol>
+<p>由于耗时最长的并发标记和并发清除过程中，垃圾收集线程可以和用户现在一起并发工作，所以总体上来看CMS 收集器的内存回收和用户线程是一起并发地执行。需要注意的是，CMS垃圾回收器虽然能够显著减少应用程序的暂停时间，但它也有一些缺点。例如，它会产生内存碎片，因为它只是简单地清除掉被标记为“垃圾”的对象，而不进行内存整理。此外，由于CMS垃圾回收器是并发执行的，所以它可能会消耗更多的CPU资源。</p>
+<h3 id="44-g1-gc-garbage-first垃圾回收器">4.4 G1 GC (Garbage-First垃圾回收器)</h3>
+<ul>
+<li>设计用于替代CMS GC，适用于多核处理器和大内存环境。</li>
+<li><strong>分区</strong>收集垃圾，优先回收含垃圾最多的分区，减少STW时间。</li>
+<li>整体上是“标记-整理”算法，两个区域之间是“标记-复制”算法。</li>
+<li>适用于需要平衡吞吐量和停顿时间的应用。</li>
+</ul>
+<p><strong>关键概念：</strong></p>
+<ul>
+<li><strong>Region（区域）</strong>：G1将堆划分为多个大小相等的有优先级的区域，每个区域可以是Eden（伊甸区）、Survivor（幸存区）、Old（老年代）或Humongous（巨型区）之一。</li>
+<li><strong>Young GC</strong>：只处理Eden和Survivor区域的垃圾回收。</li>
+<li><strong>Mixed GC</strong>：处理所有区域，包括部分Old区域。</li>
+</ul>
+<p><strong>与 CMS 比较：</strong></p>
+<p>G1垃圾回收器是一种基于区域的垃圾回收器，它将堆空间划分为多个相同大小的区域（Region），并在每个区域中独立地进行垃圾回收。</p>
+<ol>
+<li><strong>减少内存碎片</strong>：G1通过将堆分成多个小区域（Region）并在回收时压缩这些区域，减少了内存碎片，而CMS会产生内存碎片，导致长时间的Full GC。</li>
+<li><strong>控制暂停时间</strong>：G1允许用户设置期望的暂停时间目标，并尽量在满足这个目标的情况下进行垃圾回收。CMS无法精确控制暂停时间，可能会有较长的停顿。</li>
+</ol>
+<h3 id="45-zgc-z垃圾回收器">4.5 ZGC (Z垃圾回收器)</h3>
+<ul>
+<li>专为超大内存应用设计，目标是将垃圾回收停顿时间限制在10毫秒以内。</li>
+<li>通过并发和分阶段垃圾回收实现低停顿时间。</li>
+<li>适用于低停顿时间和大内存需求的应用，几乎可以在任何时候以极低的延迟进行垃圾回收。</li>
+</ul>
+<h3 id="46-常见面试问题">4.6. 常见面试问题</h3>
+<p><strong>分代垃圾回收 VS 分区垃圾回收</strong></p>
+<p><strong>分代收集算法</strong></p>
+<p>当前主流 VM 垃圾收集都采用”分代收集”(Generational Collection)算法, 这种算法会根据对象存活周期的不同将内存划分为几块, 如 JVM 中的 新生代、老年代、永久代，这样就可以根据各年代特点分别采用最适当的 GC 算法。</p>
+<p><strong>分区收集算法</strong></p>
+<p>分区算法则将整个堆空间划分为连续的不同小区间, 每个小区间独立使用, 独立回收. 这样做的好处是可以控制一次回收多少个小区间 , 根据目标停顿时间, 每次合理地回收若干个小区间(而不是整个堆), 从而减少一次 GC 所产生的停顿。</p></div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
