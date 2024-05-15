@@ -5,7 +5,7 @@
         <description>Algorithm - Tag - Rong&#39;s Blog</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>977683159@qq.com (SroUngE)</managingEditor>
             <webMaster>977683159@qq.com (SroUngE)</webMaster><lastBuildDate>Sun, 12 May 2024 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://example.org/tags/algorithm/" rel="self" type="application/rss+xml" /><item>
-    <title></title>
+    <title>Leetcode 工具类 构造输入</title>
     <link>http://example.org/posts/leetcode-util/</link>
     <pubDate>Sun, 12 May 2024 00:00:00 &#43;0000</pubDate>
     <author>SroUngE</author>
